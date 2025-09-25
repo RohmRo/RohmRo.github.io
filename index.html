@@ -580,16 +580,11 @@
 
 <!-- چت‌بات -->
 <div id="chatbox" style="position:fixed; bottom:20px; right:20px; width:320px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); z-index:9999; display:none;">
-  <!-- هدر چت‌بات -->
   <div style="background:#007bff; color:#fff; padding:10px 15px; border-top-left-radius:10px; border-top-right-radius:10px; position:relative;">
     🤖 راهنمای هوشمند
     <button onclick="closeChatbot()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">×</button>
   </div>
-
-  <!-- محتوای چت -->
   <div id="chatlog" style="height:220px; overflow-y:auto; padding:10px; font-size:14px;"></div>
-
-  <!-- ورودی کاربر -->
   <div style="display:flex; border-top:1px solid #eee;">
     <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید..." style="flex:1; border:none; padding:10px; font-size:14px;" />
     <button onclick="sendChat()" style="background:#007bff; color:#fff; border:none; padding:10px;">ارسال</button>
@@ -599,55 +594,47 @@
 <!-- دکمه باز کردن چت‌بات -->
 <button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
 
-<!-- اسکریپت‌ها -->
+<!-- مغز بات -->
 <script>
-let conversationMemory = [];
-
-function openChatbot() {
-  document.getElementById("chatbox").style.display = "block";
-}
-
-function closeChatbot() {
-  document.getElementById("chatbox").style.display = "none";
-}
+let memory = [];
+let learnedResponses = {};
 
 function preprocess(text) {
-  return text.toLowerCase().replace(/[؟?!.,،]/g, "").trim();
+  return text.toLowerCase().replace(/[؟?!.,،؛"]/g, "").trim();
 }
 
-function analyzeIntent(text, memory) {
-  if (text.includes("سلام") || text.includes("خوبی")) return "greeting";
-  if (text.includes("خداحافظ") || text.includes("بای")) return "farewell";
-  if (text.includes("قیمت") || text.includes("هزینه")) return "pricing";
-  if (text.includes("کی هستی") || text.includes("چی هستی")) return "identity";
-  if (text.includes("ساعت کاری")) return "working_hours";
-  if (text.includes("هوش مصنوعی")) return "ai_info";
-  if (memory.some(m => m.user.includes("قیمت"))) return "followup_pricing";
-  return "unknown";
+function detectEmotion(text) {
+  if (text.includes("😡") || text.includes("عصبانی")) return "angry";
+  if (text.includes("😊") || text.includes("خوشحال")) return "happy";
+  if (text.includes("😢") || text.includes("ناراحتم")) return "sad";
+  return "neutral";
 }
 
-function getBotReply(userMessage) {
-  const cleaned = preprocess(userMessage);
-  const intent = analyzeIntent(cleaned, conversationMemory);
+function getBotReply(userText) {
+  const cleaned = preprocess(userText);
 
-  switch (intent) {
-    case "greeting":
-      return "سلام! خوشحالم که برگشتی. چطور می‌تونم کمک کنم؟";
-    case "farewell":
-      return "فعلاً! مراقب خودت باش.";
-    case "pricing":
-      return "برای اطلاع از قیمت، لطفاً نام محصول رو بنویس.";
-    case "followup_pricing":
-      return "هنوز منتظرم بدونم کدوم محصول مد نظرته؟";
-    case "identity":
-      return "من یه راهنمای هوشمندم که توسط رُهام ساخته شدم. هر روز باهوش‌تر می‌شم!";
-    case "working_hours":
-      return "ما هر روز از ساعت ۹ صبح تا ۶ عصر در خدمتیم.";
-    case "ai_info":
-      return "هوش مصنوعی یعنی ماشینی که می‌تونه فکر کنه، یاد بگیره و تصمیم بگیره—مثل من!";
-    default:
-      return "متوجه نشدم چی گفتی، لطفاً واضح‌تر بپرس یا سوالت رو دقیق‌تر بنویس.";
+  // اگر قبلاً یاد گرفته باشه
+  if (learnedResponses[cleaned]) {
+    return learnedResponses[cleaned];
   }
+
+  // اگر توی حافظه مکالمه باشه
+  const known = memory.find(m => preprocess(m.user) === cleaned);
+  if (known) return known.bot;
+
+  // اگر نشناسه، از کاربر می‌پرسه
+  return `متوجه نشدم چی گفتی. می‌خوای بهم یاد بدی چی جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"`;
+}
+
+function handleLearning(command) {
+  const match = command.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
+  if (match) {
+    const input = preprocess(match[1]);
+    const reply = match[2];
+    learnedResponses[input] = reply;
+    return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`;
+  }
+  return null;
 }
 
 function sendChat() {
@@ -659,10 +646,17 @@ function sendChat() {
   chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${userText}</div>`;
   input.value = "";
 
-  conversationMemory.push({ user: userText });
+  let botReply = handleLearning(userText);
+  if (!botReply) {
+    botReply = getBotReply(userText);
+  }
 
-  const botReply = getBotReply(userText);
-  conversationMemory.push({ bot: botReply });
+  const emotion = detectEmotion(userText);
+  if (emotion === "angry") botReply += " 😬 ببخشید اگه ناراحتت کردم.";
+  if (emotion === "happy") botReply += " 😊 خوشحالم که حالت خوبه!";
+  if (emotion === "sad") botReply += " 😢 امیدوارم بهتر بشی.";
+
+  memory.push({ user: userText, bot: botReply });
 
   chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${botReply}</div>`;
   chatlog.scrollTop = chatlog.scrollHeight;
@@ -671,4 +665,4 @@ function sendChat() {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>س
+</html>
