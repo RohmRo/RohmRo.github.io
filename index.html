@@ -618,7 +618,7 @@ function sendChat() {
   chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${userText}</div>`;
   input.value = "";
 
-  fetch("http://localhost:3000/chat", {
+  fetch("https://roham-chatbot-api.vercel.app/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: userText })
