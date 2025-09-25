@@ -591,14 +591,19 @@
   </div>
 </div>
 
-<!-- دکمه باز کردن چت‌بات -->
 <button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
 
-<!-- مغز پیشرفته -->
+<!-- مغز ترکیبی -->
 <script>
 let memory = [];
 let learnedResponses = {};
 const knownProducts = ["لپ‌تاپ", "گوشی", "تبلت", "مانیتور", "هدفون", "موس", "کیبورد"];
+const keywords = {
+  greeting: ["سلام", "درود", "خوبی", "چطوری"],
+  farewell: ["خداحافظ", "بای", "فعلاً"],
+  identity: ["کی هستی", "چی هستی", "تو کی‌ای"],
+  ai: ["هوش مصنوعی", "ربات", "فکر می‌کنی"],
+};
 
 function openChatbot() {
   document.getElementById("chatbox").style.display = "block";
@@ -649,6 +654,13 @@ function detectEmotion(text) {
   return "neutral";
 }
 
+function detectIntent(text) {
+  for (let intent in keywords) {
+    if (keywords[intent].some(k => text.includes(k))) return intent;
+  }
+  return null;
+}
+
 function handleLearning(command) {
   const match = command.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
   if (match) {
@@ -663,8 +675,14 @@ function handleLearning(command) {
 function getBotReply(userText) {
   const cleaned = preprocess(userText);
   const emotion = detectEmotion(userText);
+  const intent = detectIntent(cleaned);
 
   if (learnedResponses[cleaned]) return learnedResponses[cleaned];
+
+  if (intent === "greeting") return "سلام! خوشحالم که برگشتی.";
+  if (intent === "farewell") return "فعلاً! مراقب خودت باش.";
+  if (intent === "identity") return "من یه بات هوشمندم که توسط رُهام ساخته شدم.";
+  if (intent === "ai") return "هوش مصنوعی یعنی ماشینی که می‌تونه فکر کنه، یاد بگیره و تصمیم بگیره—مثل من!";
 
   const productMention = knownProducts.find(p => cleaned.includes(p));
   if (!productMention) {
