@@ -305,37 +305,39 @@
             </div>
         </div>
         <!-- Contact-->
-<section class="page-section" id="contact" style="background-color:#f8f9fa;">
+<section class="page-section" id="contact">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center">
       <h2 class="section-heading text-uppercase">تماس با من</h2>
       <h3 class="section-subheading text-muted">برای همکاری یا مشاوره، خوشحال می‌شم در ارتباط باشیم</h3>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card border-0 shadow-lg rounded-4">
-          <div class="card-body p-4">
-            <form id="contactForm">
-              <div class="mb-3">
-                <input class="form-control" id="name" type="text" placeholder="نام شما *" required />
-              </div>
-              <div class="mb-3">
-                <input class="form-control" id="email" type="email" placeholder="ایمیل شما *" required />
-              </div>
-              <div class="mb-3">
-                <input class="form-control" id="phone" type="tel" placeholder="شماره تماس *" required />
-              </div>
-              <div class="mb-4">
-                <textarea class="form-control" id="message" rows="5" placeholder="پیام شما *" required></textarea>
-              </div>
-              <div class="text-center">
-                <button class="btn btn-primary btn-xl text-uppercase" type="submit">ارسال پیام</button>
-              </div>
-            </form>
+    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="row align-items-stretch mb-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input class="form-control" id="name" type="text" placeholder="نام شما *" required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input class="form-control" id="email" type="email" placeholder="ایمیل شما *" required />
           </div>
         </div>
       </div>
-    </div>
+      <div class="row align-items-stretch mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input class="form-control" id="phone" type="tel" placeholder="شماره تماس *" required />
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <textarea class="form-control" id="message" rows="5" placeholder="پیام شما *" required></textarea>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-xl text-uppercase" type="submit">ارسال پیام</button>
+      </div>
+    </form>
   </div>
 </section>
         <!-- Footer-->
