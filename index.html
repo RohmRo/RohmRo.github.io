@@ -309,26 +309,23 @@
   <div class="container">
     <div class="text-center">
       <h2 class="section-heading text-uppercase">تماس با من</h2>
-      <h3 class="section-subheading text-muted">سؤالی داری؟ خوشحال می‌شم بشنوم.</h3>
+      <h3 class="section-subheading text-muted">برای همکاری یا مشاوره، خوشحال می‌شم در ارتباط باشیم</h3>
     </div>
-    <form action="https://formspree.io/f/mnngqegl" method="POST">
-      <div class="row align-items-stretch mb-5">
+    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="row align-items-stretch mb-3">
         <div class="col-md-6">
           <div class="form-group">
-            <input class="form-control" type="text" name="name" placeholder="نام شما *" required />
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="ایمیل شما *" required />
-          </div>
-          <div class="form-group mb-md-0">
-            <input class="form-control" type="tel" name="phone" placeholder="شماره تماس" />
+            <input class="form-control" id="name" type="text" placeholder="نام شما *" required />
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group form-group-textarea mb-md-0">
-            <textarea class="form-control" name="message" placeholder="پیام شما *" required></textarea>
+          <div class="form-group">
+            <input class="form-control" id="email" type="email" placeholder="ایمیل شما *" required />
           </div>
         </div>
+      </div>
+      <div class="form-group mb-3">
+        <textarea class="form-control" id="message" rows="5" placeholder="پیام شما *" required></textarea>
       </div>
       <div class="text-center">
         <button class="btn btn-primary btn-xl text-uppercase" type="submit">ارسال پیام</button>
