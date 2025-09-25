@@ -601,12 +601,53 @@
 
 <!-- اسکریپت‌ها -->
 <script>
+let conversationMemory = [];
+
 function openChatbot() {
   document.getElementById("chatbox").style.display = "block";
 }
 
 function closeChatbot() {
   document.getElementById("chatbox").style.display = "none";
+}
+
+function preprocess(text) {
+  return text.toLowerCase().replace(/[؟?!.,،]/g, "").trim();
+}
+
+function analyzeIntent(text, memory) {
+  if (text.includes("سلام") || text.includes("خوبی")) return "greeting";
+  if (text.includes("خداحافظ") || text.includes("بای")) return "farewell";
+  if (text.includes("قیمت") || text.includes("هزینه")) return "pricing";
+  if (text.includes("کی هستی") || text.includes("چی هستی")) return "identity";
+  if (text.includes("ساعت کاری")) return "working_hours";
+  if (text.includes("هوش مصنوعی")) return "ai_info";
+  if (memory.some(m => m.user.includes("قیمت"))) return "followup_pricing";
+  return "unknown";
+}
+
+function getBotReply(userMessage) {
+  const cleaned = preprocess(userMessage);
+  const intent = analyzeIntent(cleaned, conversationMemory);
+
+  switch (intent) {
+    case "greeting":
+      return "سلام! خوشحالم که برگشتی. چطور می‌تونم کمک کنم؟";
+    case "farewell":
+      return "فعلاً! مراقب خودت باش.";
+    case "pricing":
+      return "برای اطلاع از قیمت، لطفاً نام محصول رو بنویس.";
+    case "followup_pricing":
+      return "هنوز منتظرم بدونم کدوم محصول مد نظرته؟";
+    case "identity":
+      return "من یه راهنمای هوشمندم که توسط رُهام ساخته شدم. هر روز باهوش‌تر می‌شم!";
+    case "working_hours":
+      return "ما هر روز از ساعت ۹ صبح تا ۶ عصر در خدمتیم.";
+    case "ai_info":
+      return "هوش مصنوعی یعنی ماشینی که می‌تونه فکر کنه، یاد بگیره و تصمیم بگیره—مثل من!";
+    default:
+      return "متوجه نشدم چی گفتی، لطفاً واضح‌تر بپرس یا سوالت رو دقیق‌تر بنویس.";
+  }
 }
 
 function sendChat() {
@@ -618,22 +659,16 @@ function sendChat() {
   chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${userText}</div>`;
   input.value = "";
 
-  fetch("https://roham-chatbot-api.vercel.app/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userText })
-  })
-  .then(res => res.json())
-  .then(data => {
-    chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${data.reply}</div>`;
-    chatlog.scrollTop = chatlog.scrollHeight;
-  })
-  .catch(() => {
-    chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> خطا در اتصال به سرور</div>`;
-  });
+  conversationMemory.push({ user: userText });
+
+  const botReply = getBotReply(userText);
+  conversationMemory.push({ bot: botReply });
+
+  chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${botReply}</div>`;
+  chatlog.scrollTop = chatlog.scrollHeight;
 }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html>س
