@@ -591,16 +591,46 @@
   </div>
 </div>
 
-<!-- دکمه باز کردن چت‌بات -->
 <button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
 
-<!-- مغز بات -->
+<!-- مغز پیشرفته -->
 <script>
 let memory = [];
 let learnedResponses = {};
+const knownProducts = ["لپ‌تاپ", "گوشی", "تبلت", "مانیتور", "هدفون", "موس", "کیبورد"];
 
 function preprocess(text) {
   return text.toLowerCase().replace(/[؟?!.,،؛"]/g, "").trim();
+}
+
+function levenshtein(a, b) {
+  const matrix = Array.from({ length: a.length + 1 }, (_, i) =>
+    Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+  );
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return matrix[a.length][b.length];
+}
+
+function fuzzyMatch(input, options) {
+  let best = options[0];
+  let min = levenshtein(input, best);
+  for (let i = 1; i < options.length; i++) {
+    const dist = levenshtein(input, options[i]);
+    if (dist < min) {
+      min = dist;
+      best = options[i];
+    }
+  }
+  return best;
 }
 
 function detectEmotion(text) {
@@ -608,22 +638,6 @@ function detectEmotion(text) {
   if (text.includes("😊") || text.includes("خوشحال")) return "happy";
   if (text.includes("😢") || text.includes("ناراحتم")) return "sad";
   return "neutral";
-}
-
-function getBotReply(userText) {
-  const cleaned = preprocess(userText);
-
-  // اگر قبلاً یاد گرفته باشه
-  if (learnedResponses[cleaned]) {
-    return learnedResponses[cleaned];
-  }
-
-  // اگر توی حافظه مکالمه باشه
-  const known = memory.find(m => preprocess(m.user) === cleaned);
-  if (known) return known.bot;
-
-  // اگر نشناسه، از کاربر می‌پرسه
-  return `متوجه نشدم چی گفتی. می‌خوای بهم یاد بدی چی جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"`;
 }
 
 function handleLearning(command) {
@@ -635,6 +649,28 @@ function handleLearning(command) {
     return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`;
   }
   return null;
+}
+
+function getBotReply(userText) {
+  const cleaned = preprocess(userText);
+  const emotion = detectEmotion(userText);
+
+  if (learnedResponses[cleaned]) return learnedResponses[cleaned];
+
+  const productMention = knownProducts.find(p => cleaned.includes(p));
+  if (!productMention) {
+    const words = cleaned.split(" ");
+    for (let word of words) {
+      const guess = fuzzyMatch(word, knownProducts);
+      if (levenshtein(word, guess) <= 2) {
+        return `منظورت "${guess}" بود؟ قیمتش از ۵ میلیون شروع می‌شه.`;
+      }
+    }
+  } else {
+    return `قیمت ${productMention} از ۵ میلیون شروع می‌شه.`;
+  }
+
+  return `متوجه نشدم چی گفتی. می‌خوای بهم یاد بدی چی جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"`;
 }
 
 function sendChat() {
