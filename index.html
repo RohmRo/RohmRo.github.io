@@ -537,14 +537,45 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+     <!-- چت‌بات هوشمند سایت -->
+<div id="chatbox" style="position:fixed; bottom:20px; right:20px; width:300px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); z-index:9999;">
+  <div style="background:#007bff; color:#fff; padding:10px; border-top-left-radius:10px; border-top-right-radius:10px;">
+    🤖 راهنمای هوشمند
+  </div>
+  <div id="chatlog" style="height:200px; overflow-y:auto; padding:10px; font-size:14px;"></div>
+  <div style="display:flex; border-top:1px solid #eee;">
+    <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید..." style="flex:1; border:none; padding:10px; font-size:14px;" />
+    <button onclick="sendChat()" style="background:#007bff; color:#fff; border:none; padding:10px;">ارسال</button>
+  </div>
+</div>
+
+<script>
+function sendChat() {
+  const input = document.getElementById("chatinput");
+  const chatlog = document.getElementById("chatlog");
+  const userText = input.value.trim();
+  if (!userText) return;
+
+  chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${userText}</div>`;
+
+  let reply = "متأسفم، متوجه نشدم. لطفاً واضح‌تر بپرسید.";
+  if (userText.includes("قیمت")) reply = "برای اطلاع از قیمت، لطفاً نام محصول را وارد کنید.";
+  else if (userText.includes("سفارش")) reply = "برای ثبت سفارش، لطفاً از فرم تماس استفاده کنید یا با ما تماس بگیرید.";
+  else if (userText.includes("ارسال")) reply = "ارسال سفارش‌ها از طریق پست پیشتاز انجام می‌شود و ۲ تا ۴ روز کاری زمان می‌برد.";
+  else if (userText.includes("سلام")) reply = "سلام! خوشحال می‌شم کمکت کنم. چه سؤالی داری؟";
+
+  chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${reply}</div>`;
+  input.value = "";
+  chatlog.scrollTop = chatlog.scrollHeight;
+}
+</script>
+
+<!-- Bootstrap core JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS -->
+<script src="scripts.js"></script>
+<!-- SB Forms JS -->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+</body>
 </html>
