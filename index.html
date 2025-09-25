@@ -591,6 +591,7 @@
   </div>
 </div>
 
+<!-- دکمه باز کردن چت‌بات -->
 <button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
 
 <!-- مغز پیشرفته -->
@@ -598,6 +599,14 @@
 let memory = [];
 let learnedResponses = {};
 const knownProducts = ["لپ‌تاپ", "گوشی", "تبلت", "مانیتور", "هدفون", "موس", "کیبورد"];
+
+function openChatbot() {
+  document.getElementById("chatbox").style.display = "block";
+}
+
+function closeChatbot() {
+  document.getElementById("chatbox").style.display = "none";
+}
 
 function preprocess(text) {
   return text.toLowerCase().replace(/[؟?!.,،؛"]/g, "").trim();
