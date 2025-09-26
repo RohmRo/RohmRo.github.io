@@ -1,31 +1,75 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="سایت شخصی رهام | برنامه‌نویس و متخصص هوش مصنوعی، طراحی وب و چت‌بات‌های هوشمند" />
-  <meta name="author" content="Roham" />
-  <title>Roham prog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROHAM PROG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fdfdfd;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    h1 {
+      font-size: 3rem;
+      color: #555;
+      z-index: 1;
+    }
 
-  <!-- Font Awesome icons -->
-  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 20s linear infinite;
+    }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" />
+    .bubble:nth-child(1) {
+      width: 120px;
+      height: 120px;
+      background: #ffb6c1;
+      top: 10%;
+      left: 20%;
+    }
 
-  <!-- ✅ Optional: فونت فارسی -->
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+    .bubble:nth-child(2) {
+      width: 80px;
+      height: 80px;
+      background: #add8e6;
+      top: 50%;
+      left: 70%;
+    }
 
-  <!-- ✅ Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    .bubble:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      background: #dda0dd;
+      top: 80%;
+      left: 30%;
+    }
 
-  <!-- Custom Styles -->
-  <link href="styles.css" rel="stylesheet" />
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-50px) scale(1.05); }
+      100% { transform: translateY(0) scale(1); }
+    }
+  </style>
 </head>
+<body>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <h1>ROHAM PROG</h1>
+</body>
+</html>
 <body id="page-top">
   <!-- عنوان اصلی سایت -->
   <h1 class="glitch-text" data-text="ROHAM PROG">ROHAM PROG</h1>
