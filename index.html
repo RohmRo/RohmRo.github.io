@@ -22,74 +22,58 @@
 
   <!-- گلیچ استایل -->
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
+    body {
       font-family: 'Vazirmatn', 'Orbitron', sans-serif;
-      background: #000;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
       color: #fff;
+      margin: 0;
+      padding-top: 80px;
+      position: relative;
       overflow-x: hidden;
     }
 
-    /* بک‌گراند گلیچ */
-    .glitch-bg {
+    .glitch-layer {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none;
       background: repeating-linear-gradient(
         0deg,
-        #0f0,
-        #0f0 1px,
-        #000 2px
+        rgba(0, 255, 0, 0.05),
+        rgba(0, 255, 0, 0.05) 1px,
+        transparent 2px
       );
-      animation: glitchMove 0.3s infinite;
-      opacity: 0.05;
-      z-index: -1;
+      animation: glitchMove 0.4s infinite;
+      z-index: 0;
     }
 
     @keyframes glitchMove {
       0% { transform: translate(0, 0); }
-      25% { transform: translate(2px, -2px); }
-      50% { transform: translate(-2px, 2px); }
-      75% { transform: translate(1px, -1px); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(0.5px, -0.5px); }
       100% { transform: translate(0, 0); }
     }
 
-    /* عنوان‌های لرزشی */
-    h1, h2, h3 {
+    section {
       position: relative;
-      color: #00ffff;
+      z-index: 1;
+    }
+
+    h1, h2, h3 {
       font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      color: #00ffff;
       text-transform: uppercase;
     }
 
-    h1::before, h1::after,
-    h2::before, h2::after,
-    h3::before, h3::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      color: #ff00cc;
-      clip: rect(0, 0, 0, 0);
-      animation: glitchText 1s infinite linear alternate-reverse;
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #ccc;
     }
 
-    h1::after, h2::after, h3::after {
-      color: #0ff;
-      animation-delay: 0.5s;
-    }
-
-    @keyframes glitchText {
-      0% { clip: rect(0, 100%, 10%, 0); transform: translate(-2px, -2px); }
-      50% { clip: rect(10%, 100%, 20%, 0); transform: translate(2px, 2px); }
-      100% { clip: rect(20%, 100%, 30%, 0); transform: translate(-1px, 1px); }
-    }
-
-    /* دکمه‌ها نئونی */
     button {
       background: #ff00cc;
       color: #fff;
@@ -97,23 +81,10 @@
       box-shadow: 0 0 10px #ff00cc;
       font-family: 'Orbitron', sans-serif;
     }
-
-    /* متن‌ها */
-    p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #ccc;
-    }
-
-    section {
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
-    }
   </style>
 </head>
-    <body id="page-top">
-      <div class="glitch-bg"></div>
+ <body id="page-top">
+  <div class="glitch-layer"></div> 
         <!-- Navigation-->
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
   <div class="container">
