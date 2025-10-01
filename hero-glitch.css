@@ -1,0 +1,77 @@
+:root{
+  --bg1: #0f1724;
+  --bg2: #0b1220;
+  --accent: #7c5cff;
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.08);
+  --text: #e6eef8;
+  --muted: #aab6d6;
+  --glass-blur: 10px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Vazirmatn',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:1000px;margin:0 auto;padding:1.25rem}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--text)}
+.logo{height:36px}
+.brand-text{font-weight:700;letter-spacing:.6px}
+.nav-actions .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:.35rem .6rem;border-radius:6px;text-decoration:none;margin-left:.5rem}
+
+/* Bubbles (پس‌زمینهٔ شناور) */
+.floating-bubbles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.bubble{position:absolute;border-radius:50%;filter:blur(30px);opacity:.25}
+.b1{width:340px;height:340px;background:linear-gradient(45deg,#7c5cff,#00d4ff);left:5%;top:10%}
+.b2{width:260px;height:260px;background:linear-gradient(45deg,#ff7ab6,#ffcf5c);right:8%;top:15%}
+.b3{width:180px;height:180px;background:linear-gradient(45deg,#34d399,#60a5fa);left:20%;bottom:5%}
+.b4{width:120px;height:120px;background:linear-gradient(45deg,#ffb86b,#7c5cff);right:18%;bottom:10%}
+
+/* کارت شیشه‌ای مرکزی */
+.hero{display:flex;align-items:center;justify-content:center;min-height:62vh;z-index:2}
+.glass-card{width:100%;max-width:720px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid var(--glass-border);backdrop-filter: blur(var(--glass-blur));-webkit-backdrop-filter: blur(var(--glass-blur));padding:2rem;border-radius:14px;box-shadow:0 8px 40px rgba(2,6,23,0.6);text-align:center;margin:1rem auto}
+
+/* افکت گلیچ روی عنوان */
+.glitch{position:relative;font-size:2.25rem;font-weight:800;letter-spacing:2px;margin:0;padding:0;line-height:1;color:var(--text)}
+.glitch::before,
+.glitch::after{
+  content: attr(data-text);
+  position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;
+}
+.glitch::before{left:2px;text-shadow:-2px 0 #ff4d6d;clip-path:polygon(0 0,100% 0,100% 45%,0 45%);opacity:.9}
+.glitch::after{left:-2px;text-shadow:-2px 0 #00e6ff;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);opacity:.9}
+@keyframes glitch-slide{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-2px)}
+  40%{transform:translateX(2px)}
+  60%{transform:translateX(-1px)}
+  80%{transform:translateX(1px)}
+  100%{transform:translateX(0)}
+}
+.glitch::before,.glitch::after{animation:glitch-slide 2.5s infinite linear}
+
+/* متن توضیحی و دکمه‌ها */
+.lead{color:var(--muted);margin:.6rem 0 1.1rem}
+.card-actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.btn{padding:.55rem 1rem;border-radius:8px;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#00d4ff);color:#021025;border:none;box-shadow:0 6px 18px rgba(124,92,255,0.18)}
+.btn-outline{border:1px solid rgba(255,255,255,0.06);color:var(--text);background:transparent}
+
+/* اطلاعات کوچک */
+.mini-info{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.info-item{display:flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.95rem}
+.service{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,0.03);margin:.75rem 0;text-align:center}
+.service-icon{font-size:1.45rem;color:var(--accent);margin-bottom:.5rem}
+.section-title{margin-top:1.6rem;margin-bottom:.8rem;font-size:1.25rem;color:var(--text)}
+
+/* فوتر */
+.footer{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid rgba(255,255,255,0.02);margin-top:2rem}
+.socials a{color:var(--muted);margin-left:.75rem;text-decoration:none}
+
+/* واکنش‌گرایی */
+@media (max-width:720px){
+  .glitch{font-size:1.6rem}
+  .brand-text{display:none}
+  .mini-info{font-size:.9rem}
+  .container{padding:1rem}
+}
