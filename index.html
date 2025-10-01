@@ -112,20 +112,21 @@
 </section>
         <!-- Portfolio Grid-->
 <!-- بخش نمونه‌کارها -->
-<section class="page-section bg-light" id="portfolio">
+<!-- نمونه‌کارها -->
+<section class="page-section bg-light" id="portfolio" dir="rtl" lang="fa">
   <div class="container">
     <div class="text-center">
       <h2 class="section-heading text-uppercase">نمونه‌کارها</h2>
       <h3 class="section-subheading text-muted">پروژه‌هایی که با عشق، تخصص و خلاقیت اجرا کرده‌ام</h3>
     </div>
+
     <div class="row">
-      <!-- پروژه‌ها -->
-      <!-- پروژه ۱ -->
+      <!-- پروژه 1 -->
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" role="button" aria-controls="portfolioModal1" aria-label="باز کردن جزئیات چت‌بات فروش">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="چت‌بات فروش" />
           </a>
@@ -136,12 +137,12 @@
         </div>
       </div>
 
-      <!-- پروژه ۲ -->
+      <!-- پروژه 2 -->
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2" role="button" aria-controls="portfolioModal2" aria-label="باز کردن جزئیات مدیریت پروژه">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="مدیریت پروژه" />
           </a>
@@ -152,12 +153,12 @@
         </div>
       </div>
 
-      <!-- پروژه ۳ -->
+      <!-- پروژه 3 -->
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3" role="button" aria-controls="portfolioModal3" aria-label="باز کردن جزئیات تشخیص احساسات">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="تشخیص احساسات" />
           </a>
@@ -168,12 +169,12 @@
         </div>
       </div>
 
-      <!-- پروژه ۴ -->
+      <!-- پروژه 4 -->
       <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4" role="button" aria-controls="portfolioModal4" aria-label="باز کردن جزئیات طراحی لوگو">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="طراحی لوگو" />
           </a>
@@ -184,12 +185,12 @@
         </div>
       </div>
 
-      <!-- پروژه ۵ -->
+      <!-- پروژه 5 -->
       <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5" role="button" aria-controls="portfolioModal5" aria-label="باز کردن جزئیات نمونه‌کارهای آنلاین">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="نمونه‌کارهای آنلاین" />
           </a>
@@ -200,12 +201,12 @@
         </div>
       </div>
 
-      <!-- پروژه ۶ -->
+      <!-- پروژه 6 -->
       <div class="col-lg-4 col-sm-6">
         <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6" role="button" aria-controls="portfolioModal6" aria-label="باز کردن جزئیات عکاسی صنعتی">
             <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
             </div>
             <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="عکاسی صنعتی" />
           </a>
@@ -218,6 +219,175 @@
     </div>
   </div>
 </section>
+
+<!-- مودال 1: چت‌بات فروش -->
+<div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal1Label">چت‌بات فروش — سامانه سفارش و پشتیبانی</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/1.jpg" class="img-fluid mb-3" alt="چت‌بات فروش">
+        <h6>خلاصه پروژه</h6>
+        <p>طراحی و پیاده‌سازی یک چت‌بات فروش که مشتریان را در انتخاب محصول، پردازش سفارش و پشتیبانی پس از فروش همراهی می‌کند. چت‌بات قابلیت اتصال به درگاه پرداخت، ارسال فاکتور و پاسخ‌دهی خودکار به پرسش‌های متداول را دارد.</p>
+        <h6>نقش من</h6>
+        <p>تحلیل نیازها، طراحی جریان گفتگو، پیاده‌سازی منطق سرور، و یکپارچه‌سازی با API درگاه پرداخت و پیام‌رسان‌ها.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>افزایش نرخ تبدیل بازدیدکننده به خریدار تا 22٪.</li>
+          <li>کاهش حجم تماس‌های پشتیبانی به‌خاطر پاسخ‌های خودکار.</li>
+          <li>یکپارچگی با تلگرام و واتساپ برای ارسال اعلان سفارش.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- مودال 2: مدیریت پروژه -->
+<div class="modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal2Label">پلتفرم مدیریت پروژه — داشبورد تیمی</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/2.jpg" class="img-fluid mb-3" alt="مدیریت پروژه">
+        <h6>خلاصه پروژه</h6>
+        <p>ساخت داشبورد مدیریت پروژه با تمرکز بر تسک‌برد، گزارش‌گیری و پیگیری زمان. هدف کاهش پیچیدگی مدیریت تیم‌های کوچک و بهبود شفافیت در تخصیص وظایف بوده است.</p>
+        <h6>نقش من</h6>
+        <p>طراحی UI/UX واکنش‌گرا، پیاده‌سازی قسمت گزارش‌دهی و اتصال به سرویس‌های احراز هویت سازمانی.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>کاهش زمان چرخه توسعه با بهبود فرایند تخصیص وظایف.</li>
+          <li>افزایش رضایت تیمی به‌واسطه داشبورد شفاف.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- مودال 3: تشخیص احساسات -->
+<div class="modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal3Label">سامانه تشخیص احساسات — تحلیل بازخورد</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/3.jpg" class="img-fluid mb-3" alt="تشخیص احساسات">
+        <h6>خلاصه پروژه</h6>
+        <p>پیاده‌سازی مدل‌های پردازش زبان طبیعی برای تحلیل بازخورد مشتریان و دسته‌بندی احساسات مثبت، منفی و خنثی. داشبوردی برای مشاهده ترندها و استخراج نقاط بحرانی طراحی شد.</p>
+        <h6>نقش من</h6>
+        <p>آماده‌سازی داده، آموزش مدل، و توسعه API برای سرویس تحلیل در مقیاس واقعی.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>شناسایی الگوهای نارضایتی که منجر به بهبود محصول شد.</li>
+          <li>امکان گزارش هفتگی احساسات مشتریان برای مدیریت.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- مودال 4: طراحی لوگو -->
+<div class="modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal4Label">پکیج هویت بصری — طراحی لوگو</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/4.jpg" class="img-fluid mb-3" alt="طراحی لوگو">
+        <h6>خلاصه پروژه</h6>
+        <p>طراحی لوگو و هویت بصری برای کسب‌وکارهای نوپا با توجه به پیام برند و بازار هدف. شامل نسخه‌های رنگی، تک‌رنگ و راهنمای استفاده است.</p>
+        <h6>نقش من</h6>
+        <p>تحلیل برند، طراحی اولیه، بازنگری با مشتری و آماده‌سازی فایل‌های نهایی برای چاپ و وب.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>تحویل بسته کامل هویت بصری همراه با راهنمای استفاده.</li>
+          <li>هماهنگی با تیم بازاریابی برای توسعه پیام برند.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- مودال 5: نمونه‌کارهای آنلاین -->
+<div class="modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal5Label">وب‌سایت‌های حرفه‌ای — نمونه‌کارهای آنلاین</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/5.jpg" class="img-fluid mb-3" alt="نمونه‌کارهای آنلاین">
+        <h6>خلاصه پروژه</h6>
+        <p>طراحی و توسعه وب‌سایت‌های شرکتی و فروشگاهی با تاکید بر سرعت بارگذاری، سئو پایه و تجربه کاربری. پیاده‌سازی ریسپانسیو برای تمام دستگاه‌ها انجام شد.</p>
+        <h6>نقش من</h6>
+        <p>برنامه‌نویسی فرانت‌اند، پیاده‌سازی بک‌اند ساده و استقرار روی هاست/CI.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>افزایش سرعت لود صفحات و بهبود امتیاز Core Web Vitals.</li>
+          <li>تحویل پنل مدیریت ساده برای مشتریان.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- مودال 6: عکاسی صنعتی -->
+<div class="modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6Label" aria-hidden="true" dir="rtl" lang="fa">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="portfolioModal6Label">عکاسی صنعتی و ادیت حرفه‌ای</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/img/portfolio/6.jpg" class="img-fluid mb-3" alt="عکاسی صنعتی">
+        <h6>خلاصه پروژه</h6>
+        <p>عکاسی از محصولات و محیط کار صنعتی، ویرایش رنگ و نور، و آماده‌سازی تصاویر برای کاتالوگ و وب‌سایت. تمرکز بر نمایش واضح جزئیات و ارتقای جذابیت بصری محصول بود.</p>
+        <h6>نقش من</h6>
+        <p>سِت‌آپ نور، عکاسی، ویرایش نهایی و تحویل فرمت‌های مناسب وب و چاپ.</p>
+        <h6>نتیجه و دستاوردها</h6>
+        <ul>
+          <li>افزایش تعامل صفحات محصول و درخواست‌های بی‌واسطه از مشتریان.</li>
+          <li>تحویل تصاویر با کیفیت چاپ و نسخه‌های بهینه‌شده برای وب.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
+        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- About-->
  <section class="page-section bg-light" id="about">
   <div class="container">
