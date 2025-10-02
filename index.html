@@ -1167,7 +1167,81 @@ function speak(text, locale){
    ------------------------ */
 appendBot('سلام! من ربات Roham هستم؛ فارسی، انگلیسی و فینگلیش را می‌فهمم. بپرس هر چیزی.', {lang:'fa', sentiment:{label:'neutral'}});
 </script>
+<script>
+(function(){
+  // نام id مورد انتظار
+  const ID = 'open-chat-btn';
+  const CHATBOX_ID = 'chatbox';
 
+  // helper برای ایجاد دکمه اگر وجود نداشت
+  function createButton(){
+    const b = document.createElement('button');
+    b.id = ID;
+    b.setAttribute('aria-label','باز کردن چت');
+    b.title = 'چت';
+    b.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/></svg>';
+    Object.assign(b.style, {
+      position:'fixed', right:'20px', bottom:'96px', width:'56px', height:'56px',
+      borderRadius:'50%', background:'#0b74ff', color:'#fff', border:'none',
+      display:'flex', alignItems:'center', justifyContent:'center',
+      boxShadow:'0 10px 30px rgba(11,20,40,0.18)', zIndex:'999999', cursor:'pointer'
+    });
+    document.body.appendChild(b);
+    return b;
+  }
+
+  // پیدا کردن یا ساختن دکمه
+  let btn = document.getElementById(ID);
+  if (!btn) btn = createButton();
+
+  // Force visible styles در صورت override شدن
+  btn.style.display = 'flex';
+  btn.style.visibility = 'visible';
+  btn.style.opacity = '1';
+  btn.style.zIndex = '999999';
+
+  // موقعیت واکنش‌گرا ساده
+  function position(){
+    if (window.matchMedia('(max-width:640px)').matches){
+      btn.style.left = '50%'; btn.style.transform = 'translateX(-50%)'; btn.style.right = 'auto'; btn.style.bottom='18px';
+    } else {
+      btn.style.right = '20px'; btn.style.left = 'auto'; btn.style.transform = 'none'; btn.style.bottom='96px';
+    }
+  }
+  position(); window.addEventListener('resize', position);
+
+  // چک وجود chatbox
+  const chatbox = document.getElementById(CHATBOX_ID);
+
+  // handler باز/بسته کردن
+  btn.addEventListener('click', function(){
+    if (!chatbox){
+      alert('پنل چت پیدا نشد. لطفاً بررسی کنید عنصر با id=\"chatbox\" در صفحه موجود باشد.');
+      return;
+    }
+    const visible = window.getComputedStyle(chatbox).display !== 'none' && window.getComputedStyle(chatbox).visibility !== 'hidden';
+    if (visible) {
+      chatbox.style.display = 'none';
+      btn.classList.remove('open');
+    } else {
+      chatbox.style.display = 'block';
+      btn.classList.add('open');
+      const input = chatbox.querySelector('input, textarea');
+      if (input) input.focus();
+    }
+  });
+
+  // رفع مشکل احتمالی overlay یا z-index عنصرهای والد
+  // تلاش می‌کنیم chatbox را نیز مرئی کنیم
+  if (chatbox) {
+    chatbox.style.zIndex = '999998';
+    if (window.getComputedStyle(chatbox).display === 'none') chatbox.style.display = 'block';
+  }
+
+  // خطایابی سریع در Console (قابل حذف پس از رفع)
+  console.log('Chat button ensured. btn:', btn, 'chatbox:', chatbox);
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
