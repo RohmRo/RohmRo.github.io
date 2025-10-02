@@ -752,292 +752,198 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>چت‌بات هوشمند Roham</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
-    html { scroll-behavior: smooth; }
-
-    /* ====== Glitch-like decorative background (add only, minimal risk of override) ====== */
-    .glitch-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:linear-gradient(135deg,#071024,#08122a)}
-    #glitch-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;mix-blend-mode:screen;opacity:.72}
-    .nebula-layer{position:absolute;inset:-15% -20%;pointer-events:none;z-index:0;
-      background:
-        radial-gradient(30% 20% at 10% 20%, rgba(124,92,255,0.16), transparent 12%),
-        radial-gradient(25% 15% at 90% 40%, rgba(0,212,255,0.12), transparent 12%),
-        radial-gradient(20% 12% at 50% 80%, rgba(255,74,118,0.08), transparent 12%);
-      filter:blur(64px) saturate(120%);transform:translateZ(0);mix-blend-mode:screen}
-
-    .floating-bubbles{position:absolute;inset:0;z-index:1;pointer-events:none}
-    .bubble{position:absolute;border-radius:50%;filter:blur(28px) saturate(120%);opacity:.22;transform:translateZ(0);will-change:transform,opacity;mix-blend-mode:screen}
-    .b1{width:420px;height:420px;background:linear-gradient(45deg,#7c5cff,#00d4ff);left:4%;top:8%}
-    .b2{width:300px;height:300px;background:linear-gradient(45deg,#ff7ab6,#ffcf5c);right:8%;top:12%}
-    .b3{width:220px;height:220px;background:linear-gradient(45deg,#34d399,#60a5fa);left:18%;bottom:6%}
-    .b4{width:160px;height:160px;background:linear-gradient(45deg,#ffb86b,#7c5cff);right:16%;bottom:14%}
-    @keyframes bubbleFloat{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-22px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
-    .bubble{animation:bubbleFloat 18s ease-in-out infinite}
-    .b1{animation-duration:20s;animation-delay:-2s}
-    .b2{animation-duration:18s;animation-delay:-5s}
-    .b3{animation-duration:22s;animation-delay:-8s}
-    .b4{animation-duration:16s;animation-delay:-3s}
-
-    .grain{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:
-      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>');mix-blend-mode:overlay;opacity:.9}
-
-    /* ensure page content stays above background without altering layout */
-    body > .glitch-bg + * {position:relative;z-index:0}
-
-    /* reduce heavy effects on small screens */
-    @media (max-width:1000px){
-      .nebula-layer,.bubble,.grain,#glitch-canvas{display:none}
-    }
-
-    /* local chatbox header style (kept minimal) */
-    #chatbox .header{background:#007bff;color:#fff;padding:10px 15px;border-top-left-radius:10px;border-top-right-radius:10px;position:relative}
+    :root{ --primary:#007bff; --bg:#fff; --muted:#f6f7fb; --radius:12px; --z:99999; --cw-desktop:360px; --cw-mobile:94vw; --fab:58px; }
+    html{ scroll-behavior:smooth; }
+    .chat-fab{ position:fixed; bottom:calc(env(safe-area-inset-bottom,0px)+18px); right:18px; z-index:var(--z); width:var(--fab); height:var(--fab); border-radius:50%; background:var(--primary); color:#fff; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(2,6,23,0.18); border:none; cursor:pointer; }
+    .chat-fab:active{ transform:scale(.98); }
+    .chatbox{ position:fixed; bottom:calc(env(safe-area-inset-bottom,0px)+20px); right:18px; z-index:calc(var(--z)+1); width:var(--cw-desktop); max-height:80vh; display:flex; flex-direction:column; background:var(--bg); border-radius:var(--radius); box-shadow:0 12px 40px rgba(10,20,40,0.12); overflow:hidden; font-family:"Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
+    .chatbox[aria-hidden="true"]{ display:none; }
+    .cb-header{ display:flex; gap:10px; align-items:center; padding:10px 12px; background:linear-gradient(90deg,var(--primary),#0062d6); color:#fff; }
+    .cb-header .avatar{ width:44px; height:44px; border-radius:10px; overflow:hidden; flex:0 0 44px; display:inline-flex; align-items:center; justify-content:center; background:#fff; }
+    .cb-header h4{ margin:0; font-size:15px; font-weight:600; }
+    .cb-log{ padding:12px; overflow:auto; background:var(--muted); flex:1 1 auto; font-size:14px; line-height:1.5; }
+    .cb-log::-webkit-scrollbar{ width:8px; } .cb-log::-webkit-scrollbar-thumb{ background:rgba(0,0,0,0.08); border-radius:8px; }
+    .cb-msg{ margin-bottom:10px; display:flex; gap:8px; align-items:flex-end; }
+    .cb-msg.user{ justify-content:flex-start; direction:rtl; }
+    .cb-msg.bot{ justify-content:flex-end; direction:rtl; }
+    .bubble{ max-width:78%; padding:8px 12px; border-radius:10px; }
+    .cb-msg.user .bubble{ background:#e9f2ff; color:#062a66; border-bottom-left-radius:4px; }
+    .cb-msg.bot .bubble{ background:#fff; color:#111; box-shadow:0 2px 8px rgba(12,20,30,0.06); border-bottom-right-radius:4px; }
+    .cb-input{ display:flex; gap:8px; align-items:center; padding:10px; border-top:1px solid #eee; background:linear-gradient(180deg,#fff,#fbfdff); }
+    .cb-input input[type="text"]{ flex:1; border:1px solid #e6e9ef; border-radius:8px; padding:10px 12px; font-size:14px; outline:none; }
+    .cb-input button{ min-width:44px; height:44px; border-radius:8px; border:none; background:var(--primary); color:#fff; }
+    .chatbox.minimized{ width:220px; height:64px; overflow:visible; align-items:flex-start; }
+    .chatbox.minimized .cb-log, .chatbox.minimized .cb-input{ display:none; }
+    @media (max-width:520px){ .chatbox{ right:50%; transform:translateX(50%); width:var(--cw-mobile); bottom:calc(env(safe-area-inset-bottom,0px)+12px); } .chat-fab{ right:calc(50% - var(--fab)/2); } .chatbox.minimized{ width:62vw; right:50%; transform:translateX(50%); } }
+    .chat-fab:focus, .cb-input input:focus, .cb-input button:focus{ box-shadow:0 0 0 4px rgba(0,123,255,0.12); outline:none; }
+    .quick-row{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+    .quick-btn{ background:#fff; border:1px solid #e6e9ef; padding:6px 8px; border-radius:8px; font-size:13px; cursor:pointer; color:#111; }
   </style>
 </head>
 <body>
 
-  <!-- decorative background (Glitch-like) -->
-  <div class="glitch-bg" aria-hidden="true" id="glitchBgRoot">
-    <canvas id="glitch-canvas" aria-hidden="true"></canvas>
-    <div class="nebula-layer" aria-hidden="true"></div>
-    <div class="floating-bubbles" aria-hidden="true">
-      <span class="bubble b1" aria-hidden="true"></span>
-      <span class="bubble b2" aria-hidden="true"></span>
-      <span class="bubble b3" aria-hidden="true"></span>
-      <span class="bubble b4" aria-hidden="true"></span>
+  <button id="openFab" class="chat-fab" aria-label="باز کردن راهنمای هوشمند" title="راهنمای هوشمند">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M21 15a2 2 0 0 1-2 2H8l-5 3V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/>
+    </svg>
+  </button>
+
+  <div id="chatbox" class="chatbox" role="dialog" aria-label="راهنمای هوشمند" aria-hidden="true">
+    <div class="cb-header" role="heading" aria-level="1">
+      <div class="avatar" aria-hidden="true" id="botAvatar">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="6" fill="#fff"/>
+          <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1.5c-3 0-6 1.5-6 4.5v.5h12v-.5c0-3-3-4.5-6-4.5z" fill="#007bff"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <h4>راهنمای هوشمند</h4>
+        <small id="botSubtitle">سریع بپرس، دقیق جواب بگیر</small>
+      </div>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <button id="minimizeBtn" aria-label="کوچک کردن" title="کوچک کردن" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;">—</button>
+        <button id="closeBtn" aria-label="بستن" title="بستن" style="background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
+      </div>
     </div>
-    <div class="grain" aria-hidden="true"></div>
+
+    <div id="chatlog" class="cb-log" aria-live="polite" aria-atomic="false"></div>
+
+    <div class="cb-input">
+      <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید یا از میکروفون استفاده کنید" aria-label="پیام شما" />
+      <button id="sendBtn" aria-label="ارسال پیام">ارسال</button>
+      <button id="voiceBtn" aria-label="ورودی صوتی" title="دو بار کلیک برای ضبط گفتار" style="background:#fff;color:var(--primary);border:1px solid #e6e9ef;padding:8px;border-radius:8px;">🎤</button>
+    </div>
   </div>
 
-  <!-- چت‌بات -->
-  <div id="chatbox" style="position:fixed; bottom:20px; right:20px; width:320px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); z-index:9999; display:none;">
-    <div style="background:#007bff; color:#fff; padding:10px 15px; border-top-left-radius:10px; border-top-right-radius:10px; position:relative;">
-      🤖 راهنمای هوشمند
-      <button onclick="closeChatbot()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">×</button>
-    </div>
-    <div id="chatlog" style="height:220px; overflow-y:auto; padding:10px; font-size:14px;"></div>
-    <div style="display:flex; border-top:1px solid #eee;">
-      <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید..." style="flex:1; border:none; padding:10px; font-size:14px;" />
-      <button onclick="sendChat()" style="background:#007bff; color:#fff; border:none; padding:10px;">ارسال</button>
-    </div>
-  </div>
-
-  <button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
-
-  <!-- مغز بات -->
   <script>
-    let memory = [];
-    let learnedResponses = {};
-    const knownServices = ["طراحی سایت", "سئو", "تولید محتوا", "پشتیبانی", "مشاوره", "سفارش", "پرداخت", "تبلیغات گوگل"];
-    const keywords = {
-      greeting: ["سلام", "درود", "خوبی", "چطوری"],
-      farewell: ["خداحافظ", "بای", "فعلاً"],
-      identity: ["کی هستی", "چی هستی", "تو کی‌ای"],
-      ai: ["هوش مصنوعی", "ربات", "فکر می‌کنی"],
-    };
+    const API_ENDPOINT = '/api/chat';
+    let memory = JSON.parse(localStorage.getItem('roham_chat_memory') || '[]');
+    let learnedResponses = JSON.parse(localStorage.getItem('roham_learned') || '{}');
+    const knownServices = ["طراحی سایت","سئو","تولید محتوا","پشتیبانی","مشاوره","سفارش","پرداخت","تبلیغات گوگل"];
+    const keywords = { greeting:["سلام","درود","خوبی","چطوری"], farewell:["خداحافظ","بای","فعلاً"], identity:["کی هستی","چی هستی","تو کی‌ای"], ai:["هوش مصنوعی","ربات","فکر می‌کنی"] };
 
-    function openChatbot() {
-      document.getElementById("chatbox").style.display = "block";
+    const chatbox = document.getElementById('chatbox');
+    const openFab = document.getElementById('openFab');
+    const closeBtn = document.getElementById('closeBtn');
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    const chatlog = document.getElementById('chatlog');
+    const chatinput = document.getElementById('chatinput');
+    const sendBtn = document.getElementById('sendBtn');
+    const voiceBtn = document.getElementById('voiceBtn');
+
+    function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[m]; }); }
+    function preprocess(text){ return text.toLowerCase().replace(/[؟?!.,،؛"]/g,'').trim(); }
+    function levenshtein(a,b){ a=a||''; b=b||''; const al=a.length, bl=b.length; if(!al) return bl; if(!bl) return al; const dp=new Array(bl+1); for(let j=0;j<=bl;j++) dp[j]=j; for(let i=1;i<=al;i++){ let prev=dp[0]; dp[0]=i; for(let j=1;j<=bl;j++){ let cur=dp[j]; const cost = a[i-1]===b[j-1]?0:1; dp[j]=Math.min(dp[j]+1, dp[j-1]+1, prev+cost); prev=cur; } } return dp[bl]; }
+    function fuzzyMatch(input, options){ let best=options[0], min=levenshtein(input,best); for(let i=1;i<options.length;i++){ const d=levenshtein(input, options[i]); if(d<min){ min=d; best=options[i]; } } return {best,dist:min}; }
+    function detectEmotion(text){ if(text.includes('😡')||text.includes('عصبانی')) return 'angry'; if(text.includes('😊')||text.includes('خوشحال')) return 'happy'; if(text.includes('😢')||text.includes('ناراحتم')) return 'sad'; return 'neutral'; }
+    function detectIntent(text){ for(const i in keywords) if(keywords[i].some(k=> text.includes(k))) return i; return null; }
+
+    function appendMessage(who,text){
+      const wrapper=document.createElement('div'); wrapper.className='cb-msg '+(who==='user'?'user':'bot'); const bubble=document.createElement('div'); bubble.className='bubble'; bubble.innerHTML=`<strong>${who==='user'?'شما':'راهنما'}:</strong> ${escapeHtml(text)}`; wrapper.appendChild(bubble); chatlog.appendChild(wrapper); chatlog.scrollTop=chatlog.scrollHeight;
     }
 
-    function closeChatbot() {
-      document.getElementById("chatbox").style.display = "none";
+    function loadMemory(){
+      chatlog.innerHTML=''; if(Array.isArray(memory) && memory.length){ memory.forEach(m=>{ appendMessage('user',m.user); appendMessage('bot',m.bot); }); } else { appendMessage('bot','سلام! من راهنمای هوشمند سایت هستم. زبان مورد نظر را بنویس یا فینگلش را بزن.'); }
     }
+    loadMemory();
 
-    function preprocess(text) {
-      return text.toLowerCase().replace(/[؟?!.,،؛"]/g, "").trim();
-    }
+    function openChat(){ chatbox.style.display='flex'; chatbox.setAttribute('aria-hidden','false'); openFab.style.display='none'; localStorage.setItem('roham_chat_open','1'); chatinput.focus(); }
+    function closeChat(){ chatbox.style.display='none'; chatbox.setAttribute('aria-hidden','true'); openFab.style.display='inline-flex'; localStorage.setItem('roham_chat_open','0'); }
+    function toggleMin(){ if(chatbox.classList.contains('minimized')){ chatbox.classList.remove('minimized'); minimizeBtn.textContent='—'; localStorage.setItem('roham_chat_min','0'); } else { chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; localStorage.setItem('roham_chat_min','1'); } }
 
-    function levenshtein(a, b) {
-      const matrix = Array.from({ length: a.length + 1 }, (_, i) =>
-        Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
-      );
-      for (let i = 1; i <= a.length; i++) {
-        for (let j = 1; j <= b.length; j++) {
-          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j - 1] + cost
-          );
-        }
-      }
-      return matrix[a.length][b.length];
-    }
+    openFab.addEventListener('click', openChat); closeBtn.addEventListener('click', closeChat); minimizeBtn.addEventListener('click', toggleMin);
+    sendBtn.addEventListener('click', ()=>{ sendChat(); chatinput.focus(); }); chatinput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendChat(); });
 
-    function fuzzyMatch(input, options) {
-      let best = options[0];
-      let min = levenshtein(input, best);
-      for (let i = 1; i < options.length; i++) {
-        const dist = levenshtein(input, options[i]);
-        if (dist < min) {
-          min = dist;
-          best = options[i];
-        }
-      }
-      return best;
-    }
+    if(localStorage.getItem('roham_chat_open')==='1') openChat();
+    if(localStorage.getItem('roham_chat_min')==='1'){ chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; }
 
-    function detectEmotion(text) {
-      if (text.includes("😡") || text.includes("عصبانی")) return "angry";
-      if (text.includes("😊") || text.includes("خوشحال")) return "happy";
-      if (text.includes("😢") || text.includes("ناراحتم")) return "sad";
-      return "neutral";
-    }
-
-    function detectIntent(text) {
-      for (let intent in keywords) {
-        if (keywords[intent].some(k => text.includes(k))) return intent;
-      }
-      return null;
-    }
-
-    function handleLearning(command) {
+    function handleLearning(command){
       const match = command.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
-      if (match) {
-        const input = preprocess(match[1]);
-        const reply = match[2];
-        learnedResponses[input] = reply;
-        return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`;
-      }
+      if(match){ const input=preprocess(match[1]); const reply=match[2]; learnedResponses[input]=reply; localStorage.setItem('roham_learned', JSON.stringify(learnedResponses)); return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`; }
       return null;
     }
 
-    function getServiceReply(service) {
-      return `ما خدمات ${service} ارائه می‌دیم. برای دریافت اطلاعات بیشتر، لطفاً فرم تماس رو پر کن. 👇`;
-    }
+    async function sendChat(){
+      const text = chatinput.value.trim(); if(!text) return; appendMessage('user', text); chatinput.value='';
 
-    function getBotReply(userText) {
-      const cleaned = preprocess(userText);
-      const emotion = detectEmotion(userText);
-      const intent = detectIntent(cleaned);
+      let botReply = handleLearning(text);
+      if(!botReply){
+        // if text looks like a language directive "lang: en" or "finglish: on" support it client side
+        const langCmd = text.match(/^lang\s*:\s*([a-zA-Z-]+)/i);
+        const fingCmd = text.match(/^finglish\s*:\s*(on|off)/i);
+        if(langCmd){ const lang = langCmd[1]; localStorage.setItem('roham_lang_pref', lang); appendMessage('bot', 'زبان تنظیم شد به ' + lang); memory.push({user:text, bot:'زبان تنظیم شد به ' + lang}); localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200))); return; }
+        if(fingCmd){ localStorage.setItem('roham_finglish', fingCmd[1]==='on' ? '1' : '0'); appendMessage('bot', 'فینگلش تنظیم شد'); memory.push({user:text, bot:'فینگلش تنظیم شد'}); localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200))); return; }
 
-      if (learnedResponses[cleaned]) return learnedResponses[cleaned];
+        // prepare payload for server brain
+        const payload = {
+          message: text,
+          history: memory.slice(-20),
+          lang: localStorage.getItem('roham_lang_pref') || 'auto',
+          finglish: localStorage.getItem('roham_finglish') === '1'
+        };
 
-      if (intent === "greeting") return "سلام! خوشحالم که برگشتی.";
-      if (intent === "farewell") return "فعلاً! مراقب خودت باش.";
-      if (intent === "identity") return "من یه بات هوشمندم که خدمات سایت رو توضیح می‌دم.";
-      if (intent === "ai") return "من با هوش مصنوعی ساخته شدم تا به سوالاتت جواب بدم.";
-
-      const words = cleaned.split(" ");
-      for (let word of words) {
-        const guess = fuzzyMatch(word, knownServices);
-        if (levenshtein(word, guess) <= 2) {
-          setTimeout(() => {
-            const contactSection = document.getElementById("contact");
-            if (contactSection) {
-              contactSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }, 1000);
-          return getServiceReply(guess);
+        try{
+          const res = await fetch(API_ENDPOINT, {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if(!res.ok){ botReply = 'خطا در ارتباط با سرور هوش مصنوعی.'; } else {
+            const data = await res.json();
+            botReply = data.reply || 'پاسخ نامشخص از سرور.';
+          }
+        } catch(e){
+          botReply = 'خطای شبکه. دوباره امتحان کن.';
         }
       }
 
-      return `متوجه نشدم چی گفتی. می‌خوای بهم یاد بدی چی جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"`;
+      const emotion = detectEmotion(text);
+      if(emotion === 'angry') botReply += ' 😬 ببخشید اگه ناراحتت کردم.';
+      if(emotion === 'happy') botReply += ' 😊 خوشحالم که حالت خوبه!';
+      if(emotion === 'sad') botReply += ' 😢 امیدوارم بهتر بشی.';
+
+      memory.push({ user:text, bot:botReply });
+      localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200)));
+      appendMessage('bot', botReply);
+
+      if(localStorage.getItem('roham_voice_enabled')==='1') speak(botReply);
     }
 
-    function sendChat() {
-      const input = document.getElementById("chatinput");
-      const chatlog = document.getElementById("chatlog");
-      const userText = input.value.trim();
-      if (!userText) return;
-
-      chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${escapeHtml(userText)}</div>`;
-      input.value = "";
-
-      let botReply = handleLearning(userText);
-      if (!botReply) {
-        botReply = getBotReply(userText);
-      }
-
-      const emotion = detectEmotion(userText);
-      if (emotion === "angry") botReply += " 😬 ببخشید اگه ناراحتت کردم.";
-      if (emotion === "happy") botReply += " 😊 خوشحالم که حالت خوبه!";
-      if (emotion === "sad") botReply += " 😢 امیدوارم بهتر بشی.";
-
-      memory.push({ user: userText, bot: botReply });
-
-      chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${escapeHtml(botReply)}</div>`;
-      chatlog.scrollTop = chatlog.scrollHeight;
+    function speak(text){
+      if(!('speechSynthesis' in window)) return;
+      const u = new SpeechSynthesisUtterance(text);
+      const lang = localStorage.getItem('roham_lang_pref') || 'fa-IR';
+      u.lang = lang === 'auto' ? 'fa-IR' : lang;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
     }
 
-    // کوچک کردن خطر XSS در خروجی چت
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, function(m) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[m]; });
+    let recognition=null;
+    if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+      const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new Rec();
+      recognition.lang = 'fa-IR';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.onresult = e=>{ const t = e.results[0][0].transcript; chatinput.value = chatinput.value ? chatinput.value + ' ' + t : t; chatinput.focus(); };
+      recognition.onerror = ()=>{};
     }
-  </script>
+    voiceBtn.addEventListener('dblclick', ()=>{ if(!recognition) return alert('ضبط گفتار در این مرورگر پشتیبانی نمی‌شود.'); recognition.start(); });
+    voiceBtn.addEventListener('click', ()=>{ const on = localStorage.getItem('roham_voice_enabled') === '1'; if(on){ localStorage.setItem('roham_voice_enabled','0'); voiceBtn.textContent='🎤'; voiceBtn.title='دو بار کلیک برای ضبط'; } else { localStorage.setItem('roham_voice_enabled','1'); voiceBtn.textContent='🔊'; voiceBtn.title='پاسخ‌ها خوانده می‌شوند'; } });
+    if(localStorage.getItem('roham_voice_enabled')==='1'){ voiceBtn.textContent='🔊'; voiceBtn.title='پاسخ‌ها خوانده می‌شوند'; }
 
-  <!-- Canvas background script (place before closing body) -->
-  <script>
-    (function(){
-      const c = document.getElementById('glitch-canvas');
-      if(!c) return;
-      const ctx = c.getContext('2d');
-      let W = c.width = window.innerWidth;
-      let H = c.height = window.innerHeight;
-
-      // particle factory
-      const particles = [];
-      const COUNT = Math.max(18, Math.floor((W*H)/160000));
-      for(let i=0;i<COUNT;i++){
-        particles.push({
-          x: Math.random()*W,
-          y: Math.random()*H,
-          r: Math.random()*1.6 + 0.6,
-          vx: (Math.random()-0.5)*0.25,
-          vy: (Math.random()-0.5)*0.25,
-          hue: Math.random()*360,
-          alpha: 0.06 + Math.random()*0.16
-        });
-      }
-
-      function resize(){
-        W = c.width = window.innerWidth;
-        H = c.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-
-      // optional: reduce particle count on reduced-motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(prefersReducedMotion){
-        particles.length = Math.max(6, Math.floor(particles.length/3));
-      }
-
-      function draw(){
-        ctx.clearRect(0,0,W,H);
-        particles.forEach(p=>{
-          p.x += p.vx; p.y += p.vy;
-          if(p.x < -60) p.x = W + 60; if(p.x > W + 60) p.x = -60;
-          if(p.y < -60) p.y = H + 60; if(p.y > H + 60) p.y = -60;
-
-          const g = ctx.createRadialGradient(p.x,p.y,p.r, p.x,p.y,p.r*12);
-          g.addColorStop(0, `hsla(${p.hue},85%,60%,${p.alpha})`);
-          g.addColorStop(1, 'hsla(0,0%,100%,0)');
-          ctx.fillStyle = g;
-          ctx.beginPath();
-          ctx.arc(p.x,p.y,p.r*8,0,Math.PI*2);
-          ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-
-      // Accessibility: hide canvas from assistive tech
-      c.setAttribute('role','presentation');
-      c.setAttribute('aria-hidden','true');
-    })();
+    window.addEventListener('keydown', e=>{ if(e.shiftKey && e.key === '?'){ openChat(); chatinput.focus(); } if(e.key === 'Escape'){ if(chatbox.style.display !== 'none') closeChat(); } });
+    new ResizeObserver(()=>{ chatlog.scrollTop = chatlog.scrollHeight; }).observe(chatlog);
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html> 
