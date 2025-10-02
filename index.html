@@ -26,17 +26,18 @@
   <link href="hero-glitch.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-  <!-- decorative background (Glitch-like) -->
-  <div class="glitch-bg" aria-hidden="true">
-    <canvas id="glitch-canvas"></canvas>
-    <div class="nebula-layer"></div>
-    <div class="floating-bubbles" aria-hidden="true">
-      <span class="bubble b1"></span>
-      <span class="bubble b2"></span>
-      <span class="bubble b3"></span>
-      <span class="bubble b4"></span>
-    </div>
-    <div class="grain"></div>
+<!-- decorative background (Glitch-like) - single instance -->
+<div class="glitch-bg" aria-hidden="true">
+  <canvas id="glitch-canvas" aria-hidden="true"></canvas>
+  <div class="nebula-layer" aria-hidden="true"></div>
+  <div class="floating-bubbles" aria-hidden="true">
+    <span class="bubble b1" aria-hidden="true"></span>
+    <span class="bubble b2" aria-hidden="true"></span>
+    <span class="bubble b3" aria-hidden="true"></span>
+    <span class="bubble b4" aria-hidden="true"></span>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+</div>  
   <!-- ناوبری -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
