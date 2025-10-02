@@ -752,499 +752,174 @@
                                 </div>
                             </div>
                         </div>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-<title>چت‌بات هوشمند Roham</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<style>
-:root{
-  --primary:#0b74ff; --bg:#ffffff; --muted:#6b7280; --card:#f7fbff; --radius:12px;
-  --shadow: 0 12px 40px rgba(11,20,40,0.12);
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-html,body{height:100%; margin:0; background:#f5f7fb; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-/* Chatbox */
-#chatbox { display:none; position:fixed; right:20px; bottom:20px; width:360px; max-height:80vh; border-radius:var(--radius); background:var(--bg); box-shadow:var(--shadow); border:1px solid rgba(11,20,40,0.06); overflow:hidden; z-index:99999; }
-@media (max-width:640px){
-  #chatbox { left:50%; transform:translateX(-50%); right:auto; bottom:18px; width:calc(100% - 32px); border-radius:16px; }
-  #open-chat-btn { left:50%; transform:translateX(-50%); right:auto; bottom:18px; }
-}
-/* open button */
-#open-chat-btn{ position:fixed; right:20px; bottom:96px; width:56px; height:56px; border-radius:50%; background:var(--primary); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(11,20,40,0.18); cursor:pointer; z-index:99999; transition:transform .14s, box-shadow .14s; }
-#open-chat-btn:hover{ transform:translateY(-4px); }
-#open-chat-btn.open{ transform:scale(.96); box-shadow:0 6px 18px rgba(11,20,40,0.12); }
-
-/* header */
-.chat-header { display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(90deg,var(--primary), #0560d6); color:#fff; }
-.chat-header .title { font-weight:700; font-size:15px; }
-.chat-header .close-btn { margin-left:auto; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; }
-
-/* messages */
-#chatlog { padding:12px; overflow:auto; height:52vh; max-height:52vh; background:linear-gradient(180deg,#fbfdff,#ffffff); font-size:14px; color:#0b1220; }
-.msg { margin-bottom:10px; display:block; clear:both; }
-.msg .bubble { display:inline-block; padding:10px 12px; border-radius:12px; max-width:82%; word-break:break-word; line-height:1.4; }
-.msg.user { text-align:right; }
-.msg.user .bubble { background:linear-gradient(90deg,#e8f0ff,#dbeafe); color:#02204a; float:right; border:1px solid rgba(3,57,120,0.06); }
-.msg.bot { text-align:left; }
-.msg.bot .bubble { background:#f6f8fb; color:#0b1220; float:left; border:1px solid rgba(11,20,40,0.04); }
-
-/* meta & typing */
-.meta { font-size:12px; color:var(--muted); margin-top:6px; display:block; }
-.typing { font-size:13px; color:var(--muted); padding:6px 12px; }
-
-/* input row */
-.chat-input-row { display:flex; gap:8px; padding:10px; border-top:1px solid #eef4ff; background:var(--card); align-items:center; }
-#chatinput { flex:1; padding:10px 12px; border-radius:10px; border:1px solid #e6eef8; font-size:14px; outline:none; background:white; }
-.btn-primary-custom { background:var(--primary); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer; }
-.icon-btn { width:44px; height:44px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e9f0ff; cursor:pointer; }
-
-/* small */
-.small { background:transparent; border:1px solid rgba(11,20,40,0.06); padding:6px 8px; border-radius:8px; font-size:13px; cursor:pointer; }
-
-/* accessibility */
-[role="dialog"] { outline: none; }
-
-/* ensure no horizontal overflow on zoom */
-html,body{box-sizing:border-box; min-width:320px;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>چت‌بات هوشمند Roham</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
 
-<!-- دکمه آیکون چت -->
-<button id="open-chat-btn" aria-label="باز کردن چت" title="چت">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/>
-  </svg>
-</button>
-
-<!-- پنل چت -->
-<div id="chatbox" role="dialog" aria-label="چت Roham">
-  <div class="chat-header">
-    <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C7.03 3 3 6.58 3 11c0 1.94.75 3.72 2 5.14V21l4.08-2.12C10.5 18.08 11.24 18 12 18c4.97 0 9-3.58 9-8s-4.03-7-9-7z" fill="white"/></svg>
-    </div>
-    <div class="title">راهنمای هوشمند Roham</div>
-
-    <div style="display:flex;align-items:center;gap:8px;margin-left:8px">
-      <label style="color:#fff;font-size:13px;display:flex;align-items:center;gap:6px"><input id="voice-toggle" type="checkbox" checked/> صدا</label>
-      <button id="clear-btn" class="small" title="پاک کردن جلسه">پاک کردن</button>
-    </div>
-
-    <button class="close-btn" aria-label="بستن">×</button>
+<!-- چت‌بات -->
+<div id="chatbox" style="position:fixed; bottom:20px; right:20px; width:320px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); z-index:9999; display:none;">
+  <div style="background:#007bff; color:#fff; padding:10px 15px; border-top-left-radius:10px; border-top-right-radius:10px; position:relative;">
+    🤖 راهنمای هوشمند
+    <button onclick="closeChatbot()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">×</button>
   </div>
-
-  <div id="chatlog" aria-live="polite" class="clearfix"></div>
-
-  <div class="chat-input-row">
-    <button class="icon-btn" id="mic-btn" title="ضبط صدا" aria-label="ضبط صدا">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z" fill="#0b1220"/></svg>
-    </button>
-
-    <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید یا ضبط کنید..." aria-label="ورودی پیام" />
-
-    <button id="send-btn" class="btn-primary-custom" title="ارسال">ارسال</button>
+  <div id="chatlog" style="height:220px; overflow-y:auto; padding:10px; font-size:14px;"></div>
+  <div style="display:flex; border-top:1px solid #eee;">
+    <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید..." style="flex:1; border:none; padding:10px; font-size:14px;" />
+    <button onclick="sendChat()" style="background:#007bff; color:#fff; border:none; padding:10px;">ارسال</button>
   </div>
-  <div id="sysnote" style="padding:8px 12px; font-size:12px; color:var(--muted)">پشتیبانی فارسی، انگلیسی و فینگلیش — بدون شبکه عصبی</div>
 </div>
 
-<!-- مثال بخش تماس برای اسکرول خودکار -->
-<section id="contact" style="margin:120vh 12px 30vh; padding:20px; background:#fff; border-radius:10px; box-shadow:0 8px 30px rgba(11,20,40,0.04)">
-  <h3>بخش تماس</h3>
-  <p>این بخش نمونه است تا عملکرد اسکرول به بخش خدمات نمایش داده شود.</p>
-</section>
+<button onclick="openChatbot()" style="position:fixed; bottom:20px; left:20px; background:#007bff; color:#fff; border:none; padding:10px 15px; border-radius:5px; z-index:9999;">راهنمای هوشمند</button>
 
+<!-- مغز بات -->
 <script>
-/* ------------------------
-   وضعیت و داده‌ها
-   ------------------------ */
 let memory = [];
-let learnedResponses = {}; // key: normalized input -> reply
-const knownServices = ["طراحی سایت","سئو","تولید محتوا","پشتیبانی","مشاوره","سفارش","پرداخت","تبلیغات گوگل"];
+let learnedResponses = {};
+const knownServices = ["طراحی سایت", "سئو", "تولید محتوا", "پشتیبانی", "مشاوره", "سفارش", "پرداخت", "تبلیغات گوگل"];
 const keywords = {
-  greeting: ["سلام","درود","خوبی","چطوری","hi","hello"],
-  farewell: ["خداحافظ","بای","فعلاً","bye"],
-  identity: ["کی هستی","چی هستی","تو کی‌ای","who are you"],
-  ai: ["هوش مصنوعی","ربات","فکر می‌کنی","intelligent","ai"]
+  greeting: ["سلام", "درود", "خوبی", "چطوری"],
+  farewell: ["خداحافظ", "بای", "فعلاً"],
+  identity: ["کی هستی", "چی هستی", "تو کی‌ای"],
+  ai: ["هوش مصنوعی", "ربات", "فکر می‌کنی"],
 };
 
-/* ------------------------
-   توابع کمکی: پیش‌پردازش، فاصله لیونشتاین، فازی‌مچ
-   ------------------------ */
-function preprocess(text){
-  return String(text || '').toLowerCase().replace(/[؟?!.,،؛"“”']/g, '').trim();
+function openChatbot() {
+  document.getElementById("chatbox").style.display = "block";
 }
 
-function levenshtein(a, b){
-  const A = String(a), B = String(b);
-  const al = A.length, bl = B.length;
-  const dp = Array.from({length:al+1}, (_,i)=>Array(bl+1).fill(0));
-  for(let i=0;i<=al;i++) dp[i][0]=i;
-  for(let j=0;j<=bl;j++) dp[0][j]=j;
-  for(let i=1;i<=al;i++){
-    for(let j=1;j<=bl;j++){
-      const cost = A[i-1]===B[j-1] ? 0:1;
-      dp[i][j]=Math.min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost);
+function closeChatbot() {
+  document.getElementById("chatbox").style.display = "none";
+}
+
+function preprocess(text) {
+  return text.toLowerCase().replace(/[؟?!.,،؛"]/g, "").trim();
+}
+
+function levenshtein(a, b) {
+  const matrix = Array.from({ length: a.length + 1 }, (_, i) =>
+    Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+  );
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
     }
   }
-  return dp[al][bl];
+  return matrix[a.length][b.length];
 }
 
-function fuzzyMatchToken(token, options){
-  let best = null, min = Infinity;
-  for(const opt of options){
-    const d = levenshtein(token, preprocess(opt));
-    if(d < min){ min = d; best = opt; }
+function fuzzyMatch(input, options) {
+  let best = options[0];
+  let min = levenshtein(input, best);
+  for (let i = 1; i < options.length; i++) {
+    const dist = levenshtein(input, options[i]);
+    if (dist < min) {
+      min = dist;
+      best = options[i];
+    }
   }
-  return {best, dist:min};
+  return best;
 }
 
-/* ------------------------
-   فینگلیش -> فارسی: نگاشت قاعده‌ای ساده
-   ------------------------ */
-const FING_TO_FA = {
-  'salam':'سلام','merci':'مرسی','mamnun':'ممنون','chetor':'چطور','chetori':'چطوری',
-  'khob':'خوب','kheili':'خیلی','man':'من','to':'تو','shoma':'شما','price':'قیمت','order':'سفارش'
-};
-
-function simpleFinglishToPersian(token){
-  const t = token.toLowerCase().replace(/[^a-z0-9]/g,'');
-  if(!t) return token;
-  if(FING_TO_FA[t]) return FING_TO_FA[t];
-  let s = t.replace(/kh/g,'خ').replace(/sh/g,'ش').replace(/ch/g,'چ').replace(/gh/g,'ق').replace(/zh/g,'ژ');
-  s = s.replace(/ou/g,'و').replace(/oo/g,'و').replace(/ee/g,'ی').replace(/ie/g,'ی').replace(/ph/g,'ف');
-  if(s==='man') return 'من'; if(s==='to') return 'تو'; if(s==='shoma') return 'شما';
-  // اگر هنوز لاتین داشت، برگردان همان (یعنی احتمالاً انگلیسی واقعی)
-  if(/[a-z0-9]/.test(s) && !/^[\u0600-\u06FF]+$/.test(s)) return s;
-  return s;
+function detectEmotion(text) {
+  if (text.includes("😡") || text.includes("عصبانی")) return "angry";
+  if (text.includes("😊") || text.includes("خوشحال")) return "happy";
+  if (text.includes("😢") || text.includes("ناراحتم")) return "sad";
+  return "neutral";
 }
 
-function normalizeFinglishIfNeeded(text){
-  // اگر متن حروف فارسی دارد، برگردان اصل؛ در غیر اینصورت تلاش برای تبدیل
-  if(/[\u0600-\u06FF]/.test(text)) return text;
-  return text.split(/\s+/).map(simpleFinglishToPersian).join(' ');
-}
-
-/* ------------------------
-   تشخیص زبان ساده
-   ------------------------ */
-function detectLanguage(text){
-  const persianCount = (text.match(/[\u0600-\u06FF]/g) || []).length;
-  const latinCount = (text.match(/[A-Za-z0-9]/g) || []).length;
-  if(persianCount > latinCount) return 'fa';
-  if(latinCount > persianCount){
-    // اگر توکن‌ها در نگاشت فینگلیش بودند، finglish
-    const tokens = text.toLowerCase().split(/\W+/).filter(Boolean);
-    const fingLike = tokens.filter(t=> Object.keys(FING_TO_FA).includes(t)).length;
-    if(fingLike > 0) return 'finglish';
-    // کلمات انگلیسی شایع
-    const enCommon = ['the','is','and','you','how','what','help','price','order','delivery'];
-    const enCount = tokens.filter(t=> enCommon.includes(t)).length;
-    if(enCount >= 1) return 'en';
-    return 'finglish';
-  }
-  return 'unknown';
-}
-
-/* ------------------------
-   تحلیل احساس ساده (لغت‌نامه‌ای)
-   ------------------------ */
-const POSITIVE = new Set(['خوب','عالی','شاد','ممنون','مرسی','رضایت','خوشحال','love','great','good','thanks']);
-const NEGATIVE = new Set(['بد','ناراحت','عصبانی','افتضاح','ghesmat','hate','bad','angry','sad','not']);
-
-function analyzeSentiment(text){
-  const tokens = preprocess(text).split(/\W+/).filter(Boolean);
-  let p=0,n=0;
-  for(const t of tokens){
-    if(POSITIVE.has(t)) p++;
-    if(NEGATIVE.has(t)) n++;
-  }
-  const label = p>n ? 'positive' : n>p ? 'negative' : 'neutral';
-  const score = (p+n === 0) ? 0 : Math.abs(p-n)/Math.max(1,(p+n));
-  return {label, score: Math.round(score*100)/100};
-}
-
-/* ------------------------
-   احساس از ایموجی و کلیدواژه
-   ------------------------ */
-function detectEmotion(text){
-  if(/😡|😠|عصبانی|خشم|نزاع/.test(text)) return 'angry';
-  if(/😊|🙂|خوشحال|شاد|خوشنودی/.test(text)) return 'happy';
-  if(/😢|😭|ناراحتم|غمگین/.test(text)) return 'sad';
-  return 'neutral';
-}
-
-/* ------------------------
-   یادگیری ساده (قالب: یاد بگیر "جمله" پاسخ "پاسخ")
-   ------------------------ */
-function handleLearning(command){
-  const match = command.match(/^یاد\s*بگیر\s*["“](.+?)["”]\s*پاسخ\s*["“](.+?)["”]$/i);
-  if(match){
-    const input = preprocess(match[1]);
-    const reply = match[2];
-    learnedResponses[input] = reply;
-    return `یاد گرفتم: وقتی گفتی "${match[1]}" باید بگم: "${reply}" ✅`;
+function detectIntent(text) {
+  for (let intent in keywords) {
+    if (keywords[intent].some(k => text.includes(k))) return intent;
   }
   return null;
 }
 
-/* ------------------------
-   موتور قانون‌محور پاسخ
-   ------------------------ */
-function ruleBasedReply({text, lang, sentiment}){
-  const t = preprocess(text);
+function handleLearning(command) {
+  const match = command.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
+  if (match) {
+    const input = preprocess(match[1]);
+    const reply = match[2];
+    learnedResponses[input] = reply;
+    return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`;
+  }
+  return null;
+}
 
-  // پاسخ‌های یادگرفته شده
-  if(learnedResponses[t]) return { text: learnedResponses[t], reason: 'learned' };
+function getServiceReply(service) {
+  return `ما خدمات ${service} ارائه می‌دیم. برای دریافت اطلاعات بیشتر، لطفاً فرم تماس رو پر کن. 👇`;
+}
 
-  // تشخیص نیات ساده
-  for(const intent in keywords){
-    for(const k of keywords[intent]){
-      if(t.includes(k)) {
-        if(intent==='greeting') return { text: 'سلام! خوشحالم که برگشتی.', reason:'intent' };
-        if(intent==='farewell') return { text: 'فعلاً! مراقب خودت باش.', reason:'intent' };
-        if(intent==='identity') return { text: 'من ربات Roham هستم؛ می‌تونم درباره خدمات سایت اطلاعات بدم.', reason:'intent' };
-        if(intent==='ai') return { text: 'من یک بات قانون‌محور هستم که بدون شبکه عصبی کار می‌کنم.', reason:'intent' };
-      }
+function getBotReply(userText) {
+  const cleaned = preprocess(userText);
+  const emotion = detectEmotion(userText);
+  const intent = detectIntent(cleaned);
+
+  if (learnedResponses[cleaned]) return learnedResponses[cleaned];
+
+  if (intent === "greeting") return "سلام! خوشحالم که برگشتی.";
+  if (intent === "farewell") return "فعلاً! مراقب خودت باش.";
+  if (intent === "identity") return "من یه بات هوشمندم که خدمات سایت رو توضیح می‌دم.";
+  if (intent === "ai") return "من با هوش مصنوعی ساخته شدم تا به سوالاتت جواب بدم.";
+
+  const words = cleaned.split(" ");
+  for (let word of words) {
+    const guess = fuzzyMatch(word, knownServices);
+    if (levenshtein(word, guess) <= 2) {
+      setTimeout(() => {
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 1000);
+      return getServiceReply(guess);
     }
   }
 
-  // جستجوی سرویس با تطبیق فازی توکن به توکن
-  const tokens = t.split(/\s+/).filter(Boolean);
-  for(const token of tokens){
-    const nm = normalizeFinglishIfNeeded(token);
-    const {best, dist} = fuzzyMatchToken(preprocess(nm), knownServices);
-    if(dist <= 2){
-      // اسکرول به بخش تماس/خدمات
-      setTimeout(()=>{ const el = document.getElementById('contact'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 600);
-      return { text: `ما خدمات ${best} ارائه می‌دهیم. برای اطلاعات بیشتر در بخش تماس اقدام کنید.`, reason:'service_match' };
-    }
+  return `متوجه نشدم چی گفتی. می‌خوای بهم یاد بدی چی جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"`;
+}
+
+function sendChat() {
+  const input = document.getElementById("chatinput");
+  const chatlog = document.getElementById("chatlog");
+  const userText = input.value.trim();
+  if (!userText) return;
+
+  chatlog.innerHTML += `<div style="text-align:right; margin-bottom:5px;"><strong>شما:</strong> ${userText}</div>`;
+  input.value = "";
+
+  let botReply = handleLearning(userText);
+  if (!botReply) {
+    botReply = getBotReply(userText);
   }
 
-  // پاسخ براساس احساس
-  if(sentiment.label === 'negative') return { text: 'متأسفم که اینطوری حس می‌کنید؛ می‌تونم کمک کنم مشکل رو حل کنیم؟', reason:'sentiment' };
-  if(sentiment.label === 'positive') return { text: 'خوشحالم که راضی هستید! اگر کاری هست بگید.', reason:'sentiment' };
+  const emotion = detectEmotion(userText);
+  if (emotion === "angry") botReply += " 😬 ببخشید اگه ناراحتت کردم.";
+  if (emotion === "happy") botReply += " 😊 خوشحالم که حالت خوبه!";
+  if (emotion === "sad") botReply += " 😢 امیدوارم بهتر بشی.";
 
-  // fallback
-  return { text: 'متوجه نشدم. می‌خوای بهم یاد بدی چی جواب بدم؟ یا یکی از کلمات کلیدی مثل "قیمت" یا "سفارش" را بپرس.', reason:'fallback' };
+  memory.push({ user: userText, bot: botReply });
+
+  chatlog.innerHTML += `<div style="text-align:left; margin-bottom:10px;"><strong>راهنما:</strong> ${botReply}</div>`;
+  chatlog.scrollTop = chatlog.scrollHeight;
 }
-
-/* ------------------------
-   UI: append messages
-   ------------------------ */
-const chatlog = document.getElementById('chatlog');
-function appendUser(text){
-  const d = document.createElement('div'); d.className='msg user';
-  d.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
-  chatlog.appendChild(d); chatlog.scrollTop = chatlog.scrollHeight;
-}
-function appendBot(text, meta){
-  const d = document.createElement('div'); d.className='msg bot';
-  d.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
-  if(meta){
-    const m = document.createElement('div'); m.className='meta';
-    const parts=[];
-    if(meta.lang) parts.push('زبان: '+meta.lang);
-    if(meta.sentiment) parts.push('احساس: '+meta.sentiment.label+(meta.sentiment.score?(' ('+meta.sentiment.score+')'):'' ));
-    if(meta.reason) parts.push(meta.reason);
-    m.textContent = parts.join(' • ');
-    d.appendChild(m);
-  }
-  chatlog.appendChild(d); chatlog.scrollTop = chatlog.scrollHeight;
-}
-function appendTyping(){ const t=document.createElement('div'); t.className='typing'; t.id='typing'; t.textContent='در حال پردازش...'; chatlog.appendChild(t); chatlog.scrollTop=chatlog.scrollHeight; }
-function removeTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
-function escapeHtml(s){ return String(s).replace(/[&<"'>]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]; }); }
-
-/* ------------------------
-   تعامل: ارسال پیام و پردازش محلی
-   ------------------------ */
-const inputEl = document.getElementById('chatinput');
-const sendBtn = document.getElementById('send-btn');
-const micBtn = document.getElementById('mic-btn');
-const openBtn = document.getElementById('open-chat-btn');
-const chatbox = document.getElementById('chatbox');
-const closeBtn = document.querySelector('.close-btn');
-const voiceToggle = document.getElementById('voice-toggle');
-const clearBtn = document.getElementById('clear-btn');
-
-openBtn.addEventListener('click', ()=>{ chatbox.style.display='block'; openBtn.classList.add('open'); inputEl.focus(); });
-closeBtn.addEventListener('click', ()=>{ chatbox.style.display='none'; openBtn.classList.remove('open'); });
-clearBtn.addEventListener('click', ()=>{ if(confirm('پاک کردن تاریخچه گفتگو؟')){ memory=[]; learnedResponses={}; chatlog.innerHTML=''; appendBot('گفتگو پاک شد. من آماده‌ام.'); } });
-
-sendBtn.addEventListener('click', ()=>{ const v=inputEl.value.trim(); if(!v) return; inputEl.value=''; userSend(v); });
-inputEl.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); sendBtn.click(); } });
-
-function userSend(rawText){
-  appendUser(rawText);
-  memory.push({role:'user', text:rawText, ts:Date.now()});
-  appendTyping();
-
-  // پردازش محلی (بدون سرور)
-  setTimeout(()=>{
-    removeTyping();
-    // یادگیری چک
-    const learned = handleLearning(rawText);
-    if(learned){
-      appendBot(learned, {lang:'fa', sentiment:{label:'neutral'}, reason:'learn'});
-      return;
-    }
-
-    // زبان و نرمال‌سازی فینگلیش
-    let lang = detectLanguage(rawText);
-    let normalized = rawText;
-    if(lang === 'finglish') { normalized = normalizeFinglishIfNeeded(rawText); lang='fa'; }
-    // تحلیل احساس
-    const sentiment = analyzeSentiment(normalized);
-    const emotion = detectEmotion(rawText);
-
-    const replyObj = ruleBasedReply({text: normalized, lang, sentiment});
-    let reply = replyObj.text;
-    // الحاق پیام احساس-محور
-    if(emotion==='angry') reply += ' 😬 ببخشید اگه ناراحتت کردم.';
-    if(emotion==='happy') reply += ' 😊 خوشحالم که حالت خوبه!';
-    if(emotion==='sad') reply += ' 😢 امیدوارم حالت بهتر شه.';
-
-    memory.push({role:'bot', text:reply, ts:Date.now(), lang, sentiment, reason:replyObj.reason});
-    appendBot(reply, {lang, sentiment, reason:replyObj.reason});
-    // TTS در صورت فعال بودن
-    if(voiceToggle.checked && 'speechSynthesis' in window){
-      speak(reply, lang==='en' ? 'en-US' : 'fa-IR');
-    }
-  }, 300 + Math.random()*400);
-}
-
-/* ------------------------
-   STT: Web Speech API (کلاینت)
-   ------------------------ */
-let recognition, recording=false;
-if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-  // شروع با fa-IR، اما اجازه می‌دهیم کاربر انگلیسی بگوید
-  recognition.lang = 'fa-IR';
-  recognition.onresult = (e) => {
-    const t = e.results[0][0].transcript;
-    inputEl.value = t;
-    sendBtn.click();
-  };
-  recognition.onend = ()=>{ recording=false; micBtn.style.background=''; micBtn.title='ضبط صدا'; };
-  recognition.onerror = (ev)=>{ recording=false; micBtn.style.background=''; micBtn.title='خطا در ضبط'; console.warn('STT error', ev); };
-  micBtn.addEventListener('click', ()=>{
-    if(!recording){ try{ recognition.start(); recording=true; micBtn.style.background='linear-gradient(90deg,var(--primary), #0560d6)'; micBtn.title='برای توقف دوباره بزنید'; }catch(e){ console.warn(e); } }
-    else { recognition.stop(); recording=false; micBtn.style.background=''; micBtn.title='ضبط صدا'; }
-  });
-} else {
-  micBtn.title = 'ضبط صدا در این مرورگر پشتیبانی نمی‌شود';
-  micBtn.style.opacity = '.6';
-}
-
-/* ------------------------
-   TTS ساده با speechSynthesis
-   ------------------------ */
-function speak(text, locale){
-  if(!('speechSynthesis' in window)) return;
-  try{
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = locale || 'fa-IR';
-    // انتخاب صدای مناسب (اولین صدای مناسب زبان)
-    const voices = window.speechSynthesis.getVoices();
-    if(voices && voices.length){
-      const v = voices.find(x=> (locale && x.lang && x.lang.startsWith(locale.split('-')[0])) || (x.lang && x.lang.startsWith('fa'))) || voices[0];
-      if(v) u.voice = v;
-    }
-    window.speechSynthesis.speak(u);
-  }catch(e){ console.warn('TTS error', e); }
-}
-
-/* ------------------------
-   نمایش خوش‌آمد و آماده‌سازی
-   ------------------------ */
-appendBot('سلام! من ربات Roham هستم؛ فارسی، انگلیسی و فینگلیش را می‌فهمم. بپرس هر چیزی.', {lang:'fa', sentiment:{label:'neutral'}});
 </script>
-<script>
-(function(){
-  // نام id مورد انتظار
-  const ID = 'open-chat-btn';
-  const CHATBOX_ID = 'chatbox';
 
-  // helper برای ایجاد دکمه اگر وجود نداشت
-  function createButton(){
-    const b = document.createElement('button');
-    b.id = ID;
-    b.setAttribute('aria-label','باز کردن چت');
-    b.title = 'چت';
-    b.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/></svg>';
-    Object.assign(b.style, {
-      position:'fixed', right:'20px', bottom:'96px', width:'56px', height:'56px',
-      borderRadius:'50%', background:'#0b74ff', color:'#fff', border:'none',
-      display:'flex', alignItems:'center', justifyContent:'center',
-      boxShadow:'0 10px 30px rgba(11,20,40,0.18)', zIndex:'999999', cursor:'pointer'
-    });
-    document.body.appendChild(b);
-    return b;
-  }
-
-  // پیدا کردن یا ساختن دکمه
-  let btn = document.getElementById(ID);
-  if (!btn) btn = createButton();
-
-  // Force visible styles در صورت override شدن
-  btn.style.display = 'flex';
-  btn.style.visibility = 'visible';
-  btn.style.opacity = '1';
-  btn.style.zIndex = '999999';
-
-  // موقعیت واکنش‌گرا ساده
-  function position(){
-    if (window.matchMedia('(max-width:640px)').matches){
-      btn.style.left = '50%'; btn.style.transform = 'translateX(-50%)'; btn.style.right = 'auto'; btn.style.bottom='18px';
-    } else {
-      btn.style.right = '20px'; btn.style.left = 'auto'; btn.style.transform = 'none'; btn.style.bottom='96px';
-    }
-  }
-  position(); window.addEventListener('resize', position);
-
-  // چک وجود chatbox
-  const chatbox = document.getElementById(CHATBOX_ID);
-
-  // handler باز/بسته کردن
-  btn.addEventListener('click', function(){
-    if (!chatbox){
-      alert('پنل چت پیدا نشد. لطفاً بررسی کنید عنصر با id=\"chatbox\" در صفحه موجود باشد.');
-      return;
-    }
-    const visible = window.getComputedStyle(chatbox).display !== 'none' && window.getComputedStyle(chatbox).visibility !== 'hidden';
-    if (visible) {
-      chatbox.style.display = 'none';
-      btn.classList.remove('open');
-    } else {
-      chatbox.style.display = 'block';
-      btn.classList.add('open');
-      const input = chatbox.querySelector('input, textarea');
-      if (input) input.focus();
-    }
-  });
-
-  // رفع مشکل احتمالی overlay یا z-index عنصرهای والد
-  // تلاش می‌کنیم chatbox را نیز مرئی کنیم
-  if (chatbox) {
-    chatbox.style.zIndex = '999998';
-    if (window.getComputedStyle(chatbox).display === 'none') chatbox.style.display = 'block';
-  }
-
-  // خطایابی سریع در Console (قابل حذف پس از رفع)
-  console.log('Chat button ensured. btn:', btn, 'chatbox:', chatbox);
-})();
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
