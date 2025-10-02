@@ -157,3 +157,8 @@ body > .glitch-bg + * {position:relative;z-index:0}
 @media (max-width:1000px){
   .nebula-layer,.bubble,.grain,#glitch-canvas{display:none}
 }
+#open-chat-btn { display:flex !important; visibility:visible !important; opacity:1 !important; z-index:999999 !important; }
+#chatbox { z-index:999998 !important; display:block !important; box-sizing:border-box !important; }
+@media (max-width:640px){
+  #open-chat-btn { left:50% !important; transform:translateX(-50%) !important; right:auto !important; bottom:18px !important; }
+}
