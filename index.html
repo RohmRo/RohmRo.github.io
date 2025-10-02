@@ -752,25 +752,23 @@
                                 </div>
                             </div>
                         </div>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>چت‌بات هوشمند Roham</title>
+  <title>چت‌بات Roham (کلاینت)</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     :root{ --primary:#007bff; --bg:#fff; --muted:#f6f7fb; --radius:12px; --z:99999; --cw-desktop:360px; --cw-mobile:94vw; --fab:58px; }
     html{ scroll-behavior:smooth; }
+    body{font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
     .chat-fab{ position:fixed; bottom:calc(env(safe-area-inset-bottom,0px)+18px); right:18px; z-index:var(--z); width:var(--fab); height:var(--fab); border-radius:50%; background:var(--primary); color:#fff; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(2,6,23,0.18); border:none; cursor:pointer; }
-    .chat-fab:active{ transform:scale(.98); }
-    .chatbox{ position:fixed; bottom:calc(env(safe-area-inset-bottom,0px)+20px); right:18px; z-index:calc(var(--z)+1); width:var(--cw-desktop); max-height:80vh; display:flex; flex-direction:column; background:var(--bg); border-radius:var(--radius); box-shadow:0 12px 40px rgba(10,20,40,0.12); overflow:hidden; font-family:"Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
+    .chatbox{ position:fixed; bottom:calc(env(safe-area-inset-bottom,0px)+20px); right:18px; z-index:calc(var(--z)+1); width:var(--cw-desktop); max-height:80vh; display:flex; flex-direction:column; background:var(--bg); border-radius:var(--radius); box-shadow:0 12px 40px rgba(10,20,40,0.12); overflow:hidden; }
     .chatbox[aria-hidden="true"]{ display:none; }
     .cb-header{ display:flex; gap:10px; align-items:center; padding:10px 12px; background:linear-gradient(90deg,var(--primary),#0062d6); color:#fff; }
     .cb-header .avatar{ width:44px; height:44px; border-radius:10px; overflow:hidden; flex:0 0 44px; display:inline-flex; align-items:center; justify-content:center; background:#fff; }
-    .cb-header h4{ margin:0; font-size:15px; font-weight:600; }
     .cb-log{ padding:12px; overflow:auto; background:var(--muted); flex:1 1 auto; font-size:14px; line-height:1.5; }
-    .cb-log::-webkit-scrollbar{ width:8px; } .cb-log::-webkit-scrollbar-thumb{ background:rgba(0,0,0,0.08); border-radius:8px; }
     .cb-msg{ margin-bottom:10px; display:flex; gap:8px; align-items:flex-end; }
     .cb-msg.user{ justify-content:flex-start; direction:rtl; }
     .cb-msg.bot{ justify-content:flex-end; direction:rtl; }
@@ -781,21 +779,22 @@
     .cb-input input[type="text"]{ flex:1; border:1px solid #e6e9ef; border-radius:8px; padding:10px 12px; font-size:14px; outline:none; }
     .cb-input button{ min-width:44px; height:44px; border-radius:8px; border:none; background:var(--primary); color:#fff; }
     .chatbox.minimized{ width:220px; height:64px; overflow:visible; align-items:flex-start; }
-    .chatbox.minimized .cb-log, .chatbox.minimized .cb-input{ display:none; }
     @media (max-width:520px){ .chatbox{ right:50%; transform:translateX(50%); width:var(--cw-mobile); bottom:calc(env(safe-area-inset-bottom,0px)+12px); } .chat-fab{ right:calc(50% - var(--fab)/2); } .chatbox.minimized{ width:62vw; right:50%; transform:translateX(50%); } }
-    .chat-fab:focus, .cb-input input:focus, .cb-input button:focus{ box-shadow:0 0 0 4px rgba(0,123,255,0.12); outline:none; }
     .quick-row{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
     .quick-btn{ background:#fff; border:1px solid #e6e9ef; padding:6px 8px; border-radius:8px; font-size:13px; cursor:pointer; color:#111; }
+    .meta{ font-size:12px; opacity:.85; }
   </style>
 </head>
 <body>
 
+  <!-- FAB -->
   <button id="openFab" class="chat-fab" aria-label="باز کردن راهنمای هوشمند" title="راهنمای هوشمند">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
       <path d="M21 15a2 2 0 0 1-2 2H8l-5 3V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/>
     </svg>
   </button>
 
+  <!-- Chatbox -->
   <div id="chatbox" class="chatbox" role="dialog" aria-label="راهنمای هوشمند" aria-hidden="true">
     <div class="cb-header" role="heading" aria-level="1">
       <div class="avatar" aria-hidden="true" id="botAvatar">
@@ -805,8 +804,8 @@
         </svg>
       </div>
       <div style="flex:1;">
-        <h4>راهنمای هوشمند</h4>
-        <small id="botSubtitle">سریع بپرس، دقیق جواب بگیر</small>
+        <h4>راهنمای هوشمند Roham</h4>
+        <div class="meta" id="botSubtitle">پشتیبانی از فینگلش، چندزبان، یادگیری پویا</div>
       </div>
       <div style="display:flex; gap:6px; align-items:center;">
         <button id="minimizeBtn" aria-label="کوچک کردن" title="کوچک کردن" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;">—</button>
@@ -817,19 +816,24 @@
     <div id="chatlog" class="cb-log" aria-live="polite" aria-atomic="false"></div>
 
     <div class="cb-input">
-      <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید یا از میکروفون استفاده کنید" aria-label="پیام شما" />
+      <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید یا 'lang:en' یا 'finglish:on' بزن" aria-label="پیام شما" />
       <button id="sendBtn" aria-label="ارسال پیام">ارسال</button>
       <button id="voiceBtn" aria-label="ورودی صوتی" title="دو بار کلیک برای ضبط گفتار" style="background:#fff;color:var(--primary);border:1px solid #e6e9ef;padding:8px;border-radius:8px;">🎤</button>
     </div>
   </div>
 
   <script>
-    const API_ENDPOINT = '/api/chat';
-    let memory = JSON.parse(localStorage.getItem('roham_chat_memory') || '[]');
-    let learnedResponses = JSON.parse(localStorage.getItem('roham_learned') || '{}');
-    const knownServices = ["طراحی سایت","سئو","تولید محتوا","پشتیبانی","مشاوره","سفارش","پرداخت","تبلیغات گوگل"];
-    const keywords = { greeting:["سلام","درود","خوبی","چطوری"], farewell:["خداحافظ","بای","فعلاً"], identity:["کی هستی","چی هستی","تو کی‌ای"], ai:["هوش مصنوعی","ربات","فکر می‌کنی"] };
+    /******************************************************************
+     * کلاینت-محور: "مغز" داخل همین اسکریپت است
+     * قابلیت‌ها: چندزبانه، فینگلش، fuzzy matching، یادگیری، TTS/STT،
+     * quick replies، ذخیره محلی، fallback پاسخ آزمایشی.
+     ******************************************************************/
+    // تنظیمات اولیه
+    const MAX_HISTORY = 200;
+    const KNOWN_SERVICES = ["طراحی سایت","سئو","تولید محتوا","پشتیبانی","مشاوره","سفارش","پرداخت","تبلیغات گوگل","طراحی لوگو","اپلیکیشن"];
+    const DEFAULT_LANG = 'fa-IR';
 
+    // عناصر UI
     const chatbox = document.getElementById('chatbox');
     const openFab = document.getElementById('openFab');
     const closeBtn = document.getElementById('closeBtn');
@@ -839,111 +843,257 @@
     const sendBtn = document.getElementById('sendBtn');
     const voiceBtn = document.getElementById('voiceBtn');
 
-    function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[m]; }); }
-    function preprocess(text){ return text.toLowerCase().replace(/[؟?!.,،؛"]/g,'').trim(); }
-    function levenshtein(a,b){ a=a||''; b=b||''; const al=a.length, bl=b.length; if(!al) return bl; if(!bl) return al; const dp=new Array(bl+1); for(let j=0;j<=bl;j++) dp[j]=j; for(let i=1;i<=al;i++){ let prev=dp[0]; dp[0]=i; for(let j=1;j<=bl;j++){ let cur=dp[j]; const cost = a[i-1]===b[j-1]?0:1; dp[j]=Math.min(dp[j]+1, dp[j-1]+1, prev+cost); prev=cur; } } return dp[bl]; }
-    function fuzzyMatch(input, options){ let best=options[0], min=levenshtein(input,best); for(let i=1;i<options.length;i++){ const d=levenshtein(input, options[i]); if(d<min){ min=d; best=options[i]; } } return {best,dist:min}; }
-    function detectEmotion(text){ if(text.includes('😡')||text.includes('عصبانی')) return 'angry'; if(text.includes('😊')||text.includes('خوشحال')) return 'happy'; if(text.includes('😢')||text.includes('ناراحتم')) return 'sad'; return 'neutral'; }
-    function detectIntent(text){ for(const i in keywords) if(keywords[i].some(k=> text.includes(k))) return i; return null; }
+    // حافظه محلی
+    let memory = JSON.parse(localStorage.getItem('roham_memory') || '[]');
+    let learned = JSON.parse(localStorage.getItem('roham_learned') || '{}');
+    let langPref = localStorage.getItem('roham_lang_pref') || 'auto';
+    let finglishEnabled = localStorage.getItem('roham_finglish') === '1';
+    let voiceEnabled = localStorage.getItem('roham_voice_enabled') === '1';
 
-    function appendMessage(who,text){
-      const wrapper=document.createElement('div'); wrapper.className='cb-msg '+(who==='user'?'user':'bot'); const bubble=document.createElement('div'); bubble.className='bubble'; bubble.innerHTML=`<strong>${who==='user'?'شما':'راهنما'}:</strong> ${escapeHtml(text)}`; wrapper.appendChild(bubble); chatlog.appendChild(wrapper); chatlog.scrollTop=chatlog.scrollHeight;
+    // ابزارها: escape، levenshtein، translit فینگلش
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[m]); }
+    function levenshtein(a,b){ a=a||''; b=b||''; const al=a.length, bl=b.length; if(!al) return bl; if(!bl) return al; const dp=new Array(bl+1); for(let j=0;j<=bl;j++) dp[j]=j; for(let i=1;i<=al;i++){ let prev=dp[0]; dp[0]=i; for(let j=1;j<=bl;j++){ let cur=dp[j]; const cost=a[i-1]===b[j-1]?0:1; dp[j]=Math.min(dp[j]+1, dp[j-1]+1, prev+cost); prev=cur; } } return dp[bl]; }
+    function fuzzyFind(word, list){ let best=list[0], min=levenshtein(word,best); for(let i=1;i<list.length;i++){ const d=levenshtein(word,list[i]); if(d<min){ min=d; best=list[i]; } } return {best,dist:min}; }
+
+    function finglishToFa(s){
+      if(!s) return s;
+      let t = String(s);
+      t = t.replace(/KH/gi,'خ').replace(/GH/gi,'غ').replace(/SH/gi,'ش').replace(/CH/gi,'چ');
+      const map = [['kh','خ'],['gh','غ'],['sh','ش'],['ch','چ'],['ph','ف'],['zh','ژ'],['oo','و'],['ou','و'],['ee','ی'],['a','ا'],['â','ا'],['e','e'],['o','o'],['u','و'],['i','ی'],['y','ی']];
+      for(const [k,v] of map) t = t.replace(new RegExp(k,'gi'), v);
+      return t.replace(/\s+/g,' ').trim();
     }
 
+    // نمایش پیام در رابط
+    function appendMessage(who, text){
+      const wrapper = document.createElement('div');
+      wrapper.className = 'cb-msg ' + (who === 'user' ? 'user' : 'bot');
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerHTML = `<strong>${who === 'user' ? 'شما' : 'راهنما'}:</strong> ${escapeHtml(text)}`;
+      wrapper.appendChild(bubble);
+      chatlog.appendChild(wrapper);
+      chatlog.scrollTop = chatlog.scrollHeight;
+    }
+
+    // بارگذاری حافظه
     function loadMemory(){
-      chatlog.innerHTML=''; if(Array.isArray(memory) && memory.length){ memory.forEach(m=>{ appendMessage('user',m.user); appendMessage('bot',m.bot); }); } else { appendMessage('bot','سلام! من راهنمای هوشمند سایت هستم. زبان مورد نظر را بنویس یا فینگلش را بزن.'); }
+      chatlog.innerHTML = '';
+      if(Array.isArray(memory) && memory.length){
+        memory.forEach(m => { appendMessage('user', m.user); appendMessage('bot', m.bot); });
+      } else {
+        appendMessage('bot','سلام! من راهنمای هوشمند سایت هستم. اگر فینگلش استفاده می‌کنی فعالش کن: finglish:on');
+      }
     }
     loadMemory();
 
+    // وضعیت باز/بسته/مینیمایز
     function openChat(){ chatbox.style.display='flex'; chatbox.setAttribute('aria-hidden','false'); openFab.style.display='none'; localStorage.setItem('roham_chat_open','1'); chatinput.focus(); }
     function closeChat(){ chatbox.style.display='none'; chatbox.setAttribute('aria-hidden','true'); openFab.style.display='inline-flex'; localStorage.setItem('roham_chat_open','0'); }
     function toggleMin(){ if(chatbox.classList.contains('minimized')){ chatbox.classList.remove('minimized'); minimizeBtn.textContent='—'; localStorage.setItem('roham_chat_min','0'); } else { chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; localStorage.setItem('roham_chat_min','1'); } }
 
-    openFab.addEventListener('click', openChat); closeBtn.addEventListener('click', closeChat); minimizeBtn.addEventListener('click', toggleMin);
-    sendBtn.addEventListener('click', ()=>{ sendChat(); chatinput.focus(); }); chatinput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendChat(); });
+    openFab.addEventListener('click', openChat);
+    closeBtn.addEventListener('click', closeChat);
+    minimizeBtn.addEventListener('click', toggleMin);
 
-    if(localStorage.getItem('roham_chat_open')==='1') openChat();
-    if(localStorage.getItem('roham_chat_min')==='1'){ chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; }
+    if(localStorage.getItem('roham_chat_open') === '1') openChat();
+    if(localStorage.getItem('roham_chat_min') === '1'){ chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; }
 
-    function handleLearning(command){
-      const match = command.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
-      if(match){ const input=preprocess(match[1]); const reply=match[2]; learnedResponses[input]=reply; localStorage.setItem('roham_learned', JSON.stringify(learnedResponses)); return `یاد گرفتم که وقتی گفتی "${match[1]}" باید بگم "${reply}" ✅`; }
+    // شناسایی نیت و احساس و پاسخ‌دهی کلاینتی پیشرفته
+    const KEYWORDS = {
+      greeting: ["سلام","درود","خوش اومدی","خوبی","چطوری"],
+      farewell: ["خداحافظ","بای","فعلاً"],
+      identity: ["کی هستی","تو کی‌ای","چه کسی هستی"],
+      price: ["قیمت","هزینه","چنده"],
+      support: ["پشتیبانی","کمک","مشکل"]
+    };
+
+    function detectIntent(text){
+      const t = text.toLowerCase();
+      for(const k in KEYWORDS) if(KEYWORDS[k].some(w => t.includes(w))) return k;
       return null;
     }
-
-    async function sendChat(){
-      const text = chatinput.value.trim(); if(!text) return; appendMessage('user', text); chatinput.value='';
-
-      let botReply = handleLearning(text);
-      if(!botReply){
-        // if text looks like a language directive "lang: en" or "finglish: on" support it client side
-        const langCmd = text.match(/^lang\s*:\s*([a-zA-Z-]+)/i);
-        const fingCmd = text.match(/^finglish\s*:\s*(on|off)/i);
-        if(langCmd){ const lang = langCmd[1]; localStorage.setItem('roham_lang_pref', lang); appendMessage('bot', 'زبان تنظیم شد به ' + lang); memory.push({user:text, bot:'زبان تنظیم شد به ' + lang}); localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200))); return; }
-        if(fingCmd){ localStorage.setItem('roham_finglish', fingCmd[1]==='on' ? '1' : '0'); appendMessage('bot', 'فینگلش تنظیم شد'); memory.push({user:text, bot:'فینگلش تنظیم شد'}); localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200))); return; }
-
-        // prepare payload for server brain
-        const payload = {
-          message: text,
-          history: memory.slice(-20),
-          lang: localStorage.getItem('roham_lang_pref') || 'auto',
-          finglish: localStorage.getItem('roham_finglish') === '1'
-        };
-
-        try{
-          const res = await fetch(API_ENDPOINT, {
-            method:'POST',
-            headers:{ 'Content-Type':'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if(!res.ok){ botReply = 'خطا در ارتباط با سرور هوش مصنوعی.'; } else {
-            const data = await res.json();
-            botReply = data.reply || 'پاسخ نامشخص از سرور.';
-          }
-        } catch(e){
-          botReply = 'خطای شبکه. دوباره امتحان کن.';
-        }
-      }
-
-      const emotion = detectEmotion(text);
-      if(emotion === 'angry') botReply += ' 😬 ببخشید اگه ناراحتت کردم.';
-      if(emotion === 'happy') botReply += ' 😊 خوشحالم که حالت خوبه!';
-      if(emotion === 'sad') botReply += ' 😢 امیدوارم بهتر بشی.';
-
-      memory.push({ user:text, bot:botReply });
-      localStorage.setItem('roham_chat_memory', JSON.stringify(memory.slice(-200)));
-      appendMessage('bot', botReply);
-
-      if(localStorage.getItem('roham_voice_enabled')==='1') speak(botReply);
+    function detectEmotion(text){
+      if(text.includes('😡')||text.includes('عصبانی')) return 'angry';
+      if(text.includes('😊')||text.includes('خوشحال')) return 'happy';
+      if(text.includes('😢')||text.includes('ناراحت')) return 'sad';
+      return 'neutral';
     }
 
+    // هسته پاسخ‌ساز "مغز کلاینت" — ترکیبی از قواعد، fuzzy، یادگیری و fallback هوشمند
+    function clientBrain(rawText){
+      let text = rawText.trim();
+      if(!text) return "لطفاً چیزی بنویس.";
+
+      // دستورات تنظیم
+      const langCmd = text.match(/^lang\s*:\s*([a-zA-Z-]+)/i);
+      const fingCmd = text.match(/^finglish\s*:\s*(on|off)/i);
+      const learnCmd = text.match(/^یاد بگیر\s+"(.+)"\s+پاسخ\s+"(.+)"$/i);
+
+      if(langCmd){ langPref = langCmd[1]; localStorage.setItem('roham_lang_pref', langPref); return `زبان تنظیم شد به ${langPref}`; }
+      if(fingCmd){ finglishEnabled = fingCmd[1].toLowerCase() === 'on'; localStorage.setItem('roham_finglish', finglishEnabled ? '1' : '0'); return `فینگلش ${finglishEnabled ? 'فعال' : 'غیرفعال'} شد`; }
+
+      if(learnCmd){
+        const key = preprocess(learnCmd[1]);
+        learned[key] = learnCmd[2];
+        localStorage.setItem('roham_learned', JSON.stringify(learned));
+        return `یاد گرفتم: وقتی گفتی "${learnCmd[1]}", پاسخ: "${learnCmd[2]}"`;
+      }
+
+      // فینگلش
+      if(finglishEnabled) text = finglishToFa(text);
+
+      const cleaned = preprocess(text);
+
+      // پاسخ از learned
+      if(learned[cleaned]) return learned[cleaned];
+
+      // نیت و پاسخ قواعدی
+      const intent = detectIntent(cleaned);
+      if(intent === 'greeting') return 'سلام! چطور می‌تونم کمکت کنم؟';
+      if(intent === 'farewell') return 'خداحافظ! هر وقت خواستی برگرد.';
+      if(intent === 'identity') return 'من راهنمای هوشمند سایت هستم؛ می‌تونم خدمات، قیمت و راه تماس رو بگم.';
+      if(intent === 'price') return 'برای قیمت دقیق لطفاً بگو چه خدمتی می‌خوای یا فرم تماس را پر کن.';
+      if(intent === 'support') return 'برای پشتیبانی، لطفاً مشکل را توضیح بده یا به بخش تماس مراجعه کن.';
+
+      // fuzzy match با خدمات
+      const words = cleaned.split(/\s+/).filter(Boolean);
+      for(const w of words){
+        const {best,dist} = fuzzyFind(w, KNOWN_SERVICES);
+        if(dist <= 2) return `ما خدمات ${best} ارائه می‌دهیم. برای جزئیات لطفاً فرم تماس را تکمیل کن.`;
+      }
+
+      // quick heuristic for questions in other languages (very simple)
+      if(/[a-zA-Z]/.test(rawText) && !(langPref && langPref !== 'auto')) return "I detected English text; try prefixing 'lang: en' to set language preference.";
+
+      // fallback "مغز بزرگ" محلی: خلاصه‌سازی و پاسخ ترکیبی
+      return smartFallback(cleaned);
+    }
+
+    // پیش‌پردازش ساده
+    function preprocess(s){ return String(s||'').toLowerCase().replace(/[؟?!.,،؛"]/g,'').trim(); }
+
+    // پاسخ fallback پیشرفته (قواعد و ترکیب پاسخ)
+    function smartFallback(cleaned){
+      // اگر سوال باشد با '؟' یا کلمات سوالی
+      const qWords = ['چی','چه','چطور','چرا','کی','کجا','چه‌طور','how','what','why','when','where'];
+      if(qWords.some(q => cleaned.includes(q))) {
+        // تلاش برای تشخیص موضوع با fuzzy
+        for(const svc of KNOWN_SERVICES){
+          if(cleaned.includes(svc) || levenshtein(cleaned, svc) <= 4) return `در مورد ${svc} می‌تونی اینجا اطلاعات بیشتری بگیری یا بپرسی که چه ویژگی‌هایی مد نظرته.`;
+        }
+        // اگر نشد، آفرینی ترکیبی
+        return 'سؤال خوبی هست؛ می‌تونی کمی دقیق‌تر بپرسی یا بنویس که قصدت چیه تا بهتر راهنمایی کنم.';
+      }
+      // اگر جمله توضیحی است
+      if(cleaned.split(' ').length > 5) return 'متشکرم از توضیحت؛ می‌تونی بگی دنبال چه نتیجه‌ای هستی تا من دقیق‌تر کمک کنم؟';
+      // Otherwise prompt learning
+      return 'متوجه نشدم؛ می‌خوای به من یاد بدی چطور جواب بدم؟ بنویس: یاد بگیر "جمله" پاسخ "پاسخ دلخواه"';
+    }
+
+    // ارسال پیام توسط کاربر
+    function sendChat(){
+      const text = chatinput.value.trim();
+      if(!text) return;
+      appendMessage('user', text);
+      chatinput.value = '';
+
+      // اگر کاربر خواست quick replies و دکمه‌ها نمایش داده شوند
+      const botReply = clientBrain(text);
+      const emotion = detectEmotion(text);
+      let finalReply = botReply;
+      if(emotion === 'angry') finalReply += ' 😬 ببخشید اگه ناراحتت کردم.';
+      if(emotion === 'happy') finalReply += ' 😊 خوشحالم که حالت خوبه!';
+      if(emotion === 'sad') finalReply += ' 😢 امیدوارم بهتر بشی.';
+
+      memory.push({ user: text, bot: finalReply });
+      memory = memory.slice(-MAX_HISTORY);
+      localStorage.setItem('roham_memory', JSON.stringify(memory));
+      localStorage.setItem('roham_learned', JSON.stringify(learned));
+
+      appendMessage('bot', finalReply);
+      // quick replies: مثال‌های مرتبط
+      showQuickReplies(generateQuick(finalReply));
+      if(voiceEnabled) speak(finalReply);
+    }
+
+    // تولید دکمه‌های سریع پیشنهادی
+    function generateQuick(reply){
+      const qs = [];
+      if(reply.includes('خدمات') || reply.includes('خدمت')) qs.push('قیمت خدمات'); 
+      if(reply.includes('تماس')) qs.push('فرم تماس'); 
+      if(reply.includes('سوال')) qs.push('جزئیات بیشتر'); 
+      qs.push('تماس با پشتیبانی'); qs.push('راه اندازی سفارش');
+      return qs.slice(0,5);
+    }
+    function showQuickReplies(list){
+      // remove existing quick row
+      const prev = document.querySelector('.quick-row'); if(prev) prev.remove();
+      if(!list || !list.length) return;
+      const row = document.createElement('div'); row.className='quick-row';
+      list.forEach(t => {
+        const b = document.createElement('button'); b.className='quick-btn'; b.textContent=t;
+        b.addEventListener('click', ()=>{ chatinput.value = t; sendChat(); });
+        row.appendChild(b);
+      });
+      chatlog.appendChild(row);
+      chatlog.scrollTop = chatlog.scrollHeight;
+    }
+
+    // TTS
     function speak(text){
       if(!('speechSynthesis' in window)) return;
       const u = new SpeechSynthesisUtterance(text);
-      const lang = localStorage.getItem('roham_lang_pref') || 'fa-IR';
-      u.lang = lang === 'auto' ? 'fa-IR' : lang;
+      const lang = (langPref && langPref !== 'auto') ? langPref : DEFAULT_LANG;
+      u.lang = lang;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(u);
     }
 
-    let recognition=null;
+    // STT (Speech-to-text)
+    let recognition = null;
     if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
       const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognition = new Rec();
-      recognition.lang = 'fa-IR';
+      recognition.lang = DEFAULT_LANG;
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
-      recognition.onresult = e=>{ const t = e.results[0][0].transcript; chatinput.value = chatinput.value ? chatinput.value + ' ' + t : t; chatinput.focus(); };
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        chatinput.value = chatinput.value ? chatinput.value + ' ' + text : text;
+        chatinput.focus();
+      };
       recognition.onerror = ()=>{};
     }
-    voiceBtn.addEventListener('dblclick', ()=>{ if(!recognition) return alert('ضبط گفتار در این مرورگر پشتیبانی نمی‌شود.'); recognition.start(); });
-    voiceBtn.addEventListener('click', ()=>{ const on = localStorage.getItem('roham_voice_enabled') === '1'; if(on){ localStorage.setItem('roham_voice_enabled','0'); voiceBtn.textContent='🎤'; voiceBtn.title='دو بار کلیک برای ضبط'; } else { localStorage.setItem('roham_voice_enabled','1'); voiceBtn.textContent='🔊'; voiceBtn.title='پاسخ‌ها خوانده می‌شوند'; } });
-    if(localStorage.getItem('roham_voice_enabled')==='1'){ voiceBtn.textContent='🔊'; voiceBtn.title='پاسخ‌ها خوانده می‌شوند'; }
 
-    window.addEventListener('keydown', e=>{ if(e.shiftKey && e.key === '?'){ openChat(); chatinput.focus(); } if(e.key === 'Escape'){ if(chatbox.style.display !== 'none') closeChat(); } });
-    new ResizeObserver(()=>{ chatlog.scrollTop = chatlog.scrollHeight; }).observe(chatlog);
+    voiceBtn.addEventListener('dblclick', ()=>{ if(!recognition) return alert('ضبط گفتار در مرورگر شما پشتیبانی نمی‌شود.'); recognition.start(); });
+    voiceBtn.addEventListener('click', ()=>{ voiceEnabled = !voiceEnabled; localStorage.setItem('roham_voice_enabled', voiceEnabled ? '1' : '0'); voiceBtn.textContent = voiceEnabled ? '🔊' : '🎤'; });
+
+    if(voiceEnabled) voiceBtn.textContent='🔊';
+
+    // میانبرهای صفحه‌کلید
+    sendBtn.addEventListener('click', sendChat);
+    chatinput.addEventListener('keydown', e => { if(e.key === 'Enter') sendChat(); });
+    window.addEventListener('keydown', e => { if(e.shiftKey && e.key === '?'){ openChat(); chatinput.focus(); } if(e.key === 'Escape'){ if(chatbox.style.display !== 'none') closeChat(); } });
+
+    // init UI state
+    if(localStorage.getItem('roham_chat_open') === '1') openChat();
+    if(localStorage.getItem('roham_chat_min') === '1'){ chatbox.classList.add('minimized'); minimizeBtn.textContent='+'; }
+
+    // util: quick "clear"
+    function clearMemory(){ memory=[]; localStorage.removeItem('roham_memory'); chatlog.innerHTML=''; loadMemory(); }
+
+    // small helper to generate contextual actions (ex: scroll to contact)
+    function tryContextActions(text){
+      if(text.includes('تماس') || text.includes('contact')) {
+        const el = document.getElementById('contact'); if(el) el.scrollIntoView({behavior:'smooth'});
+      }
+    }
+
+    // Expose some debug helpers in console
+    window.rohamDebug = { memory, learned, clearMemory, setFinglish:on=>{ finglishEnabled=on; localStorage.setItem('roham_finglish', on? '1':'0'); } };
+
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>
