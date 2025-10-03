@@ -11319,3 +11319,32 @@ section#contact form#contactForm :-ms-input-placeholder {
 @media (max-width:640px){
   #open-chat-btn { left:50% !important; transform:translateX(-50%) !important; right:auto !important; bottom:18px !important; }
 }
+/* مخفی کردن پنل چپ بدون حذف ساختار */
+.left-panel {
+  display: none !important;
+}
+
+/* تنظیم ساختار هِرو برای نمایش فقط پنل راست */
+.masthead.split {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+}
+
+/* پنل راست تمام‌صفحه و وسط‌چین */
+.right-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* زوم روی کارت اکشن */
+.auth-card {
+  transform: scale(1.2);
+  max-width: 600px;
+  width: 100%;
+}
