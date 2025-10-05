@@ -1164,6 +1164,44 @@ function speak(text, locale){
    ------------------------ */
 appendBot('سلام! من ربات Roham هستم؛ فارسی، انگلیسی و فینگلیش را می‌فهمم. بپرس هر چیزی.', {lang:'fa', sentiment:{label:'neutral'}});
 </script>
+  <!-- کد جاوااسکریپت -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("open-chat-btn");
+    const chatbox = document.getElementById("chatbox");
+    const closeBtn = document.querySelector(".close-btn");
+
+    if (!btn || !chatbox) {
+      console.warn("دکمه یا پنل چت پیدا نشد.");
+      return;
+    }
+
+    console.log("عرض دکمه:", btn.offsetWidth);
+    console.log("ارتفاع دکمه:", btn.offsetHeight);
+
+    if (btn.offsetWidth === 0 || btn.offsetHeight === 0) {
+      btn.style.width = "80px";
+      btn.style.height = "80px";
+      btn.style.background = "red";
+      btn.textContent = "چت";
+    }
+
+    btn.addEventListener("click", () => {
+      chatbox.style.display = "block";
+      btn.classList.add("open");
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        chatbox.style.display = "none";
+        btn.classList.remove("open");
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const btn = document.getElementById("open-chat-btn");
