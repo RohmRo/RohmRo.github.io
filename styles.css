@@ -11314,8 +11314,11 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-#open-chat-btn { display:flex !important; visibility:visible !important; opacity:1 !important; z-index:999999 !important; }
-#chatbox { z-index:999998 !important; display:block !important; box-sizing:border-box !important; }
-@media (max-width:640px){
-  #open-chat-btn { left:50% !important; transform:translateX(-50%) !important; right:auto !important; bottom:18px !important; }
-}
+<style>
+  #open-chat-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+  }
+</style>
