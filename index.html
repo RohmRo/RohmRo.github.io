@@ -1164,6 +1164,39 @@ function speak(text, locale){
    ------------------------ */
 appendBot('سلام! من ربات Roham هستم؛ فارسی، انگلیسی و فینگلیش را می‌فهمم. بپرس هر چیزی.', {lang:'fa', sentiment:{label:'neutral'}});
 </script>
+  <!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <title>تست دکمه چت</title>
+  <style>
+    #open-chat-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 96px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #0b74ff;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    }
+  </style>
+</head>
+<body>
+  <button id="open-chat-btn">چت</button>
+
+  <script>
+    window.addEventListener("load", () => {
+      const btn = document.getElementById("open-chat-btn");
+      console.log("عرض:", btn.offsetWidth, "ارتفاع:", btn.offsetHeight);
+    });
+  </script>
+</body>
+</html>
   <!-- کد جاوااسکریپت -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
