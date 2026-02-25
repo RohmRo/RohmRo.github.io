@@ -7,99 +7,62 @@
   <meta name="author" content="Roham" />
   <title>Roham prog</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
-  <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-  <!-- فونت فارسی -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet" />
 
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- استایل اصلی شما (در صورتی که موجود است) -->
   <link href="styles.css" rel="stylesheet" />
-
-  <!-- استایل جدید هِرو و افکت‌ها (همیشه بعد از styles.css قرار گیرد) -->
   <link href="hero-glitch.css" rel="stylesheet" />
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-<title>چت‌بات هوشمند Roham</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<style>
-:root{
-  --primary:#0b74ff; --bg:#ffffff; --muted:#6b7280; --card:#f7fbff; --radius:12px;
-  --shadow: 0 12px 40px rgba(11,20,40,0.12);
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-html,body{height:100%; margin:0; background:#f5f7fb; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-/* Chatbox */
-#chatbox { display:none; position:fixed; right:20px; bottom:20px; width:360px; max-height:80vh; border-radius:var(--radius); background:var(--bg); box-shadow:var(--shadow); border:1px solid rgba(11,20,40,0.06); overflow:hidden; z-index:99999; }
-@media (max-width:640px){
-  #chatbox { left:50%; transform:translateX(-50%); right:auto; bottom:18px; width:calc(100% - 32px); border-radius:16px; }
-  #open-chat-btn { left:50%; transform:translateX(-50%); right:auto; bottom:18px; }
-}
-/* open button */
-#open-chat-btn{ position:fixed; right:20px; bottom:96px; width:56px; height:56px; border-radius:50%; background:var(--primary); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(11,20,40,0.18); cursor:pointer; z-index:99999; transition:transform .14s, box-shadow .14s; }
-#open-chat-btn:hover{ transform:translateY(-4px); }
-#open-chat-btn.open{ transform:scale(.96); box-shadow:0 6px 18px rgba(11,20,40,0.12); }
 
-/* header */
-.chat-header { display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(90deg,var(--primary), #0560d6); color:#fff; }
-.chat-header .title { font-weight:700; font-size:15px; }
-.chat-header .close-btn { margin-left:auto; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; }
-
-/* messages */
-#chatlog { padding:12px; overflow:auto; height:52vh; max-height:52vh; background:linear-gradient(180deg,#fbfdff,#ffffff); font-size:14px; color:#0b1220; }
-.msg { margin-bottom:10px; display:block; clear:both; }
-.msg .bubble { display:inline-block; padding:10px 12px; border-radius:12px; max-width:82%; word-break:break-word; line-height:1.4; }
-.msg.user { text-align:right; }
-.msg.user .bubble { background:linear-gradient(90deg,#e8f0ff,#dbeafe); color:#02204a; float:right; border:1px solid rgba(3,57,120,0.06); }
-.msg.bot { text-align:left; }
-.msg.bot .bubble { background:#f6f8fb; color:#0b1220; float:left; border:1px solid rgba(11,20,40,0.04); }
-
-/* meta & typing */
-.meta { font-size:12px; color:var(--muted); margin-top:6px; display:block; }
-.typing { font-size:13px; color:var(--muted); padding:6px 12px; }
-
-/* input row */
-.chat-input-row { display:flex; gap:8px; padding:10px; border-top:1px solid #eef4ff; background:var(--card); align-items:center; }
-#chatinput { flex:1; padding:10px 12px; border-radius:10px; border:1px solid #e6eef8; font-size:14px; outline:none; background:white; }
-.btn-primary-custom { background:var(--primary); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer; }
-.icon-btn { width:44px; height:44px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e9f0ff; cursor:pointer; }
-
-/* small */
-.small { background:transparent; border:1px solid rgba(11,20,40,0.06); padding:6px 8px; border-radius:8px; font-size:13px; cursor:pointer; }
-
-/* accessibility */
-[role="dialog"] { outline: none; }
-
-/* ensure no horizontal overflow on zoom */
-html,body{box-sizing:border-box; min-width:320px;}
-</style>
   <style>
-  #open-chat-btn {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 999999 !important;
-  }
-</style>
+    :root{
+      --primary:#0b74ff; --bg:#ffffff; --muted:#6b7280; --card:#f7fbff; --radius:12px;
+      --shadow: 0 12px 40px rgba(11,20,40,0.12);
+    }
+    html,body{ height:100%; margin:0; background:#f5f7fb; font-family: 'Vazirmatn', sans-serif; }
 
+    /* --- Chatbox Styles --- */
+    #chatbox { display:none; position:fixed; right:20px; bottom:20px; width:360px; max-height:80vh; border-radius:var(--radius); background:var(--bg); box-shadow:var(--shadow); border:1px solid rgba(11,20,40,0.06); overflow:hidden; z-index:99999; flex-direction: column; }
+    
+    #open-chat-btn{ position:fixed; right:20px; bottom:20px; width:56px; height:56px; border-radius:50%; background:var(--primary); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(11,20,40,0.18); cursor:pointer; z-index:99999; transition: transform .14s; }
+    #open-chat-btn:hover{ transform:translateY(-4px); }
+
+    .chat-header { display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(90deg,var(--primary), #0560d6); color:#fff; }
+    .chat-header .title { font-weight:700; font-size:15px; }
+    .chat-header .close-btn { margin-right:auto; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; }
+
+    #chatlog { padding:12px; overflow:auto; height:350px; background:white; font-size:14px; display: flex; flex-direction: column; gap: 8px; }
+    .msg .bubble { display:inline-block; padding:10px 12px; border-radius:12px; max-width:82%; word-break:break-word; }
+    .msg.user { text-align:left; } /* پیام کاربر سمت چپ */
+    .msg.user .bubble { background:#e8f0ff; color:#02204a; }
+    .msg.bot { text-align:right; } /* پیام بات سمت راست (RTL) */
+    .msg.bot .bubble { background:#f6f8fb; color:#0b1220; border:1px solid #eee; }
+
+    .chat-input-row { display:flex; gap:8px; padding:10px; border-top:1px solid #eef4ff; background:var(--card); }
+    #chatinput { flex:1; padding:10px; border-radius:10px; border:1px solid #e6eef8; outline:none; }
+    .btn-primary-custom { background:var(--primary); color:#fff; border:none; padding:10px 15px; border-radius:10px; cursor:pointer; }
+
+    /* Masthead Split Styles */
+    .masthead.split { display: flex; min-height: 100vh; background: #000; color: white; }
+    .left-panel { flex: 1; position: relative; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .right-panel { flex: 1; display: flex; align-items: center; justify-content: center; background: #111; padding: 2rem; }
+    .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 3rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; text-align: center; }
+    .glitch { font-size: 3rem; font-weight: 900; text-transform: uppercase; position: relative; color: #fff; }
+  </style>
 </head>
+
 <body id="page-top">
-<!-- decorative background (Glitch-like) - single instance -->
-  <!-- ناوبری -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav" style="background: rgba(0,0,0,0.9);">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#page-top">
-        <img src="assets/img/navbar-logo.svg" alt="لوگو" class="logo" />
         <span class="brand-text">Roham prog</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-              aria-controls="navbarResponsive" aria-expanded="false" aria-label="باز کردن منو">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
         منو <i class="fas fa-bars ms-1"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -113,1084 +76,127 @@ html,body{box-sizing:border-box; min-width:320px;}
     </div>
   </nav>
 
-  <!-- هِرو حالت Split (شبیه Glitch signin) -->
   <header class="masthead split" id="home">
-    <!-- پنل چپ: کانواس و متن توصیفی -->
-    <div class="left-panel" aria-hidden="false">
-      <canvas id="bg-canvas"></canvas>
-      <div class="left-overlay">
-        <h2 class="left-title">خلق ایده، اجرا کردن وب</h2>
-        <p class="left-desc">پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند</p>
+    <div class="left-panel">
+      <div class="text-center p-4">
+        <h2 class="display-4 fw-bold">خلق ایده، اجرا کردن وب</h2>
+        <p class="lead">پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند</p>
       </div>
     </div>
-
-    <!-- پنل راست: کارت اکشن -->
     <div class="right-panel">
-      <div class="auth-card glass-card auth-card">
-        <div class="brand-row">
-          <img src="assets/img/navbar-logo.svg" alt="لوگو" class="brand-logo" />
-          <span class="brand-name">Roham prog</span>
-        </div>
-
+      <div class="glass-card">
         <h1 class="glitch" data-text="ROHAM PROG">ROHAM PROG</h1>
-        <p class="lead">برنامه‌نویس و متخصص هوش مصنوعی</p>
-
-        <div class="card-actions">
-          <a class="btn btn-cta" href="#portfolio">مشاهده نمونه‌کار</a>
-          <button class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#contactModal">تماس با من</button>
+        <p class="lead mb-4">برنامه‌نویس و متخصص هوش مصنوعی</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a class="btn btn-primary px-4 py-2" href="#portfolio">نمونه‌کارها</a>
+          <button class="btn btn-outline-light px-4 py-2" data-bs-toggle="modal" data-bs-target="#portfolioModal1">تماس سریع</button>
         </div>
-
-        <div class="auth-footer">
-          <small>یا ادامه با</small>
-          <div class="socials mt-2">
-            <button class="social-btn github" aria-label="ورود با گیت‌هاب"><i class="fab fa-github"></i></button>
-            <button class="social-btn google" aria-label="ورود با گوگل"><i class="fab fa-google"></i></button>
-          </div>
-        </div>
-
-        <div class="glow-spot g1" aria-hidden="true"></div>
-        <div class="glow-spot g2" aria-hidden="true"></div>
       </div>
     </div>
   </header>
-        <!-- Services-->
-      <section class="page-section" id="services">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">خدمات من</h2>
-      <h3 class="section-subheading text-muted">مهارت‌هایی که با عشق و دقت ارائه می‌دم</h3>
+
+  <section class="page-section py-5" id="services">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-heading text-uppercase">خدمات من</h2>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x mb-3">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-code fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4>طراحی وب</h4>
+          <p class="text-muted">ساخت وب‌سایت‌های واکنش‌گرا و حرفه‌ای.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x mb-3">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-robot fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4>هوش مصنوعی</h4>
+          <p class="text-muted">طراحی چت‌بات‌ها و سیستم‌های هوشمند.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x mb-3">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-brain fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4>پروژه‌های سفارشی</h4>
+          <p class="text-muted">تحلیل داده و اتوماسیون با AI.</p>
+        </div>
+      </div>
     </div>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-code fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">طراحی و توسعه وب</h4>
-        <p class="text-muted">ساخت وب‌سایت‌های واکنش‌گرا، سریع و حرفه‌ای با تمرکز بر تجربه کاربری و زیبایی بصری.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-robot fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">هوش مصنوعی و چت‌بات‌ها</h4>
-        <p class="text-muted">طراحی چت‌بات‌های هوشمند با شخصیت و تعامل طبیعی، مبتنی بر مدل‌های یادگیری ماشین.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-magic fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">ادیت عکس و ویدیو</h4>
-        <p class="text-muted">ویرایش خلاقانه تصاویر و ویدیوها با استفاده از ابزارهای هوش مصنوعی و جلوه‌های ویژه.</p>
+  </section>
+
+  <button id="open-chat-btn" onclick="toggleChat()">
+    <i class="fas fa-comment-dots fa-2xl"></i>
+  </button>
+
+  <div id="chatbox">
+    <div class="chat-header">
+      <div class="title">چت‌بات هوشمند Roham</div>
+      <button class="close-btn" onclick="toggleChat()">&times;</button>
+    </div>
+    <div id="chatlog">
+      <div class="msg bot">
+        <div class="bubble">سلام! من دستیار هوشمند رهام هستم. چطور می‌تونم کمکت کنم؟</div>
       </div>
     </div>
-    <div class="row text-center mt-5">
-      <div class="col-md-12">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-brain fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">پروژه‌های سفارشی هوش مصنوعی</h4>
-        <p class="text-muted">طراحی و پیاده‌سازی انواع سیستم‌های هوشمند متناسب با نیازهای خاص شما—از تحلیل داده تا اتوماسیون.</p>
-      </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatinput" placeholder="پیام شما..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button class="btn-primary-custom" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
-</section>
-        <!-- Portfolio Grid-->
-<!-- بخش نمونه‌کارها -->
-<!-- نمونه‌کارها -->
-<section class="page-section bg-light" id="portfolio" dir="rtl" lang="fa">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">نمونه‌کارها</h2>
-      <h3 class="section-subheading text-muted">پروژه‌هایی که با عشق، تخصص و خلاقیت اجرا کرده‌ام</h3>
-    </div>
 
-    <div class="row">
-      <!-- پروژه 1 -->
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" role="button" aria-controls="portfolioModal1" aria-label="باز کردن جزئیات چت‌بات فروش">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="چت‌بات فروش" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">چت‌بات فروش</div>
-            <div class="portfolio-caption-subheading text-muted">طراحی تجربه کاربری هوشمند</div>
+  <section class="page-section bg-light py-5" id="portfolio">
+      <div class="container text-center">
+          <h2 class="text-uppercase">نمونه‌کارها</h2>
+          <div class="row mt-4">
+              <div class="col-md-4">
+                  <div class="card border-0 shadow-sm mb-4">
+                      <img src="assets/img/portfolio/1.jpg" class="card-img-top" alt="پروژه">
+                      <div class="card-body"><h5>چت‌بات فروش</h5></div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
+  </section>
 
-      <!-- پروژه 2 -->
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2" role="button" aria-controls="portfolioModal2" aria-label="باز کردن جزئیات مدیریت پروژه">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="مدیریت پروژه" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">مدیریت پروژه</div>
-            <div class="portfolio-caption-subheading text-muted">طراحی رابط کاربری واکنش‌گرا</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- پروژه 3 -->
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3" role="button" aria-controls="portfolioModal3" aria-label="باز کردن جزئیات تشخیص احساسات">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="تشخیص احساسات" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">تشخیص احساسات</div>
-            <div class="portfolio-caption-subheading text-muted">تحلیل داده با هوش مصنوعی</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- پروژه 4 -->
-      <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4" role="button" aria-controls="portfolioModal4" aria-label="باز کردن جزئیات طراحی لوگو">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="طراحی لوگو" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">طراحی لوگو</div>
-            <div class="portfolio-caption-subheading text-muted">هویت بصری و برندسازی</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- پروژه 5 -->
-      <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5" role="button" aria-controls="portfolioModal5" aria-label="باز کردن جزئیات نمونه‌کارهای آنلاین">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="نمونه‌کارهای آنلاین" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">نمونه‌کارهای آنلاین</div>
-            <div class="portfolio-caption-subheading text-muted">طراحی وب‌سایت‌های حرفه‌ای</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- پروژه 6 -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6" role="button" aria-controls="portfolioModal6" aria-label="باز کردن جزئیات عکاسی صنعتی">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x" aria-hidden="true"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="عکاسی صنعتی" />
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading">عکاسی صنعتی</div>
-            <div class="portfolio-caption-subheading text-muted">ویرایش حرفه‌ای و جلوه‌های ویژه</div>
-          </div>
-        </div>
-      </div>
+  <footer class="footer py-4 bg-dark text-white text-center">
+    <div class="container">
+      <small>Copyright &copy; Roham Prog 2026</small>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- مودال 1: چت‌بات فروش -->
-<div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal1Label">چت‌بات فروش — سامانه سفارش و پشتیبانی</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/1.jpg" class="img-fluid mb-3" alt="چت‌بات فروش">
-        <h6>خلاصه پروژه</h6>
-        <p>طراحی و پیاده‌سازی یک چت‌بات فروش که مشتریان را در انتخاب محصول، پردازش سفارش و پشتیبانی پس از فروش همراهی می‌کند. چت‌بات قابلیت اتصال به درگاه پرداخت، ارسال فاکتور و پاسخ‌دهی خودکار به پرسش‌های متداول را دارد.</p>
-        <h6>نقش من</h6>
-        <p>تحلیل نیازها، طراحی جریان گفتگو، پیاده‌سازی منطق سرور، و یکپارچه‌سازی با API درگاه پرداخت و پیام‌رسان‌ها.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>افزایش نرخ تبدیل بازدیدکننده به خریدار تا 22٪.</li>
-          <li>کاهش حجم تماس‌های پشتیبانی به‌خاطر پاسخ‌های خودکار.</li>
-          <li>یکپارچگی با تلگرام و واتساپ برای ارسال اعلان سفارش.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- مودال 2: مدیریت پروژه -->
-<div class="modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal2Label">پلتفرم مدیریت پروژه — داشبورد تیمی</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/2.jpg" class="img-fluid mb-3" alt="مدیریت پروژه">
-        <h6>خلاصه پروژه</h6>
-        <p>ساخت داشبورد مدیریت پروژه با تمرکز بر تسک‌برد، گزارش‌گیری و پیگیری زمان. هدف کاهش پیچیدگی مدیریت تیم‌های کوچک و بهبود شفافیت در تخصیص وظایف بوده است.</p>
-        <h6>نقش من</h6>
-        <p>طراحی UI/UX واکنش‌گرا، پیاده‌سازی قسمت گزارش‌دهی و اتصال به سرویس‌های احراز هویت سازمانی.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>کاهش زمان چرخه توسعه با بهبود فرایند تخصیص وظایف.</li>
-          <li>افزایش رضایت تیمی به‌واسطه داشبورد شفاف.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- مودال 3: تشخیص احساسات -->
-<div class="modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal3Label">سامانه تشخیص احساسات — تحلیل بازخورد</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/3.jpg" class="img-fluid mb-3" alt="تشخیص احساسات">
-        <h6>خلاصه پروژه</h6>
-        <p>پیاده‌سازی مدل‌های پردازش زبان طبیعی برای تحلیل بازخورد مشتریان و دسته‌بندی احساسات مثبت، منفی و خنثی. داشبوردی برای مشاهده ترندها و استخراج نقاط بحرانی طراحی شد.</p>
-        <h6>نقش من</h6>
-        <p>آماده‌سازی داده، آموزش مدل، و توسعه API برای سرویس تحلیل در مقیاس واقعی.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>شناسایی الگوهای نارضایتی که منجر به بهبود محصول شد.</li>
-          <li>امکان گزارش هفتگی احساسات مشتریان برای مدیریت.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- مودال 4: طراحی لوگو -->
-<div class="modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal4Label">پکیج هویت بصری — طراحی لوگو</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/4.jpg" class="img-fluid mb-3" alt="طراحی لوگو">
-        <h6>خلاصه پروژه</h6>
-        <p>طراحی لوگو و هویت بصری برای کسب‌وکارهای نوپا با توجه به پیام برند و بازار هدف. شامل نسخه‌های رنگی، تک‌رنگ و راهنمای استفاده است.</p>
-        <h6>نقش من</h6>
-        <p>تحلیل برند، طراحی اولیه، بازنگری با مشتری و آماده‌سازی فایل‌های نهایی برای چاپ و وب.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>تحویل بسته کامل هویت بصری همراه با راهنمای استفاده.</li>
-          <li>هماهنگی با تیم بازاریابی برای توسعه پیام برند.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- مودال 5: نمونه‌کارهای آنلاین -->
-<div class="modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal5Label">وب‌سایت‌های حرفه‌ای — نمونه‌کارهای آنلاین</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/5.jpg" class="img-fluid mb-3" alt="نمونه‌کارهای آنلاین">
-        <h6>خلاصه پروژه</h6>
-        <p>طراحی و توسعه وب‌سایت‌های شرکتی و فروشگاهی با تاکید بر سرعت بارگذاری، سئو پایه و تجربه کاربری. پیاده‌سازی ریسپانسیو برای تمام دستگاه‌ها انجام شد.</p>
-        <h6>نقش من</h6>
-        <p>برنامه‌نویسی فرانت‌اند، پیاده‌سازی بک‌اند ساده و استقرار روی هاست/CI.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>افزایش سرعت لود صفحات و بهبود امتیاز Core Web Vitals.</li>
-          <li>تحویل پنل مدیریت ساده برای مشتریان.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- مودال 6: عکاسی صنعتی -->
-<div class="modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6Label" aria-hidden="true" dir="rtl" lang="fa">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="portfolioModal6Label">عکاسی صنعتی و ادیت حرفه‌ای</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/portfolio/6.jpg" class="img-fluid mb-3" alt="عکاسی صنعتی">
-        <h6>خلاصه پروژه</h6>
-        <p>عکاسی از محصولات و محیط کار صنعتی، ویرایش رنگ و نور، و آماده‌سازی تصاویر برای کاتالوگ و وب‌سایت. تمرکز بر نمایش واضح جزئیات و ارتقای جذابیت بصری محصول بود.</p>
-        <h6>نقش من</h6>
-        <p>سِت‌آپ نور، عکاسی، ویرایش نهایی و تحویل فرمت‌های مناسب وب و چاپ.</p>
-        <h6>نتیجه و دستاوردها</h6>
-        <ul>
-          <li>افزایش تعامل صفحات محصول و درخواست‌های بی‌واسطه از مشتریان.</li>
-          <li>تحویل تصاویر با کیفیت چاپ و نسخه‌های بهینه‌شده برای وب.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#portfolio" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</a>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">مشاهده پروژه</a>
-      </div>
-    </div>
-  </div>
-</div>
-        <!-- About-->
- <section class="page-section bg-light" id="about">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="section-heading text-uppercase">درباره من</h2>
-      <h3 class="section-subheading text-muted">برنامه‌نویس و متخصص هوش مصنوعی</h3>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card shadow-lg border-0 rounded-4">
-          <div class="card-body p-4">
-            <p class="text-muted" style="font-size:16px; line-height:1.9;">
-              من یک توسعه‌دهنده وب و متخصص هوش مصنوعی هستم. در سال 2023 موفق به کسب رتبه ششم در رقابت‌های برنامه‌نویسی ترکیه شدم.  
-              سابقه کاری من شامل طراحی و پیاده‌سازی سیستم‌های هوشمند، توسعه وب‌سایت‌های واکنش‌گرا، و حل مسائل پیچیده با استفاده از الگوریتم‌های یادگیری ماشین است.  
-              تمرکز اصلی من بر ساخت راه‌حل‌های کاربردی و قابل توسعه برای بهینه‌سازی فرآیندهای دیجیتال و ارتقای تجربه کاربری است.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> 
-        <!-- Team-->
-<!-- Clients -->
-<div class="py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-3 col-sm-6 my-3">
-        <a href="#!">
-          <img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="Microsoft Logo" />
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 my-3">
-        <a href="#!">
-          <img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="Google Logo" />
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 my-3">
-        <a href="#!">
-          <img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="Facebook Logo" />
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 my-3">
-        <a href="#!">
-          <img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="IBM Logo" />
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-        <!-- Clients-->
-        <div class="py-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="..." aria-label="Microsoft Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="..." aria-label="Google Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="..." aria-label="Facebook Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="..." aria-label="IBM Logo" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contact-->
-<section class="page-section" id="contact">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">تماس با من</h2>
-      <h3 class="section-subheading text-muted">برای همکاری یا مشاوره، خوشحال می‌شم در ارتباط باشیم</h3>
-    </div>
-    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-      <div class="row align-items-stretch mb-3">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input class="form-control" id="name" type="text" placeholder="نام شما *" required />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <input class="form-control" id="email" type="email" placeholder="ایمیل شما *" required />
-          </div>
-        </div>
-      </div>
-      <div class="row align-items-stretch mb-3">
-        <div class="col-md-12">
-          <div class="form-group">
-            <input class="form-control" id="phone" type="tel" placeholder="شماره تماس *" required />
-          </div>
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <textarea class="form-control" id="message" rows="5" placeholder="پیام شما *" required></textarea>
-      </div>
-      <div class="text-center">
-        <button class="btn btn-primary btn-xl text-uppercase" type="submit">ارسال پیام</button>
-      </div>
-    </form>
-  </div>
-</section>
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Portfolio Modals-->
-        <!-- Portfolio item 1 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Explore
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Graphic Design
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Finish
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Identity
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Lines
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Branding
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 5 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Southwest
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Website Design
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 6 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Window
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Photography
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-<!-- دکمه آیکون چت -->
-<button id="open-chat-btn" aria-label="باز کردن چت" title="چت">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="white"/>
-  </svg>
-</button>
-
-<!-- پنل چت -->
-<div id="chatbox" role="dialog" aria-label="چت Roham">
-  <div class="chat-header">
-    <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C7.03 3 3 6.58 3 11c0 1.94.75 3.72 2 5.14V21l4.08-2.12C10.5 18.08 11.24 18 12 18c4.97 0 9-3.58 9-8s-4.03-7-9-7z" fill="white"/></svg>
-    </div>
-    <div class="title">راهنمای هوشمند Roham</div>
-
-    <div style="display:flex;align-items:center;gap:8px;margin-left:8px">
-      <label style="color:#fff;font-size:13px;display:flex;align-items:center;gap:6px"><input id="voice-toggle" type="checkbox" checked/> صدا</label>
-      <button id="clear-btn" class="small" title="پاک کردن جلسه">پاک کردن</button>
-    </div>
-
-    <button class="close-btn" aria-label="بستن">×</button>
-  </div>
-
-  <div id="chatlog" aria-live="polite" class="clearfix"></div>
-
-  <div class="chat-input-row">
-    <button class="icon-btn" id="mic-btn" title="ضبط صدا" aria-label="ضبط صدا">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z" fill="#0b1220"/></svg>
-    </button>
-
-    <input id="chatinput" type="text" placeholder="سؤال خود را بنویسید یا ضبط کنید..." aria-label="ورودی پیام" />
-
-    <button id="send-btn" class="btn-primary-custom" title="ارسال">ارسال</button>
-  </div>
-  <div id="sysnote" style="padding:8px 12px; font-size:12px; color:var(--muted)">پشتیبانی فارسی، انگلیسی و فینگلیش — بدون شبکه عصبی</div>
-</div>
-
-<!-- مثال بخش تماس برای اسکرول خودکار -->
-<section id="contact" style="margin:120vh 12px 30vh; padding:20px; background:#fff; border-radius:10px; box-shadow:0 8px 30px rgba(11,20,40,0.04)">
-  <h3>بخش تماس</h3>
-  <p>این بخش نمونه است تا عملکرد اسکرول به بخش خدمات نمایش داده شود.</p>
-</section>
-
-<script>
-/* ------------------------
-   وضعیت و داده‌ها
-   ------------------------ */
-let memory = [];
-let learnedResponses = {}; // key: normalized input -> reply
-const knownServices = ["طراحی سایت","سئو","تولید محتوا","پشتیبانی","مشاوره","سفارش","پرداخت","تبلیغات گوگل"];
-const keywords = {
-  greeting: ["سلام","درود","خوبی","چطوری","hi","hello"],
-  farewell: ["خداحافظ","بای","فعلاً","bye"],
-  identity: ["کی هستی","چی هستی","تو کی‌ای","who are you"],
-  ai: ["هوش مصنوعی","ربات","فکر می‌کنی","intelligent","ai"]
-};
-
-/* ------------------------
-   توابع کمکی: پیش‌پردازش، فاصله لیونشتاین، فازی‌مچ
-   ------------------------ */
-function preprocess(text){
-  return String(text || '').toLowerCase().replace(/[؟?!.,،؛"“”']/g, '').trim();
-}
-
-function levenshtein(a, b){
-  const A = String(a), B = String(b);
-  const al = A.length, bl = B.length;
-  const dp = Array.from({length:al+1}, (_,i)=>Array(bl+1).fill(0));
-  for(let i=0;i<=al;i++) dp[i][0]=i;
-  for(let j=0;j<=bl;j++) dp[0][j]=j;
-  for(let i=1;i<=al;i++){
-    for(let j=1;j<=bl;j++){
-      const cost = A[i-1]===B[j-1] ? 0:1;
-      dp[i][j]=Math.min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost);
-    }
-  }
-  return dp[al][bl];
-}
-
-function fuzzyMatchToken(token, options){
-  let best = null, min = Infinity;
-  for(const opt of options){
-    const d = levenshtein(token, preprocess(opt));
-    if(d < min){ min = d; best = opt; }
-  }
-  return {best, dist:min};
-}
-
-/* ------------------------
-   فینگلیش -> فارسی: نگاشت قاعده‌ای ساده
-   ------------------------ */
-const FING_TO_FA = {
-  'salam':'سلام','merci':'مرسی','mamnun':'ممنون','chetor':'چطور','chetori':'چطوری',
-  'khob':'خوب','kheili':'خیلی','man':'من','to':'تو','shoma':'شما','price':'قیمت','order':'سفارش'
-};
-
-function simpleFinglishToPersian(token){
-  const t = token.toLowerCase().replace(/[^a-z0-9]/g,'');
-  if(!t) return token;
-  if(FING_TO_FA[t]) return FING_TO_FA[t];
-  let s = t.replace(/kh/g,'خ').replace(/sh/g,'ش').replace(/ch/g,'چ').replace(/gh/g,'ق').replace(/zh/g,'ژ');
-  s = s.replace(/ou/g,'و').replace(/oo/g,'و').replace(/ee/g,'ی').replace(/ie/g,'ی').replace(/ph/g,'ف');
-  if(s==='man') return 'من'; if(s==='to') return 'تو'; if(s==='shoma') return 'شما';
-  // اگر هنوز لاتین داشت، برگردان همان (یعنی احتمالاً انگلیسی واقعی)
-  if(/[a-z0-9]/.test(s) && !/^[\u0600-\u06FF]+$/.test(s)) return s;
-  return s;
-}
-
-function normalizeFinglishIfNeeded(text){
-  // اگر متن حروف فارسی دارد، برگردان اصل؛ در غیر اینصورت تلاش برای تبدیل
-  if(/[\u0600-\u06FF]/.test(text)) return text;
-  return text.split(/\s+/).map(simpleFinglishToPersian).join(' ');
-}
-
-/* ------------------------
-   تشخیص زبان ساده
-   ------------------------ */
-function detectLanguage(text){
-  const persianCount = (text.match(/[\u0600-\u06FF]/g) || []).length;
-  const latinCount = (text.match(/[A-Za-z0-9]/g) || []).length;
-  if(persianCount > latinCount) return 'fa';
-  if(latinCount > persianCount){
-    // اگر توکن‌ها در نگاشت فینگلیش بودند، finglish
-    const tokens = text.toLowerCase().split(/\W+/).filter(Boolean);
-    const fingLike = tokens.filter(t=> Object.keys(FING_TO_FA).includes(t)).length;
-    if(fingLike > 0) return 'finglish';
-    // کلمات انگلیسی شایع
-    const enCommon = ['the','is','and','you','how','what','help','price','order','delivery'];
-    const enCount = tokens.filter(t=> enCommon.includes(t)).length;
-    if(enCount >= 1) return 'en';
-    return 'finglish';
-  }
-  return 'unknown';
-}
-
-/* ------------------------
-   تحلیل احساس ساده (لغت‌نامه‌ای)
-   ------------------------ */
-const POSITIVE = new Set(['خوب','عالی','شاد','ممنون','مرسی','رضایت','خوشحال','love','great','good','thanks']);
-const NEGATIVE = new Set(['بد','ناراحت','عصبانی','افتضاح','ghesmat','hate','bad','angry','sad','not']);
-
-function analyzeSentiment(text){
-  const tokens = preprocess(text).split(/\W+/).filter(Boolean);
-  let p=0,n=0;
-  for(const t of tokens){
-    if(POSITIVE.has(t)) p++;
-    if(NEGATIVE.has(t)) n++;
-  }
-  const label = p>n ? 'positive' : n>p ? 'negative' : 'neutral';
-  const score = (p+n === 0) ? 0 : Math.abs(p-n)/Math.max(1,(p+n));
-  return {label, score: Math.round(score*100)/100};
-}
-
-/* ------------------------
-   احساس از ایموجی و کلیدواژه
-   ------------------------ */
-function detectEmotion(text){
-  if(/😡|😠|عصبانی|خشم|نزاع/.test(text)) return 'angry';
-  if(/😊|🙂|خوشحال|شاد|خوشنودی/.test(text)) return 'happy';
-  if(/😢|😭|ناراحتم|غمگین/.test(text)) return 'sad';
-  return 'neutral';
-}
-
-/* ------------------------
-   یادگیری ساده (قالب: یاد بگیر "جمله" پاسخ "پاسخ")
-   ------------------------ */
-function handleLearning(command){
-  const match = command.match(/^یاد\s*بگیر\s*["“](.+?)["”]\s*پاسخ\s*["“](.+?)["”]$/i);
-  if(match){
-    const input = preprocess(match[1]);
-    const reply = match[2];
-    learnedResponses[input] = reply;
-    return `یاد گرفتم: وقتی گفتی "${match[1]}" باید بگم: "${reply}" ✅`;
-  }
-  return null;
-}
-
-/* ------------------------
-   موتور قانون‌محور پاسخ
-   ------------------------ */
-function ruleBasedReply({text, lang, sentiment}){
-  const t = preprocess(text);
-
-  // پاسخ‌های یادگرفته شده
-  if(learnedResponses[t]) return { text: learnedResponses[t], reason: 'learned' };
-
-  // تشخیص نیات ساده
-  for(const intent in keywords){
-    for(const k of keywords[intent]){
-      if(t.includes(k)) {
-        if(intent==='greeting') return { text: 'سلام! خوشحالم که برگشتی.', reason:'intent' };
-        if(intent==='farewell') return { text: 'فعلاً! مراقب خودت باش.', reason:'intent' };
-        if(intent==='identity') return { text: 'من ربات Roham هستم؛ می‌تونم درباره خدمات سایت اطلاعات بدم.', reason:'intent' };
-        if(intent==='ai') return { text: 'من یک بات قانون‌محور هستم که بدون شبکه عصبی کار می‌کنم.', reason:'intent' };
-      }
-    }
-  }
-
-  // جستجوی سرویس با تطبیق فازی توکن به توکن
-  const tokens = t.split(/\s+/).filter(Boolean);
-  for(const token of tokens){
-    const nm = normalizeFinglishIfNeeded(token);
-    const {best, dist} = fuzzyMatchToken(preprocess(nm), knownServices);
-    if(dist <= 2){
-      // اسکرول به بخش تماس/خدمات
-      setTimeout(()=>{ const el = document.getElementById('contact'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 600);
-      return { text: `ما خدمات ${best} ارائه می‌دهیم. برای اطلاعات بیشتر در بخش تماس اقدام کنید.`, reason:'service_match' };
-    }
-  }
-
-  // پاسخ براساس احساس
-  if(sentiment.label === 'negative') return { text: 'متأسفم که اینطوری حس می‌کنید؛ می‌تونم کمک کنم مشکل رو حل کنیم؟', reason:'sentiment' };
-  if(sentiment.label === 'positive') return { text: 'خوشحالم که راضی هستید! اگر کاری هست بگید.', reason:'sentiment' };
-
-  // fallback
-  return { text: 'متوجه نشدم. می‌خوای بهم یاد بدی چی جواب بدم؟ یا یکی از کلمات کلیدی مثل "قیمت" یا "سفارش" را بپرس.', reason:'fallback' };
-}
-
-/* ------------------------
-   UI: append messages
-   ------------------------ */
-const chatlog = document.getElementById('chatlog');
-function appendUser(text){
-  const d = document.createElement('div'); d.className='msg user';
-  d.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
-  chatlog.appendChild(d); chatlog.scrollTop = chatlog.scrollHeight;
-}
-function appendBot(text, meta){
-  const d = document.createElement('div'); d.className='msg bot';
-  d.innerHTML = `<div class="bubble">${escapeHtml(text)}</div>`;
-  if(meta){
-    const m = document.createElement('div'); m.className='meta';
-    const parts=[];
-    if(meta.lang) parts.push('زبان: '+meta.lang);
-    if(meta.sentiment) parts.push('احساس: '+meta.sentiment.label+(meta.sentiment.score?(' ('+meta.sentiment.score+')'):'' ));
-    if(meta.reason) parts.push(meta.reason);
-    m.textContent = parts.join(' • ');
-    d.appendChild(m);
-  }
-  chatlog.appendChild(d); chatlog.scrollTop = chatlog.scrollHeight;
-}
-function appendTyping(){ const t=document.createElement('div'); t.className='typing'; t.id='typing'; t.textContent='در حال پردازش...'; chatlog.appendChild(t); chatlog.scrollTop=chatlog.scrollHeight; }
-function removeTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
-function escapeHtml(s){ return String(s).replace(/[&<"'>]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]; }); }
-
-/* ------------------------
-   تعامل: ارسال پیام و پردازش محلی
-   ------------------------ */
-const inputEl = document.getElementById('chatinput');
-const sendBtn = document.getElementById('send-btn');
-const micBtn = document.getElementById('mic-btn');
-const openBtn = document.getElementById('open-chat-btn');
-const chatbox = document.getElementById('chatbox');
-const closeBtn = document.querySelector('.close-btn');
-const voiceToggle = document.getElementById('voice-toggle');
-const clearBtn = document.getElementById('clear-btn');
-
-openBtn.addEventListener('click', ()=>{ chatbox.style.display='block'; openBtn.classList.add('open'); inputEl.focus(); });
-closeBtn.addEventListener('click', ()=>{ chatbox.style.display='none'; openBtn.classList.remove('open'); });
-clearBtn.addEventListener('click', ()=>{ if(confirm('پاک کردن تاریخچه گفتگو؟')){ memory=[]; learnedResponses={}; chatlog.innerHTML=''; appendBot('گفتگو پاک شد. من آماده‌ام.'); } });
-
-sendBtn.addEventListener('click', ()=>{ const v=inputEl.value.trim(); if(!v) return; inputEl.value=''; userSend(v); });
-inputEl.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); sendBtn.click(); } });
-
-function userSend(rawText){
-  appendUser(rawText);
-  memory.push({role:'user', text:rawText, ts:Date.now()});
-  appendTyping();
-
-  // پردازش محلی (بدون سرور)
-  setTimeout(()=>{
-    removeTyping();
-    // یادگیری چک
-    const learned = handleLearning(rawText);
-    if(learned){
-      appendBot(learned, {lang:'fa', sentiment:{label:'neutral'}, reason:'learn'});
-      return;
-    }
-
-    // زبان و نرمال‌سازی فینگلیش
-    let lang = detectLanguage(rawText);
-    let normalized = rawText;
-    if(lang === 'finglish') { normalized = normalizeFinglishIfNeeded(rawText); lang='fa'; }
-    // تحلیل احساس
-    const sentiment = analyzeSentiment(normalized);
-    const emotion = detectEmotion(rawText);
-
-    const replyObj = ruleBasedReply({text: normalized, lang, sentiment});
-    let reply = replyObj.text;
-    // الحاق پیام احساس-محور
-    if(emotion==='angry') reply += ' 😬 ببخشید اگه ناراحتت کردم.';
-    if(emotion==='happy') reply += ' 😊 خوشحالم که حالت خوبه!';
-    if(emotion==='sad') reply += ' 😢 امیدوارم حالت بهتر شه.';
-
-    memory.push({role:'bot', text:reply, ts:Date.now(), lang, sentiment, reason:replyObj.reason});
-    appendBot(reply, {lang, sentiment, reason:replyObj.reason});
-    // TTS در صورت فعال بودن
-    if(voiceToggle.checked && 'speechSynthesis' in window){
-      speak(reply, lang==='en' ? 'en-US' : 'fa-IR');
-    }
-  }, 300 + Math.random()*400);
-}
-
-/* ------------------------
-   STT: Web Speech API (کلاینت)
-   ------------------------ */
-let recognition, recording=false;
-if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-  // شروع با fa-IR، اما اجازه می‌دهیم کاربر انگلیسی بگوید
-  recognition.lang = 'fa-IR';
-  recognition.onresult = (e) => {
-    const t = e.results[0][0].transcript;
-    inputEl.value = t;
-    sendBtn.click();
-  };
-  recognition.onend = ()=>{ recording=false; micBtn.style.background=''; micBtn.title='ضبط صدا'; };
-  recognition.onerror = (ev)=>{ recording=false; micBtn.style.background=''; micBtn.title='خطا در ضبط'; console.warn('STT error', ev); };
-  micBtn.addEventListener('click', ()=>{
-    if(!recording){ try{ recognition.start(); recording=true; micBtn.style.background='linear-gradient(90deg,var(--primary), #0560d6)'; micBtn.title='برای توقف دوباره بزنید'; }catch(e){ console.warn(e); } }
-    else { recognition.stop(); recording=false; micBtn.style.background=''; micBtn.title='ضبط صدا'; }
-  });
-} else {
-  micBtn.title = 'ضبط صدا در این مرورگر پشتیبانی نمی‌شود';
-  micBtn.style.opacity = '.6';
-}
-
-/* ------------------------
-   TTS ساده با speechSynthesis
-   ------------------------ */
-function speak(text, locale){
-  if(!('speechSynthesis' in window)) return;
-  try{
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = locale || 'fa-IR';
-    // انتخاب صدای مناسب (اولین صدای مناسب زبان)
-    const voices = window.speechSynthesis.getVoices();
-    if(voices && voices.length){
-      const v = voices.find(x=> (locale && x.lang && x.lang.startsWith(locale.split('-')[0])) || (x.lang && x.lang.startsWith('fa'))) || voices[0];
-      if(v) u.voice = v;
-    }
-    window.speechSynthesis.speak(u);
-  }catch(e){ console.warn('TTS error', e); }
-}
-
-/* ------------------------
-   نمایش خوش‌آمد و آماده‌سازی
-   ------------------------ */
-appendBot('سلام! من ربات Roham هستم؛ فارسی، انگلیسی و فینگلیش را می‌فهمم. بپرس هر چیزی.', {lang:'fa', sentiment:{label:'neutral'}});
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    window.addEventListener("load", () => {
-      const btn = document.getElementById("open-chat-btn");
-      console.log("عرض:", btn.offsetWidth, "ارتفاع:", btn.offsetHeight);
-    });
+    // منطق اصلی چت‌بات
+    const chatbox = document.getElementById('chatbox');
+    function toggleChat() {
+      chatbox.style.display = (chatbox.style.display === 'flex' || chatbox.style.display === 'block') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatinput');
+      const log = document.getElementById('chatlog');
+      if (!input.value.trim()) return;
+
+      // پیام کاربر
+      log.innerHTML += `<div class="msg user"><div class="bubble">${input.value}</div></div>`;
+      
+      const text = input.value;
+      input.value = "";
+      log.scrollTop = log.scrollHeight;
+
+      // پاسخ ربات
+      setTimeout(() => {
+        let reply = "ممنون از پیامت! رهام به زودی باهات تماس می‌گیره.";
+        if(text.includes("سلام")) reply = "سلام! خوش اومدی. چطور می‌تونم کمکت کنم؟";
+        log.innerHTML += `<div class="msg bot"><div class="bubble">${reply}</div></div>`;
+        log.scrollTop = log.scrollHeight;
+      }, 700);
+    }
   </script>
-                      <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("open-chat-btn");
-    const chatbox = document.getElementById("chatbox");
-    const closeBtn = document.querySelector(".close-btn");
-
-    if (!btn || !chatbox) {
-      console.warn("دکمه یا پنل چت پیدا نشد.");
-      return;
-    }
-
-    btn.addEventListener("click", () => {
-      chatbox.style.display = "block";
-      btn.classList.add("open");
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => {
-        chatbox.style.display = "none";
-        btn.classList.remove("open");
-      });
-    }
-
-    console.log("عرض دکمه:", btn.offsetWidth, "ارتفاع دکمه:", btn.offsetHeight);
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
