@@ -1,202 +1,952 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="سایت شخصی رهام | برنامه‌نویس و متخصص هوش مصنوعی، طراحی وب و چت‌بات‌های هوشمند" />
-  <meta name="author" content="Roham" />
-  <title>Roham prog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roham prog</title>
+<meta name="author" content="Roham">
+<meta name="description" content="سایت شخصی رهام | برنامه‌نویس و متخصص هوش مصنوعی، طراحی وب و چت‌بات‌های هوشمند">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="importmap">{ "imports": { "lenis": "https://unpkg.com/lenis@1.3.19/dist/lenis.mjs" } }</script>
+<style>
+:root{
+  --hero-base:#04050c; --heading:#eef0f6; --body-muted:#b9becf; --on-media:#fff;
+  --action-inverse:#fff; --action-inverse-fg:#2f2f33;
+  --glass-fill:rgba(255,255,255,.08); --glass-border:rgba(255,255,255,.16);
+  --scrim:rgba(4,5,12,.46); --scrim-strong:rgba(4,5,12,.68); --scrim-soft:rgba(4,5,12,.12);
+  --duration-fast:150ms; --ease-entrance:cubic-bezier(.2,0,0,1);
+}
+*{margin:0;box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+button{background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+html{font-size:16px;scroll-behavior:auto}
+@media (max-width:1920px){html{font-size:.833333vw}}
+@media (max-width:1440px){html{font-size:1.111111vw}}
+@media (max-width:1024px){html{font-size:1.5625vw}}
+@media (max-width:640px){html{font-size:4.444444vw}}
+html.lenis{height:auto}
+body{background:var(--hero-base);color:var(--heading);overflow-x:hidden;font-family:"Onest","Vazirmatn",sans-serif;font-weight:400}
 
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+/* ---------- hero ---------- */
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100lvh;width:100%;overflow:hidden;background:var(--hero-base);text-align:center;padding:0 1.25rem}
+@media (min-width:640px){.hero{padding:0 2.5rem}}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(115% 95% at 50% 46%,var(--scrim-strong) 0%,var(--scrim-strong) 24%,var(--scrim) 52%,var(--scrim-soft) 100%)}
+.nav{position:absolute;inset-inline:0;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.25rem}
+@media (min-width:640px){.nav{padding:1.75rem 2.5rem}}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:500;font-size:1.15rem;color:var(--on-media);font-family:"Onest",sans-serif;direction:ltr}
+@media (min-width:640px){.brand{font-size:1.375rem}}
+.brand svg{width:1.35rem;height:1.35rem}
+@media (min-width:640px){.brand svg{width:1.5rem;height:1.5rem}}
+.linkpill{display:none;position:absolute;left:50%;transform:translateX(-50%);height:3rem;align-items:center;gap:2.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media (min-width:640px){.linkpill{display:flex}}
+.linkpill a{font-size:.95rem;color:var(--body-muted);white-space:nowrap;transition:color var(--duration-fast) var(--ease-entrance)}
+.linkpill a:hover{color:var(--heading)}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:2.5rem;border-radius:9999px;background:var(--action-inverse);padding:0 1.125rem;font-size:.85rem;font-weight:500;color:var(--action-inverse-fg);box-shadow:0 1px 2px rgba(0,0,0,.05);transition:background var(--duration-fast) var(--ease-entrance);white-space:nowrap}
+@media (min-width:640px){.pill{height:2.75rem;padding:0 1.375rem;font-size:.95rem}}
+.pill:hover{background:rgba(255,255,255,.85)}
+.pill:focus-visible{outline:none;box-shadow:0 0 0 2px rgba(255,255,255,.7)}
+.pill.glass{background:var(--glass-fill);color:var(--heading);border:1px solid var(--glass-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill.glass:hover{background:rgba(255,255,255,.16)}
+.col{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;width:100%;max-width:22rem}
+@media (min-width:640px){.col{max-width:40rem}}
+@media (min-width:1024px){.col{max-width:52rem}}
+.badge{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:.4rem .875rem;font-size:.72rem;color:var(--body-muted);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media (min-width:640px){.badge{font-size:.8rem}}
+h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-height:1.25;color:var(--heading);text-align:center}
+@media (min-width:640px){h1.title{margin-top:1.75rem;max-width:34rem;font-size:3.5rem}}
+@media (min-width:1024px){h1.title{max-width:46rem;font-size:5rem}}
+.wordmark{margin-top:.9rem;font-family:"Onest",sans-serif;font-weight:500;font-size:1rem;letter-spacing:.42em;color:var(--body-muted);direction:ltr}
+@media (min-width:640px){.wordmark{font-size:1.2rem}}
+.sub{margin-top:1rem;max-width:20rem;font-size:1rem;line-height:1.7;color:var(--body-muted)}
+@media (min-width:640px){.sub{margin-top:1.25rem;max-width:34rem;font-size:1.1rem}}
+@media (min-width:1024px){.sub{max-width:none;font-size:1.2rem}}
+.cta{margin-top:1.75rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+@media (min-width:640px){.cta{margin-top:2.5rem}}
+.hero .cta .pill{height:3rem;padding:0 1.6rem}
+@media (min-width:640px){.hero .cta .pill{height:3.5rem;padding:0 2.1rem;font-size:1.05rem}}
+.foot{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;justify-content:center;padding:1.25rem;font-size:.72rem;color:var(--body-muted)}
+@media (min-width:640px){.foot{padding:1.5rem 2.5rem;font-size:.8rem}}
 
-  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+/* reveals */
+.rv{opacity:0;transition:opacity 700ms var(--ease-entrance),transform 700ms var(--ease-entrance)}
+.rv.up{transform:translateY(1.25rem)}
+.rv.down{transform:translateY(-.75rem)}
+.rv.in{opacity:1;transform:none}
+.w{display:inline-block;opacity:0;will-change:transform,opacity}
+.w.in{opacity:1;transform:none}
 
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet" />
+/* ---------- content sections ---------- */
+.sec{position:relative;padding:7rem 1.25rem;max-width:80rem;margin:0 auto}
+@media (min-width:640px){.sec{padding:9rem 2.5rem}}
+.sec h2{font-size:1.9rem;font-weight:700;line-height:1.3;text-align:center}
+@media (min-width:640px){.sec h2{font-size:3rem}}
+.sec .lead{margin:1rem auto 0;max-width:34rem;text-align:center;color:var(--body-muted);line-height:1.8;font-size:1rem}
+@media (min-width:640px){.sec .lead{font-size:1.1rem}}
+.grid{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}}
+.card{border-radius:1.5rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.75rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform 400ms var(--ease-entrance),background 300ms}
+.card:hover{transform:translateY(-.4rem);background:rgba(255,255,255,.12)}
+.card .ic{width:3rem;height:3rem;border-radius:1rem;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,220,255,.35),rgba(150,70,255,.4));border:1px solid var(--glass-border)}
+.card .ic svg{width:1.4rem;height:1.4rem;stroke:#fff}
+.card h4{margin-top:1.25rem;font-size:1.15rem;font-weight:700}
+.card p{margin-top:.6rem;color:var(--body-muted);line-height:1.8;font-size:.95rem}
+.pf{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.pf{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+.pf figure{border-radius:1.5rem;overflow:hidden;border:1px solid var(--glass-border);background:var(--glass-fill);position:relative;aspect-ratio:4/3}
+.pf img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 600ms var(--ease-entrance)}
+.pf figure:hover img{transform:scale(1.06)}
+.pf figcaption{position:absolute;inset-inline:0;bottom:0;padding:1.1rem 1.25rem;font-weight:500;background:linear-gradient(to top,rgba(4,5,12,.85),transparent)}
+.pf .ph{position:absolute;inset:0;background:radial-gradient(80% 80% at 30% 20%,rgba(0,200,255,.35),transparent),radial-gradient(80% 80% at 80% 90%,rgba(170,60,255,.4),transparent)}
+.about{margin:3rem auto 0;max-width:42rem;border-radius:1.75rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:2rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-align:center;line-height:2;color:var(--body-muted)}
+.about strong{color:var(--heading)}
+.contact{margin-top:2.5rem;display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.contact .pill{height:3.25rem;padding:0 2rem}
+.copy{padding:2rem 1.25rem 3rem;text-align:center;font-size:.85rem;color:var(--body-muted);font-family:"Onest","Vazirmatn",sans-serif}
+.sr{opacity:0;transform:translateY(1.5rem);transition:opacity 800ms var(--ease-entrance),transform 800ms var(--ease-entrance)}
+.sr.in{opacity:1;transform:none}
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <link href="styles.css" rel="stylesheet" />
-  <link href="hero-glitch.css" rel="stylesheet" />
-
-  <style>
-    :root{
-      --primary:#0b74ff; --bg:#ffffff; --muted:#6b7280; --card:#f7fbff; --radius:12px;
-      --shadow: 0 12px 40px rgba(11,20,40,0.12);
-    }
-    html,body{ height:100%; margin:0; background:#f5f7fb; font-family: 'Vazirmatn', sans-serif; }
-
-    /* --- Chatbox Styles --- */
-    #chatbox { display:none; position:fixed; right:20px; bottom:20px; width:360px; max-height:80vh; border-radius:var(--radius); background:var(--bg); box-shadow:var(--shadow); border:1px solid rgba(11,20,40,0.06); overflow:hidden; z-index:99999; flex-direction: column; }
-    
-    #open-chat-btn{ position:fixed; right:20px; bottom:20px; width:56px; height:56px; border-radius:50%; background:var(--primary); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(11,20,40,0.18); cursor:pointer; z-index:99999; transition: transform .14s; }
-    #open-chat-btn:hover{ transform:translateY(-4px); }
-
-    .chat-header { display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(90deg,var(--primary), #0560d6); color:#fff; }
-    .chat-header .title { font-weight:700; font-size:15px; }
-    .chat-header .close-btn { margin-right:auto; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; }
-
-    #chatlog { padding:12px; overflow:auto; height:350px; background:white; font-size:14px; display: flex; flex-direction: column; gap: 8px; }
-    .msg .bubble { display:inline-block; padding:10px 12px; border-radius:12px; max-width:82%; word-break:break-word; }
-    .msg.user { text-align:left; } /* پیام کاربر سمت چپ */
-    .msg.user .bubble { background:#e8f0ff; color:#02204a; }
-    .msg.bot { text-align:right; } /* پیام بات سمت راست (RTL) */
-    .msg.bot .bubble { background:#f6f8fb; color:#0b1220; border:1px solid #eee; }
-
-    .chat-input-row { display:flex; gap:8px; padding:10px; border-top:1px solid #eef4ff; background:var(--card); }
-    #chatinput { flex:1; padding:10px; border-radius:10px; border:1px solid #e6eef8; outline:none; }
-    .btn-primary-custom { background:var(--primary); color:#fff; border:none; padding:10px 15px; border-radius:10px; cursor:pointer; }
-
-    /* Masthead Split Styles */
-    .masthead.split { display: flex; min-height: 100vh; background: #000; color: white; }
-    .left-panel { flex: 1; position: relative; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
-    .right-panel { flex: 1; display: flex; align-items: center; justify-content: center; background: #111; padding: 2rem; }
-    .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 3rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; text-align: center; }
-    .glitch { font-size: 3rem; font-weight: 900; text-transform: uppercase; position: relative; color: #fff; }
-  </style>
+/* ---------- chatbot ---------- */
+.chat-fab{position:fixed;z-index:50;bottom:1.25rem;left:1.25rem;display:flex;align-items:center;gap:.6rem;height:3.25rem;padding:0 1.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:.9rem;font-weight:500;transition:background var(--duration-fast)}
+.chat-fab:hover{background:rgba(255,255,255,.16)}
+.chat-fab i{width:.6rem;height:.6rem;border-radius:50%;background:#39e6ff;box-shadow:0 0 .8rem #39e6ff}
+@media (min-width:640px){.chat-fab{bottom:2rem;left:2rem}}
+.chat{position:fixed;z-index:60;bottom:1.25rem;left:1.25rem;width:min(22rem,calc(100vw - 2.5rem));height:min(30rem,70vh);display:none;flex-direction:column;border-radius:1.5rem;border:1px solid var(--glass-border);background:rgba(10,12,24,.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.chat.open{display:flex}
+@media (min-width:640px){.chat{bottom:2rem;left:2rem;width:24rem}}
+@media (max-width:640px){.chat{width:calc(100vw - 2.5rem);font-size:3.6vw}}
+.chat header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--glass-border);font-weight:700}
+.chat header button{font-size:1.4rem;line-height:1;color:var(--body-muted)}
+.msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.m{max-width:85%;padding:.65rem .9rem;border-radius:1.1rem;line-height:1.7;font-size:.92em}
+.m.bot{align-self:flex-start;background:var(--glass-fill);border:1px solid var(--glass-border)}
+.m.me{align-self:flex-end;background:linear-gradient(135deg,#0aa8d6,#7a3cff);color:#fff}
+.chat form{display:flex;gap:.5rem;padding:.75rem;border-top:1px solid var(--glass-border)}
+.chat input{flex:1;min-width:0;height:2.7rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1rem;color:var(--heading);font:inherit;outline:none}
+.chat input::placeholder{color:var(--body-muted)}
+.chat form button{height:2.7rem;padding:0 1.1rem;border-radius:9999px;background:#fff;color:#2f2f33;font-weight:500}
+@media (prefers-reduced-motion:reduce){.rv,.w,.sr{transition:none;opacity:1;transform:none}}
+</style>
 </head>
+<body>
 
-<body id="page-top">
+<section class="hero" id="page-top">
+  <canvas aria-hidden="true"></canvas>
+  <div class="scrim" aria-hidden="true"></div>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav" style="background: rgba(0,0,0,0.9);">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#page-top">
-        <span class="brand-text">Roham prog</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-        منو <i class="fas fa-bars ms-1"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#services">خدمات</a></li>
-          <li class="nav-item"><a class="nav-link" href="#portfolio">نمونه‌کارها</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">درباره من</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">تماس</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <header class="masthead split" id="home">
-    <div class="left-panel">
-      <div class="text-center p-4">
-        <h2 class="display-4 fw-bold">خلق ایده، اجرا کردن وب</h2>
-        <p class="lead">پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند</p>
-      </div>
-    </div>
-    <div class="right-panel">
-      <div class="glass-card">
-        <h1 class="glitch" data-text="ROHAM PROG">ROHAM PROG</h1>
-        <p class="lead mb-4">برنامه‌نویس و متخصص هوش مصنوعی</p>
-        <div class="d-flex justify-content-center gap-3">
-          <a class="btn btn-primary px-4 py-2" href="#portfolio">نمونه‌کارها</a>
-          <button class="btn btn-outline-light px-4 py-2" data-bs-toggle="modal" data-bs-target="#portfolioModal1">تماس سریع</button>
-        </div>
-      </div>
-    </div>
+  <header class="nav rv down" data-delay="150">
+    <a class="brand" href="#page-top">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      Roham prog
+    </a>
+    <nav class="linkpill">
+      <a href="#services">خدمات</a>
+      <a href="#portfolio">نمونه‌کارها</a>
+      <a href="#about">درباره من</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <a class="pill" href="#contact">تماس سریع</a>
   </header>
 
-  <section class="page-section py-5" id="services">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-heading text-uppercase">خدمات من</h2>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x mb-3">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-code fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4>طراحی وب</h4>
-          <p class="text-muted">ساخت وب‌سایت‌های واکنش‌گرا و حرفه‌ای.</p>
-        </div>
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x mb-3">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-robot fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4>هوش مصنوعی</h4>
-          <p class="text-muted">طراحی چت‌بات‌ها و سیستم‌های هوشمند.</p>
-        </div>
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x mb-3">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-brain fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4>پروژه‌های سفارشی</h4>
-          <p class="text-muted">تحلیل داده و اتوماسیون با AI.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <button id="open-chat-btn" onclick="toggleChat()">
-    <i class="fas fa-comment-dots fa-2xl"></i>
-  </button>
-
-  <div id="chatbox">
-    <div class="chat-header">
-      <div class="title">چت‌بات هوشمند Roham</div>
-      <button class="close-btn" onclick="toggleChat()">&times;</button>
-    </div>
-    <div id="chatlog">
-      <div class="msg bot">
-        <div class="bubble">سلام! من دستیار هوشمند رهام هستم. چطور می‌تونم کمکت کنم؟</div>
-      </div>
-    </div>
-    <div class="chat-input-row">
-      <input type="text" id="chatinput" placeholder="پیام شما..." onkeypress="if(event.key==='Enter') sendMessage()">
-      <button class="btn-primary-custom" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+  <div class="col">
+    <p class="badge rv up" data-delay="320">برنامه‌نویس و متخصص هوش مصنوعی</p>
+    <h1 class="title" data-words="خلق ایده، اجرا کردن وب" data-delay="480" data-stagger="85" data-dur="720" data-y="26"></h1>
+    <p class="wordmark rv up" data-delay="900">ROHAM PROG</p>
+    <p class="sub" data-words="پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند" data-delay="1150" data-stagger="22" data-dur="600" data-y="14"></p>
+    <div class="cta rv up" data-delay="1450">
+      <a class="pill" href="#portfolio">نمونه‌کارها</a>
+      <a class="pill glass" href="#contact">تماس سریع</a>
     </div>
   </div>
 
-  <section class="page-section bg-light py-5" id="portfolio">
-      <div class="container text-center">
-          <h2 class="text-uppercase">نمونه‌کارها</h2>
-          <div class="row mt-4">
-              <div class="col-md-4">
-                  <div class="card border-0 shadow-sm mb-4">
-                      <img src="assets/img/portfolio/1.jpg" class="card-img-top" alt="پروژه">
-                      <div class="card-body"><h5>چت‌بات فروش</h5></div>
-                  </div>
-              </div>
-          </div>
-      </div>
+  <footer class="foot rv up" data-delay="1650">Copyright © Roham Prog 2026</footer>
+</section>
+
+<main>
+  <section class="sec" id="services">
+    <h2 class="sr">خدمات من</h2>
+    <p class="lead sr">از طراحی وب تا چت‌بات‌های هوشمند، هر چیزی که برای یک حضور دیجیتال مدرن لازم دارید.</p>
+    <div class="grid">
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h4>طراحی وب</h4><p>ساخت وب‌سایت‌های واکنش‌گرا و حرفه‌ای.</p>
+      </article>
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/></svg></div>
+        <h4>هوش مصنوعی</h4><p>طراحی چت‌بات‌ها و سیستم‌های هوشمند.</p>
+      </article>
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h4>پروژه‌های سفارشی</h4><p>تحلیل داده و اتوماسیون با AI.</p>
+      </article>
+    </div>
   </section>
 
-  <footer class="footer py-4 bg-dark text-white text-center">
-    <div class="container">
-      <small>Copyright &copy; Roham Prog 2026</small>
+  <section class="sec" id="portfolio">
+    <h2 class="sr">نمونه‌کارها</h2>
+    <div class="pf">
+      <figure class="sr">
+        <div class="ph"></div>
+        <img src="https://rohmro.github.io/assets/img/portfolio/1.jpg" alt="پروژه" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>چت‌بات فروش</figcaption>
+      </figure>
     </div>
-  </footer>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // منطق اصلی چت‌بات
-    const chatbox = document.getElementById('chatbox');
-    function toggleChat() {
-      chatbox.style.display = (chatbox.style.display === 'flex' || chatbox.style.display === 'block') ? 'none' : 'flex';
+  <section class="sec" id="about">
+    <h2 class="sr">درباره من</h2>
+    <div class="about sr">
+      <p><strong>رهام</strong> هستم؛ برنامه‌نویس و متخصص هوش مصنوعی. وب‌سایت‌های مدرن و چت‌بات‌های هوشمند می‌سازم و ایده‌ها را به پروژه‌های واقعی تبدیل می‌کنم.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" style="padding-bottom:4rem">
+    <h2 class="sr">تماس</h2>
+    <p class="lead sr">پروژه‌ای در ذهن دارید؟ بیایید با هم بسازیمش.</p>
+    <div class="contact sr">
+      <a class="pill" href="#page-top">بازگشت به بالا</a>
+      <button class="pill glass" type="button" id="open-chat">گفتگو با دستیار</button>
+    </div>
+  </section>
+</main>
+
+<p class="copy">Copyright © Roham Prog 2026</p>
+
+<button class="chat-fab" id="chat-fab" type="button"><i></i>چت‌بات هوشمند Roham</button>
+<aside class="chat" id="chat" aria-label="چت‌بات هوشمند Roham">
+  <header><span>چت‌بات هوشمند Roham</span><button type="button" id="chat-close" aria-label="بستن">×</button></header>
+  <div class="msgs" id="msgs"><div class="m bot">سلام! من دستیار هوشمند رهام هستم. چطور می‌تونم کمکت کنم؟</div></div>
+  <form id="chat-form"><input id="chat-in" placeholder="پیامت رو بنویس..." autocomplete="off"><button type="submit">ارسال</button></form>
+</aside>
+
+<script type="module">
+import Lenis from "lenis";
+const lenis = new Lenis({ smoothWheel: true });
+function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    const el=id==='#page-top'?0:document.querySelector(id);
+    if(el===null) return;
+    e.preventDefault();
+    lenis.scrollTo(el,{offset:0,duration:1.2});
+  });
+});
+
+/* ---------- reveals ---------- */
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+document.querySelectorAll('[data-words]').forEach(el=>{
+  const words = el.dataset.words.split(' ');
+  const base = +el.dataset.delay, st = +el.dataset.stagger, dur = +el.dataset.dur, y = +el.dataset.y;
+  el.setAttribute('aria-label', el.dataset.words);
+  words.forEach((w,i)=>{
+    const s = document.createElement('span');
+    s.className='w'; s.textContent=w; s.setAttribute('aria-hidden','true');
+    s.style.transform=`translateY(${y}px)`;
+    s.style.transition=`opacity ${dur}ms linear, transform ${dur}ms cubic-bezier(.215,.61,.355,1)`;
+    s.style.transitionDelay=(base+i*st)+'ms';
+    el.appendChild(s);
+    if(i<words.length-1) el.appendChild(document.createTextNode(' '));
+  });
+});
+requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  document.querySelectorAll('.w').forEach(w=>w.classList.add('in'));
+  document.querySelectorAll('.rv').forEach(el=>{
+    el.style.transitionDelay=(+el.dataset.delay||0)+'ms';
+    el.classList.add('in');
+  });
+}));
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}),{threshold:.15});
+document.querySelectorAll('.sr').forEach((el,i)=>{
+  el.style.transitionDelay=((i%3)*90)+'ms';
+  io.observe(el);
+});
+
+/* ---------- chatbot ---------- */
+const chat=document.getElementById('chat'), fab=document.getElementById('chat-fab');
+const msgs=document.getElementById('msgs'), inp=document.getElementById('chat-in');
+function openChat(){ chat.classList.add('open'); fab.style.display='none'; inp.focus(); }
+function closeChat(){ chat.classList.remove('open'); fab.style.display='flex'; }
+fab.onclick=openChat; document.getElementById('chat-close').onclick=closeChat;
+document.getElementById('open-chat').onclick=openChat;
+function add(t,c){ const d=document.createElement('div'); d.className='m '+c; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; }
+function reply(q){
+  if(/سلام|درود/.test(q)) return 'سلام! خوشحالم که اینجایی. درباره خدمات یا نمونه‌کارها بپرس.';
+  if(/وب|سایت/.test(q)) return 'رهام وب‌سایت‌های واکنش‌گرا و حرفه‌ای طراحی می‌کند.';
+  if(/چت|بات|هوش|ai/i.test(q)) return 'طراحی چت‌بات‌ها و سیستم‌های هوشمند یکی از تخصص‌های اصلی رهام است.';
+  if(/تحلیل|داده|اتومات/.test(q)) return 'تحلیل داده و اتوماسیون با AI هم جزو پروژه‌های سفارشی است.';
+  if(/تماس|قیمت|هزینه|سفارش/.test(q)) return 'برای سفارش یا قیمت، از بخش «تماس» با رهام در ارتباط باش.';
+  return 'ممنون از پیامت! برای جزئیات بیشتر از بخش «تماس» با رهام در ارتباط باش.';
+}
+document.getElementById('chat-form').addEventListener('submit',e=>{
+  e.preventDefault(); const q=inp.value.trim(); if(!q) return;
+  add(q,'me'); inp.value='';
+  setTimeout(()=>add(reply(q),'bot'),500);
+});
+
+/* ---------- fluid ---------- */
+function fluidSimulation(canvas) {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    let config = {
+        SIM_RESOLUTION: 200, DYE_RESOLUTION: 512,
+        DENSITY_DISSIPATION: 0.958, VELOCITY_DISSIPATION: 0.96, PRESSURE_DISSIPATION: 0.8,
+        PRESSURE_ITERATIONS: 20, CURL: 42, SPLAT_RADIUS: 0.22,
+        SHADING: true, COLORFUL: true, PAUSED: false,
+        BACK_COLOR: { r: 4, g: 5, b: 12 }, TRANSPARENT: false
+    };
+
+    function pointerPrototype() {
+        this.id = -1; this.x = 0; this.y = 0; this.dx = 0; this.dy = 0;
+        this.down = false; this.moved = false; this.color = [30, 0, 300];
     }
 
-    function sendMessage() {
-      const input = document.getElementById('chatinput');
-      const log = document.getElementById('chatlog');
-      if (!input.value.trim()) return;
+    let pointers = [];
+    let splatStack = [];
+    pointers.push(new pointerPrototype());
 
-      // پیام کاربر
-      log.innerHTML += `<div class="msg user"><div class="bubble">${input.value}</div></div>`;
-      
-      const text = input.value;
-      input.value = "";
-      log.scrollTop = log.scrollHeight;
+    const { gl, ext } = getWebGLContext(canvas);
+    if (!gl) return;
 
-      // پاسخ ربات
-      setTimeout(() => {
-        let reply = "ممنون از پیامت! رهام به زودی باهات تماس می‌گیره.";
-        if(text.includes("سلام")) reply = "سلام! خوش اومدی. چطور می‌تونم کمکت کنم؟";
-        log.innerHTML += `<div class="msg bot"><div class="bubble">${reply}</div></div>`;
-        log.scrollTop = log.scrollHeight;
-      }, 700);
+    if (isMobile()) config.SHADING = false;
+    if (!ext.supportLinearFiltering) config.SHADING = false;
+
+    function getWebGLContext(canvas) {
+        const params = { alpha: true, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: false };
+        let gl = canvas.getContext('webgl2', params);
+        const isWebGL2 = !!gl;
+        if (!isWebGL2) gl = canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
+        if (!gl) return { gl: null, ext: null };
+
+        let halfFloat, supportLinearFiltering;
+        if (isWebGL2) {
+            gl.getExtension('EXT_color_buffer_float');
+            supportLinearFiltering = gl.getExtension('OES_texture_float_linear');
+        } else {
+            halfFloat = gl.getExtension('OES_texture_half_float');
+            supportLinearFiltering = gl.getExtension('OES_texture_half_float_linear');
+        }
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        const halfFloatTexType = isWebGL2 ? gl.HALF_FLOAT : halfFloat.HALF_FLOAT_OES;
+        let formatRGBA, formatRG, formatR;
+        if (isWebGL2) {
+            formatRGBA = getSupportedFormat(gl, gl.RGBA16F, gl.RGBA, halfFloatTexType);
+            formatRG = getSupportedFormat(gl, gl.RG16F, gl.RG, halfFloatTexType);
+            formatR = getSupportedFormat(gl, gl.R16F, gl.RED, halfFloatTexType);
+        } else {
+            formatRGBA = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
+            formatRG = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
+            formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
+        }
+        return { gl, ext: { formatRGBA, formatRG, formatR, halfFloatTexType, supportLinearFiltering } };
     }
-  </script>
+
+    function getSupportedFormat(gl, internalFormat, format, type) {
+        if (!supportRenderTextureFormat(gl, internalFormat, format, type)) {
+            switch (internalFormat) {
+                case gl.R16F: return getSupportedFormat(gl, gl.RG16F, gl.RG, type);
+                case gl.RG16F: return getSupportedFormat(gl, gl.RGBA16F, gl.RGBA, type);
+                default: return null;
+            }
+        }
+        return { internalFormat, format };
+    }
+
+    function supportRenderTextureFormat(gl, internalFormat, format, type) {
+        let texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, 4, 4, 0, format, type, null);
+        let fbo = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        return gl.checkFramebufferStatus(gl.FRAMEBUFFER) == gl.FRAMEBUFFER_COMPLETE;
+    }
+
+    function isMobile() { return /Mobi|Android/i.test(navigator.userAgent); }
+
+    class GLProgram {
+        constructor(vertexShader, fragmentShader) {
+            this.uniforms = {};
+            this.program = gl.createProgram();
+            gl.attachShader(this.program, vertexShader);
+            gl.attachShader(this.program, fragmentShader);
+            gl.linkProgram(this.program);
+            if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) throw gl.getProgramInfoLog(this.program);
+            const uniformCount = gl.getProgramParameter(this.program, gl.ACTIVE_UNIFORMS);
+            for (let i = 0; i < uniformCount; i++) {
+                const uniformName = gl.getActiveUniform(this.program, i).name;
+                this.uniforms[uniformName] = gl.getUniformLocation(this.program, uniformName);
+            }
+        }
+        bind() { gl.useProgram(this.program); }
+    }
+
+    function compileShader(type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw gl.getShaderInfoLog(shader);
+        return shader;
+    }
+
+    const baseVertexShader = compileShader(gl.VERTEX_SHADER, `
+        precision highp float;
+        attribute vec2 aPosition;
+        varying vec2 vUv; varying vec2 vL; varying vec2 vR; varying vec2 vT; varying vec2 vB;
+        uniform vec2 texelSize;
+        void main () {
+            vUv = aPosition * 0.5 + 0.5;
+            vL = vUv - vec2(texelSize.x, 0.0);
+            vR = vUv + vec2(texelSize.x, 0.0);
+            vT = vUv + vec2(0.0, texelSize.y);
+            vB = vUv - vec2(0.0, texelSize.y);
+            gl_Position = vec4(aPosition, 0.0, 1.0);
+        }
+    `);
+
+    const clearShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float; precision mediump sampler2D;
+        varying highp vec2 vUv;
+        uniform sampler2D uTexture; uniform float value;
+        void main () { gl_FragColor = value * texture2D(uTexture, vUv); }
+    `);
+
+    const colorShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        uniform vec4 color;
+        void main () { gl_FragColor = color; }
+    `);
+
+    const displayShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv; uniform sampler2D uTexture;
+        void main () {
+            vec3 C = texture2D(uTexture, vUv).rgb;
+            float a = max(C.r, max(C.g, C.b));
+            gl_FragColor = vec4(C, a);
+        }
+    `);
+
+    const displayShadingShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv; varying vec2 vL; varying vec2 vR; varying vec2 vT; varying vec2 vB;
+        uniform sampler2D uTexture; uniform vec2 texelSize;
+        void main () {
+            vec3 L = texture2D(uTexture, vL).rgb;
+            vec3 R = texture2D(uTexture, vR).rgb;
+            vec3 T = texture2D(uTexture, vT).rgb;
+            vec3 B = texture2D(uTexture, vB).rgb;
+            vec3 C = texture2D(uTexture, vUv).rgb;
+            float dx = length(R) - length(L);
+            float dy = length(T) - length(B);
+            vec3 n = normalize(vec3(dx, dy, length(texelSize)));
+            vec3 l = vec3(0.0, 0.0, 1.0);
+            float diffuse = clamp(dot(n, l) + 0.7, 0.7, 1.0);
+            C.rgb *= diffuse;
+            float a = max(C.r, max(C.g, C.b));
+            gl_FragColor = vec4(C, a);
+        }
+    `);
+
+    const splatShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv;
+        uniform sampler2D uTarget; uniform float aspectRatio; uniform vec3 color;
+        uniform vec2 point; uniform float radius;
+        void main () {
+            vec2 p = vUv - point.xy;
+            p.x *= aspectRatio;
+            vec3 splat = exp(-dot(p, p) / radius) * color;
+            vec3 base = texture2D(uTarget, vUv).xyz;
+            gl_FragColor = vec4(base + splat, 1.0);
+        }
+    `);
+
+    const advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv;
+        uniform sampler2D uVelocity; uniform sampler2D uSource;
+        uniform vec2 texelSize; uniform vec2 dyeTexelSize; uniform float dt; uniform float dissipation;
+        vec4 bilerp (sampler2D sam, vec2 uv, vec2 tsize) {
+            vec2 st = uv / tsize - 0.5;
+            vec2 iuv = floor(st);
+            vec2 fuv = fract(st);
+            vec4 a = texture2D(sam, (iuv + vec2(0.5, 0.5)) * tsize);
+            vec4 b = texture2D(sam, (iuv + vec2(1.5, 0.5)) * tsize);
+            vec4 c = texture2D(sam, (iuv + vec2(0.5, 1.5)) * tsize);
+            vec4 d = texture2D(sam, (iuv + vec2(1.5, 1.5)) * tsize);
+            return mix(mix(a, b, fuv.x), mix(c, d, fuv.x), fuv.y);
+        }
+        void main () {
+            vec2 coord = vUv - dt * bilerp(uVelocity, vUv, texelSize).xy * texelSize;
+            gl_FragColor = dissipation * bilerp(uSource, coord, dyeTexelSize);
+            gl_FragColor.a = 1.0;
+        }
+    `);
+
+    const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv;
+        uniform sampler2D uVelocity; uniform sampler2D uSource;
+        uniform vec2 texelSize; uniform float dt; uniform float dissipation;
+        void main () {
+            vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
+            gl_FragColor = dissipation * texture2D(uSource, coord);
+            gl_FragColor.a = 1.0;
+        }
+    `);
+
+    const divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float; precision mediump sampler2D;
+        varying highp vec2 vUv; varying highp vec2 vL; varying highp vec2 vR; varying highp vec2 vT; varying highp vec2 vB;
+        uniform sampler2D uVelocity;
+        void main () {
+            float L = texture2D(uVelocity, vL).x;
+            float R = texture2D(uVelocity, vR).x;
+            float T = texture2D(uVelocity, vT).y;
+            float B = texture2D(uVelocity, vB).y;
+            vec2 C = texture2D(uVelocity, vUv).xy;
+            if (vL.x < 0.0) { L = -C.x; }
+            if (vR.x > 1.0) { R = -C.x; }
+            if (vT.y > 1.0) { T = -C.y; }
+            if (vB.y < 0.0) { B = -C.y; }
+            float div = 0.5 * (R - L + T - B);
+            gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+        }
+    `);
+
+    const curlShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float; precision mediump sampler2D;
+        varying highp vec2 vUv; varying highp vec2 vL; varying highp vec2 vR; varying highp vec2 vT; varying highp vec2 vB;
+        uniform sampler2D uVelocity;
+        void main () {
+            float L = texture2D(uVelocity, vL).y;
+            float R = texture2D(uVelocity, vR).y;
+            float T = texture2D(uVelocity, vT).x;
+            float B = texture2D(uVelocity, vB).x;
+            float vorticity = R - L - T + B;
+            gl_FragColor = vec4(0.5 * vorticity, 0.0, 0.0, 1.0);
+        }
+    `);
+
+    const vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float; precision highp sampler2D;
+        varying vec2 vUv; varying vec2 vL; varying vec2 vR; varying vec2 vT; varying vec2 vB;
+        uniform sampler2D uVelocity; uniform sampler2D uCurl; uniform float curl; uniform float dt;
+        void main () {
+            float L = texture2D(uCurl, vL).x;
+            float R = texture2D(uCurl, vR).x;
+            float T = texture2D(uCurl, vT).x;
+            float B = texture2D(uCurl, vB).x;
+            float C = texture2D(uCurl, vUv).x;
+            vec2 force = 0.5 * vec2(abs(T) - abs(B), abs(R) - abs(L));
+            force /= length(force) + 0.0001;
+            force *= curl * C;
+            force.y *= -1.0;
+            vec2 vel = texture2D(uVelocity, vUv).xy;
+            gl_FragColor = vec4(vel + force * dt, 0.0, 1.0);
+        }
+    `);
+
+    const pressureShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float; precision mediump sampler2D;
+        varying highp vec2 vUv; varying highp vec2 vL; varying highp vec2 vR; varying highp vec2 vT; varying highp vec2 vB;
+        uniform sampler2D uPressure; uniform sampler2D uDivergence;
+        vec2 boundary (vec2 uv) { return uv; }
+        void main () {
+            float L = texture2D(uPressure, boundary(vL)).x;
+            float R = texture2D(uPressure, boundary(vR)).x;
+            float T = texture2D(uPressure, boundary(vT)).x;
+            float B = texture2D(uPressure, boundary(vB)).x;
+            float C = texture2D(uPressure, vUv).x;
+            float divergence = texture2D(uDivergence, vUv).x;
+            float pressure = (L + R + B + T - divergence) * 0.25;
+            gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
+        }
+    `);
+
+    const gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float; precision mediump sampler2D;
+        varying highp vec2 vUv; varying highp vec2 vL; varying highp vec2 vR; varying highp vec2 vT; varying highp vec2 vB;
+        uniform sampler2D uPressure; uniform sampler2D uVelocity;
+        vec2 boundary (vec2 uv) { return uv; }
+        void main () {
+            float L = texture2D(uPressure, boundary(vL)).x;
+            float R = texture2D(uPressure, boundary(vR)).x;
+            float T = texture2D(uPressure, boundary(vT)).x;
+            float B = texture2D(uPressure, boundary(vB)).x;
+            vec2 velocity = texture2D(uVelocity, vUv).xy;
+            velocity.xy -= vec2(R - L, T - B);
+            gl_FragColor = vec4(velocity, 0.0, 1.0);
+        }
+    `);
+
+    const blit = (() => {
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]), gl.STATIC_DRAW);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([0, 1, 2, 0, 2, 3]), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(0);
+        return (destination) => {
+            gl.bindFramebuffer(gl.FRAMEBUFFER, destination);
+            gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+        };
+    })();
+
+    let simWidth, simHeight, dyeWidth, dyeHeight, density, velocity, divergence, curl, pressure;
+
+    const clearProgram = new GLProgram(baseVertexShader, clearShader);
+    const colorProgram = new GLProgram(baseVertexShader, colorShader);
+    const displayProgram = new GLProgram(baseVertexShader, displayShader);
+    const displayShadingProgram = new GLProgram(baseVertexShader, displayShadingShader);
+    const splatProgram = new GLProgram(baseVertexShader, splatShader);
+    const advectionProgram = new GLProgram(baseVertexShader, ext.supportLinearFiltering ? advectionShader : advectionManualFilteringShader);
+    const divergenceProgram = new GLProgram(baseVertexShader, divergenceShader);
+    const curlProgram = new GLProgram(baseVertexShader, curlShader);
+    const vorticityProgram = new GLProgram(baseVertexShader, vorticityShader);
+    const pressureProgram = new GLProgram(baseVertexShader, pressureShader);
+    const gradienSubtractProgram = new GLProgram(baseVertexShader, gradientSubtractShader);
+
+    function initFramebuffers() {
+        let simRes = getResolution(config.SIM_RESOLUTION);
+        let dyeRes = getResolution(config.DYE_RESOLUTION);
+        simWidth = simRes.width; simHeight = simRes.height;
+        dyeWidth = dyeRes.width; dyeHeight = dyeRes.height;
+        const texType = ext.halfFloatTexType;
+        const rgba = ext.formatRGBA, rg = ext.formatRG, r = ext.formatR;
+        const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
+
+        if (density == null) density = createDoubleFBO(dyeWidth, dyeHeight, rgba.internalFormat, rgba.format, texType, filtering);
+        else density = resizeDoubleFBO(density, dyeWidth, dyeHeight, rgba.internalFormat, rgba.format, texType, filtering);
+        if (velocity == null) velocity = createDoubleFBO(simWidth, simHeight, rg.internalFormat, rg.format, texType, filtering);
+        else velocity = resizeDoubleFBO(velocity, simWidth, simHeight, rg.internalFormat, rg.format, texType, filtering);
+
+        divergence = createFBO(simWidth, simHeight, r.internalFormat, r.format, texType, gl.NEAREST);
+        curl = createFBO(simWidth, simHeight, r.internalFormat, r.format, texType, gl.NEAREST);
+        pressure = createDoubleFBO(simWidth, simHeight, r.internalFormat, r.format, texType, gl.NEAREST);
+    }
+
+    function createFBO(w, h, internalFormat, format, type, param) {
+        gl.activeTexture(gl.TEXTURE0);
+        let texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, param);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, param);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, null);
+        let fbo = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        gl.viewport(0, 0, w, h);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        return {
+            texture, fbo, width: w, height: h,
+            attach(id) { gl.activeTexture(gl.TEXTURE0 + id); gl.bindTexture(gl.TEXTURE_2D, texture); return id; }
+        };
+    }
+
+    function createDoubleFBO(w, h, internalFormat, format, type, param) {
+        let fbo1 = createFBO(w, h, internalFormat, format, type, param);
+        let fbo2 = createFBO(w, h, internalFormat, format, type, param);
+        return {
+            get read() { return fbo1; }, set read(v) { fbo1 = v; },
+            get write() { return fbo2; }, set write(v) { fbo2 = v; },
+            swap() { let t = fbo1; fbo1 = fbo2; fbo2 = t; }
+        };
+    }
+
+    function resizeFBO(target, w, h, internalFormat, format, type, param) {
+        let newFBO = createFBO(w, h, internalFormat, format, type, param);
+        clearProgram.bind();
+        gl.uniform1i(clearProgram.uniforms.uTexture, target.attach(0));
+        gl.uniform1f(clearProgram.uniforms.value, 1);
+        blit(newFBO.fbo);
+        return newFBO;
+    }
+
+    function resizeDoubleFBO(target, w, h, internalFormat, format, type, param) {
+        target.read = resizeFBO(target.read, w, h, internalFormat, format, type, param);
+        target.write = createFBO(w, h, internalFormat, format, type, param);
+        return target;
+    }
+
+    initFramebuffers();
+    // Strong entrance burst + queued follow-up waves
+    multipleSplats(34);
+    for (let i = 0; i < 8; i++) splatStack.push(10 + parseInt(Math.random() * 10));
+
+    let lastColorChangeTime = Date.now();
+    let virtualSeeded = false, orbitAngle = 0, vPrevX = 0, vPrevY = 0;
+    let virtualColor = null, lastVColorTime = 0;
+    const engineStart = Date.now();
+    const ORBIT_RADIUS = 300, ORBIT_SPEED = 0.026, ORBIT_START_DELAY = 700;
+
+    update();
+
+    function update() {
+        resizeCanvas();
+        driveVirtualPointer();
+        input();
+        if (!config.PAUSED) step(0.016);
+        render(null);
+        requestAnimationFrame(update);
+    }
+
+    function driveVirtualPointer() {
+        if (Date.now() - engineStart < ORBIT_START_DELAY) return;
+        const cx = canvas.width / 2, cy = canvas.height / 2;
+        const base = Math.min(ORBIT_RADIUS, canvas.width * 0.35, canvas.height * 0.35);
+        const r = base * (0.72 + 0.28 * Math.sin(orbitAngle * 0.37));
+        orbitAngle += ORBIT_SPEED;
+        const x = cx + Math.cos(orbitAngle) * r;
+        const y = cy + Math.sin(orbitAngle) * r;
+        if (!virtualSeeded) { virtualSeeded = true; vPrevX = x; vPrevY = y; return; }
+        if (!virtualColor || Date.now() - lastVColorTime > 120) {
+            virtualColor = generateColor();
+            virtualColor.r *= 3.2; virtualColor.g *= 3.2; virtualColor.b *= 3.2;
+            lastVColorTime = Date.now();
+        }
+        const dx = (x - vPrevX) * 9.0, dy = (y - vPrevY) * 9.0;
+        vPrevX = x; vPrevY = y;
+        splat(x, y, dx, dy, virtualColor);
+    }
+
+    function input() {
+        if (splatStack.length > 0) multipleSplats(splatStack.pop());
+        for (let i = 0; i < pointers.length; i++) {
+            const p = pointers[i];
+            if (p.moved) { splat(p.x, p.y, p.dx, p.dy, p.color); p.moved = false; }
+        }
+        if (!config.COLORFUL) return;
+        if (lastColorChangeTime + 100 < Date.now()) {
+            lastColorChangeTime = Date.now();
+            for (let i = 0; i < pointers.length; i++) pointers[i].color = generateColor();
+        }
+    }
+
+    function step(dt) {
+        gl.disable(gl.BLEND);
+        gl.viewport(0, 0, simWidth, simHeight);
+
+        curlProgram.bind();
+        gl.uniform2f(curlProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        gl.uniform1i(curlProgram.uniforms.uVelocity, velocity.read.attach(0));
+        blit(curl.fbo);
+
+        vorticityProgram.bind();
+        gl.uniform2f(vorticityProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        gl.uniform1i(vorticityProgram.uniforms.uVelocity, velocity.read.attach(0));
+        gl.uniform1i(vorticityProgram.uniforms.uCurl, curl.attach(1));
+        gl.uniform1f(vorticityProgram.uniforms.curl, config.CURL);
+        gl.uniform1f(vorticityProgram.uniforms.dt, dt);
+        blit(velocity.write.fbo);
+        velocity.swap();
+
+        divergenceProgram.bind();
+        gl.uniform2f(divergenceProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        gl.uniform1i(divergenceProgram.uniforms.uVelocity, velocity.read.attach(0));
+        blit(divergence.fbo);
+
+        clearProgram.bind();
+        gl.uniform1i(clearProgram.uniforms.uTexture, pressure.read.attach(0));
+        gl.uniform1f(clearProgram.uniforms.value, config.PRESSURE_DISSIPATION);
+        blit(pressure.write.fbo);
+        pressure.swap();
+
+        pressureProgram.bind();
+        gl.uniform2f(pressureProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        gl.uniform1i(pressureProgram.uniforms.uDivergence, divergence.attach(0));
+        for (let i = 0; i < config.PRESSURE_ITERATIONS; i++) {
+            gl.uniform1i(pressureProgram.uniforms.uPressure, pressure.read.attach(1));
+            blit(pressure.write.fbo);
+            pressure.swap();
+        }
+
+        gradienSubtractProgram.bind();
+        gl.uniform2f(gradienSubtractProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        gl.uniform1i(gradienSubtractProgram.uniforms.uPressure, pressure.read.attach(0));
+        gl.uniform1i(gradienSubtractProgram.uniforms.uVelocity, velocity.read.attach(1));
+        blit(velocity.write.fbo);
+        velocity.swap();
+
+        advectionProgram.bind();
+        gl.uniform2f(advectionProgram.uniforms.texelSize, 1.0 / simWidth, 1.0 / simHeight);
+        if (!ext.supportLinearFiltering)
+            gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, 1.0 / simWidth, 1.0 / simHeight);
+        let velocityId = velocity.read.attach(0);
+        gl.uniform1i(advectionProgram.uniforms.uVelocity, velocityId);
+        gl.uniform1i(advectionProgram.uniforms.uSource, velocityId);
+        gl.uniform1f(advectionProgram.uniforms.dt, dt);
+        gl.uniform1f(advectionProgram.uniforms.dissipation, config.VELOCITY_DISSIPATION);
+        blit(velocity.write.fbo);
+        velocity.swap();
+
+        gl.viewport(0, 0, dyeWidth, dyeHeight);
+        if (!ext.supportLinearFiltering)
+            gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, 1.0 / dyeWidth, 1.0 / dyeHeight);
+        gl.uniform1i(advectionProgram.uniforms.uVelocity, velocity.read.attach(0));
+        gl.uniform1i(advectionProgram.uniforms.uSource, density.read.attach(1));
+        gl.uniform1f(advectionProgram.uniforms.dissipation, config.DENSITY_DISSIPATION);
+        blit(density.write.fbo);
+        density.swap();
+    }
+
+    function render(target) {
+        gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+        gl.enable(gl.BLEND);
+        let width = gl.drawingBufferWidth, height = gl.drawingBufferHeight;
+        gl.viewport(0, 0, width, height);
+
+        colorProgram.bind();
+        let bc = config.BACK_COLOR;
+        gl.uniform4f(colorProgram.uniforms.color, bc.r / 255, bc.g / 255, bc.b / 255, 1);
+        blit(target);
+
+        if (config.SHADING) {
+            displayShadingProgram.bind();
+            gl.uniform2f(displayShadingProgram.uniforms.texelSize, 1.0 / width, 1.0 / height);
+            gl.uniform1i(displayShadingProgram.uniforms.uTexture, density.read.attach(0));
+        } else {
+            displayProgram.bind();
+            gl.uniform1i(displayProgram.uniforms.uTexture, density.read.attach(0));
+        }
+        blit(target);
+    }
+
+    function splat(x, y, dx, dy, color) {
+        gl.viewport(0, 0, simWidth, simHeight);
+        splatProgram.bind();
+        gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
+        gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+        gl.uniform2f(splatProgram.uniforms.point, x / canvas.width, 1.0 - y / canvas.height);
+        gl.uniform3f(splatProgram.uniforms.color, dx, -dy, 1.0);
+        gl.uniform1f(splatProgram.uniforms.radius, config.SPLAT_RADIUS / 100.0);
+        blit(velocity.write.fbo);
+        velocity.swap();
+
+        gl.viewport(0, 0, dyeWidth, dyeHeight);
+        gl.uniform1i(splatProgram.uniforms.uTarget, density.read.attach(0));
+        gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
+        blit(density.write.fbo);
+        density.swap();
+    }
+
+    function multipleSplats(amount) {
+        for (let i = 0; i < amount; i++) {
+            const color = generateColor();
+            color.r *= 10.0; color.g *= 10.0; color.b *= 10.0;
+            const x = canvas.width * Math.random();
+            const y = canvas.height * Math.random();
+            const dx = 1000 * (Math.random() - 0.5);
+            const dy = 1000 * (Math.random() - 0.5);
+            splat(x, y, dx, dy, color);
+        }
+    }
+
+    function resizeCanvas() {
+        if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientHeight) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+            initFramebuffers();
+        }
+    }
+
+    function pointerPos(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    window.addEventListener('mousemove', e => {
+        const { x, y } = pointerPos(e.clientX, e.clientY);
+        const p = pointers[0];
+        if (!p.everMoved) { p.everMoved = true; p.x = x; p.y = y; p.down = true; return; }
+        p.down = true; p.moved = true;
+        p.dx = (x - p.x) * 5.0; p.dy = (y - p.y) * 5.0;
+        p.x = x; p.y = y; p.color = generateColor();
+    });
+
+    window.addEventListener('touchmove', e => {
+        const touches = e.targetTouches;
+        for (let i = 0; i < touches.length; i++) {
+            if (i >= pointers.length) pointers.push(new pointerPrototype());
+            const p = pointers[i];
+            const { x, y } = pointerPos(touches[i].clientX, touches[i].clientY);
+            p.down = true;
+            p.moved = p.everMoved === true;
+            p.everMoved = true;
+            p.dx = (x - p.x) * 8.0; p.dy = (y - p.y) * 8.0;
+            p.x = x; p.y = y;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchstart', e => {
+        const touches = e.targetTouches;
+        for (let i = 0; i < touches.length; i++) {
+            if (i >= pointers.length) pointers.push(new pointerPrototype());
+            const p = pointers[i];
+            const { x, y } = pointerPos(touches[i].clientX, touches[i].clientY);
+            p.id = touches[i].identifier; p.down = true; p.x = x; p.y = y; p.color = generateColor();
+        }
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => { pointers[0].down = false; });
+    window.addEventListener('touchend', e => {
+        const touches = e.changedTouches;
+        for (let i = 0; i < touches.length; i++)
+            for (let j = 0; j < pointers.length; j++)
+                if (touches[i].identifier == pointers[j].id) pointers[j].down = false;
+    });
+
+    function generateColor() {
+        const h = 0.5 + Math.random() * 0.42;
+        let c = HSVtoRGB(h, 0.95, 1.0);
+        c.r *= 0.92; c.g *= 0.92; c.b *= 0.92;
+        return c;
+    }
+
+    function HSVtoRGB(h, s, v) {
+        let r, g, b, i, f, p, q, t;
+        i = Math.floor(h * 6);
+        f = h * 6 - i;
+        p = v * (1 - s); q = v * (1 - f * s); t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+            case 0: r = v, g = t, b = p; break;
+            case 1: r = q, g = v, b = p; break;
+            case 2: r = p, g = v, b = t; break;
+            case 3: r = p, g = q, b = v; break;
+            case 4: r = t, g = p, b = v; break;
+            case 5: r = v, g = p, b = q; break;
+        }
+        return { r, g, b };
+    }
+
+    function getResolution(resolution) {
+        let aspectRatio = gl.drawingBufferWidth / gl.drawingBufferHeight;
+        if (aspectRatio < 1) aspectRatio = 1.0 / aspectRatio;
+        let max = Math.round(resolution * aspectRatio);
+        let min = Math.round(resolution);
+        if (gl.drawingBufferWidth > gl.drawingBufferHeight) return { width: max, height: min };
+        else return { width: min, height: max };
+    }
+}
+
+const canvas = document.querySelector("canvas");
+if (canvas) { try { fluidSimulation(canvas); } catch (err) { console.error(err); } }
+</script>
 </body>
 </html>
