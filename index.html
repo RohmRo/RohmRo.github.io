@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Roham prog</title>
+<title>Roham prog | برنامه‌نویس، هوش مصنوعی و امنیت شبکه</title>
 <meta name="author" content="Roham">
-<meta name="description" content="سایت شخصی رهام | برنامه‌نویس و متخصص هوش مصنوعی، طراحی وب و چت‌بات‌های هوشمند">
+<meta name="description" content="سایت شخصی رهام | برنامه‌نویس و متخصص هوش مصنوعی، طراحی وب، اپلیکیشن، امنیت شبکه و ادیت ویدیو و عکس">
+<meta name="theme-color" content="#04050c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script type="importmap">{ "imports": { "lenis": "https://unpkg.com/lenis@1.3.19/dist/lenis.mjs" } }</script>
 <style>
 :root{
@@ -17,17 +18,22 @@
   --glass-fill:rgba(255,255,255,.08); --glass-border:rgba(255,255,255,.16);
   --scrim:rgba(4,5,12,.46); --scrim-strong:rgba(4,5,12,.68); --scrim-soft:rgba(4,5,12,.12);
   --duration-fast:150ms; --ease-entrance:cubic-bezier(.2,0,0,1);
+  --cyan:#39e6ff; --violet:#8a4dff; --magenta:#ff4fd8;
 }
 *{margin:0;box-sizing:border-box}
 a{color:inherit;text-decoration:none}
 button{background:none;border:0;font:inherit;color:inherit;cursor:pointer}
-html{font-size:16px;scroll-behavior:auto}
+html{font-size:16px}
 @media (max-width:1920px){html{font-size:.833333vw}}
 @media (max-width:1440px){html{font-size:1.111111vw}}
 @media (max-width:1024px){html{font-size:1.5625vw}}
 @media (max-width:640px){html{font-size:4.444444vw}}
 html.lenis{height:auto}
 body{background:var(--hero-base);color:var(--heading);overflow-x:hidden;font-family:"Onest","Vazirmatn",sans-serif;font-weight:400}
+::selection{background:rgba(138,77,255,.5)}
+
+/* progress bar */
+#prog{position:fixed;top:0;inset-inline:0;height:3px;z-index:100;transform-origin:right;transform:scaleX(0);background:linear-gradient(90deg,var(--cyan),var(--violet),var(--magenta))}
 
 /* ---------- hero ---------- */
 .hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100lvh;width:100%;overflow:hidden;background:var(--hero-base);text-align:center;padding:0 1.25rem}
@@ -40,11 +46,11 @@ body{background:var(--hero-base);color:var(--heading);overflow-x:hidden;font-fam
 @media (min-width:640px){.brand{font-size:1.375rem}}
 .brand svg{width:1.35rem;height:1.35rem}
 @media (min-width:640px){.brand svg{width:1.5rem;height:1.5rem}}
-.linkpill{display:none;position:absolute;left:50%;transform:translateX(-50%);height:3rem;align-items:center;gap:2.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.linkpill{display:none;position:absolute;left:50%;transform:translateX(-50%);height:3rem;align-items:center;gap:1.9rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 @media (min-width:640px){.linkpill{display:flex}}
 .linkpill a{font-size:.95rem;color:var(--body-muted);white-space:nowrap;transition:color var(--duration-fast) var(--ease-entrance)}
-.linkpill a:hover{color:var(--heading)}
-.pill{display:inline-flex;align-items:center;justify-content:center;height:2.5rem;border-radius:9999px;background:var(--action-inverse);padding:0 1.125rem;font-size:.85rem;font-weight:500;color:var(--action-inverse-fg);box-shadow:0 1px 2px rgba(0,0,0,.05);transition:background var(--duration-fast) var(--ease-entrance);white-space:nowrap}
+.linkpill a:hover,.linkpill a.on{color:var(--heading)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:2.5rem;border-radius:9999px;background:var(--action-inverse);padding:0 1.125rem;font-size:.85rem;font-weight:500;color:var(--action-inverse-fg);box-shadow:0 1px 2px rgba(0,0,0,.05);transition:background var(--duration-fast) var(--ease-entrance);white-space:nowrap}
 @media (min-width:640px){.pill{height:2.75rem;padding:0 1.375rem;font-size:.95rem}}
 .pill:hover{background:rgba(255,255,255,.85)}
 .pill:focus-visible{outline:none;box-shadow:0 0 0 2px rgba(255,255,255,.7)}
@@ -53,20 +59,25 @@ body{background:var(--hero-base);color:var(--heading);overflow-x:hidden;font-fam
 .col{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;width:100%;max-width:22rem}
 @media (min-width:640px){.col{max-width:40rem}}
 @media (min-width:1024px){.col{max-width:52rem}}
-.badge{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:.4rem .875rem;font-size:.72rem;color:var(--body-muted);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.badge{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:.4rem .875rem;font-size:.72rem;color:var(--body-muted);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.badge i{width:.5rem;height:.5rem;border-radius:50%;background:var(--cyan);box-shadow:0 0 .7rem var(--cyan)}
 @media (min-width:640px){.badge{font-size:.8rem}}
-h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-height:1.25;color:var(--heading);text-align:center}
+h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:800;line-height:1.3;color:var(--heading);text-align:center}
 @media (min-width:640px){h1.title{margin-top:1.75rem;max-width:34rem;font-size:3.5rem}}
 @media (min-width:1024px){h1.title{max-width:46rem;font-size:5rem}}
 .wordmark{margin-top:.9rem;font-family:"Onest",sans-serif;font-weight:500;font-size:1rem;letter-spacing:.42em;color:var(--body-muted);direction:ltr}
 @media (min-width:640px){.wordmark{font-size:1.2rem}}
-.sub{margin-top:1rem;max-width:20rem;font-size:1rem;line-height:1.7;color:var(--body-muted)}
+.sub{margin-top:1rem;max-width:20rem;font-size:1rem;line-height:1.8;color:var(--body-muted)}
 @media (min-width:640px){.sub{margin-top:1.25rem;max-width:34rem;font-size:1.1rem}}
 @media (min-width:1024px){.sub{max-width:none;font-size:1.2rem}}
 .cta{margin-top:1.75rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
 @media (min-width:640px){.cta{margin-top:2.5rem}}
 .hero .cta .pill{height:3rem;padding:0 1.6rem}
 @media (min-width:640px){.hero .cta .pill{height:3.5rem;padding:0 2.1rem;font-size:1.05rem}}
+.stats{margin-top:2rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.stats span{border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:.35rem .85rem;font-size:.72rem;color:var(--body-muted);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.stats b{color:var(--heading);font-weight:700}
+@media (min-width:640px){.stats{margin-top:2.5rem}.stats span{font-size:.85rem;padding:.45rem 1rem}}
 .foot{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;justify-content:center;padding:1.25rem;font-size:.72rem;color:var(--body-muted)}
 @media (min-width:640px){.foot{padding:1.5rem 2.5rem;font-size:.8rem}}
 
@@ -77,52 +88,118 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
 .rv.in{opacity:1;transform:none}
 .w{display:inline-block;opacity:0;will-change:transform,opacity}
 .w.in{opacity:1;transform:none}
-
-/* ---------- content sections ---------- */
-.sec{position:relative;padding:7rem 1.25rem;max-width:80rem;margin:0 auto}
-@media (min-width:640px){.sec{padding:9rem 2.5rem}}
-.sec h2{font-size:1.9rem;font-weight:700;line-height:1.3;text-align:center}
-@media (min-width:640px){.sec h2{font-size:3rem}}
-.sec .lead{margin:1rem auto 0;max-width:34rem;text-align:center;color:var(--body-muted);line-height:1.8;font-size:1rem}
-@media (min-width:640px){.sec .lead{font-size:1.1rem}}
-.grid{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
-@media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}}
-.card{border-radius:1.5rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.75rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform 400ms var(--ease-entrance),background 300ms}
-.card:hover{transform:translateY(-.4rem);background:rgba(255,255,255,.12)}
-.card .ic{width:3rem;height:3rem;border-radius:1rem;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,220,255,.35),rgba(150,70,255,.4));border:1px solid var(--glass-border)}
-.card .ic svg{width:1.4rem;height:1.4rem;stroke:#fff}
-.card h4{margin-top:1.25rem;font-size:1.15rem;font-weight:700}
-.card p{margin-top:.6rem;color:var(--body-muted);line-height:1.8;font-size:.95rem}
-.pf{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
-@media (min-width:640px){.pf{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
-.pf figure{border-radius:1.5rem;overflow:hidden;border:1px solid var(--glass-border);background:var(--glass-fill);position:relative;aspect-ratio:4/3}
-.pf img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 600ms var(--ease-entrance)}
-.pf figure:hover img{transform:scale(1.06)}
-.pf figcaption{position:absolute;inset-inline:0;bottom:0;padding:1.1rem 1.25rem;font-weight:500;background:linear-gradient(to top,rgba(4,5,12,.85),transparent)}
-.pf .ph{position:absolute;inset:0;background:radial-gradient(80% 80% at 30% 20%,rgba(0,200,255,.35),transparent),radial-gradient(80% 80% at 80% 90%,rgba(170,60,255,.4),transparent)}
-.about{margin:3rem auto 0;max-width:42rem;border-radius:1.75rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:2rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-align:center;line-height:2;color:var(--body-muted)}
-.about strong{color:var(--heading)}
-.contact{margin-top:2.5rem;display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
-.contact .pill{height:3.25rem;padding:0 2rem}
-.copy{padding:2rem 1.25rem 3rem;text-align:center;font-size:.85rem;color:var(--body-muted);font-family:"Onest","Vazirmatn",sans-serif}
 .sr{opacity:0;transform:translateY(1.5rem);transition:opacity 800ms var(--ease-entrance),transform 800ms var(--ease-entrance)}
 .sr.in{opacity:1;transform:none}
 
+/* ---------- sections ---------- */
+main{position:relative;background:var(--hero-base)}
+main::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 30% at 85% 8%,rgba(57,230,255,.10),transparent 70%),radial-gradient(60% 30% at 10% 45%,rgba(138,77,255,.12),transparent 70%),radial-gradient(60% 30% at 90% 85%,rgba(255,79,216,.08),transparent 70%)}
+.sec{position:relative;padding:6rem 1.25rem;max-width:80rem;margin:0 auto}
+@media (min-width:640px){.sec{padding:8rem 2.5rem}}
+.eyebrow{display:block;text-align:center;font-family:"Onest",sans-serif;letter-spacing:.3em;font-size:.72rem;color:var(--cyan);margin-bottom:1rem;direction:ltr}
+.sec h2{font-size:1.9rem;font-weight:800;line-height:1.4;text-align:center}
+@media (min-width:640px){.sec h2{font-size:3rem}}
+.sec .lead{margin:1rem auto 0;max-width:36rem;text-align:center;color:var(--body-muted);line-height:1.9;font-size:1rem}
+@media (min-width:640px){.sec .lead{font-size:1.1rem}}
+.grid{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}}
+.card{border-radius:1.5rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.75rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform 400ms var(--ease-entrance),background 300ms,border-color 300ms}
+.card:hover{transform:translateY(-.4rem);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
+.ic{width:3rem;height:3rem;border-radius:1rem;display:grid;place-items:center;background:linear-gradient(135deg,rgba(57,230,255,.35),rgba(138,77,255,.45));border:1px solid var(--glass-border)}
+.ic svg{width:1.4rem;height:1.4rem;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card h4{margin-top:1.25rem;font-size:1.15rem;font-weight:700}
+.card p{margin-top:.6rem;color:var(--body-muted);line-height:1.9;font-size:.95rem}
+.tags{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{font-size:.75rem;padding:.25rem .65rem;border-radius:9999px;border:1px solid var(--glass-border);color:var(--body-muted)}
+
+/* skills */
+.skills{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.skills{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+.sk{border-radius:1.5rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.6rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.sk h4{font-size:1.05rem;font-weight:700;margin-bottom:1rem}
+.sk .tags{margin-top:0}
+.sk .tags span{color:var(--heading);background:rgba(255,255,255,.05)}
+
+/* portfolio */
+.filters{margin-top:2.5rem;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.filters button{height:2.4rem;padding:0 1.1rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);font-size:.85rem;color:var(--body-muted);transition:all var(--duration-fast)}
+.filters button:hover{color:var(--heading)}
+.filters button.on{background:#fff;color:#2f2f33;font-weight:500}
+.pf{margin-top:2rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.pf{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+.pi{border-radius:1.5rem;overflow:hidden;border:1px solid var(--glass-border);background:var(--glass-fill);transition:transform 400ms var(--ease-entrance),opacity 300ms}
+.pi:hover{transform:translateY(-.4rem)}
+.pi.hide{display:none}
+.pv{position:relative;aspect-ratio:16/10;overflow:hidden;background:radial-gradient(90% 90% at 20% 15%,var(--a),transparent 65%),radial-gradient(90% 90% at 85% 90%,var(--b),transparent 65%),#0a0c18;display:grid;place-items:center}
+.pv svg{width:3.4rem;height:3.4rem;stroke:rgba(255,255,255,.92);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform 500ms var(--ease-entrance)}
+.pi:hover .pv svg{transform:scale(1.15) rotate(-4deg)}
+.pv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 600ms var(--ease-entrance)}
+.pi:hover .pv img{transform:scale(1.06)}
+.pb{padding:1.1rem 1.25rem 1.3rem}
+.pb h5{font-size:1.05rem;font-weight:700}
+.pb p{margin-top:.4rem;font-size:.9rem;line-height:1.8;color:var(--body-muted)}
+.pb .tags{margin-top:.8rem}
+
+/* about */
+.about-wrap{margin-top:3rem;display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media (min-width:1024px){.about-wrap{grid-template-columns:1.5fr 1fr;gap:2rem}}
+.story{border-radius:1.75rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.75rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+@media (min-width:640px){.story{padding:2.5rem}}
+.story h3{font-size:1.3rem;font-weight:800;margin-bottom:1rem;margin-top:2rem}
+.story h3:first-child{margin-top:0}
+.story p{color:var(--body-muted);line-height:2.1;font-size:1rem;margin-bottom:1rem}
+.story p strong{color:var(--heading);font-weight:700}
+.story blockquote{margin:1.5rem 0;padding:1rem 1.25rem;border-inline-start:3px solid var(--violet);background:rgba(255,255,255,.04);border-radius:.75rem;color:var(--heading);line-height:2}
+.side{display:flex;flex-direction:column;gap:1.1rem}
+.tl{border-radius:1.75rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.75rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.tl h4{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem}
+.tl ol{list-style:none;position:relative;padding-inline-start:1.5rem}
+.tl ol::before{content:"";position:absolute;inset-block:.4rem;inset-inline-start:.3rem;width:2px;background:linear-gradient(var(--cyan),var(--violet),var(--magenta));opacity:.7}
+.tl li{position:relative;margin-bottom:1.2rem}
+.tl li::before{content:"";position:absolute;inset-inline-start:-1.5rem;top:.45rem;width:.7rem;height:.7rem;border-radius:50%;background:#fff;box-shadow:0 0 .8rem var(--cyan)}
+.tl li b{display:block;font-family:"Onest",sans-serif;color:var(--cyan);font-size:.85rem;margin-bottom:.15rem}
+.tl li span{color:var(--body-muted);font-size:.92rem;line-height:1.8}
+.fact{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.fact div{border-radius:1.25rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.1rem;text-align:center}
+.fact b{display:block;font-size:1.6rem;font-weight:800;background:linear-gradient(90deg,var(--cyan),var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent}
+.fact span{font-size:.8rem;color:var(--body-muted)}
+
+/* process */
+.steps{margin-top:3rem;display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media (min-width:640px){.steps{grid-template-columns:repeat(4,1fr)}}
+.st{border-radius:1.5rem;border:1px solid var(--glass-border);background:var(--glass-fill);padding:1.5rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.st b{font-family:"Onest",sans-serif;font-size:2rem;font-weight:500;color:rgba(255,255,255,.25)}
+.st h4{margin-top:.6rem;font-weight:700}
+.st p{margin-top:.4rem;font-size:.9rem;line-height:1.8;color:var(--body-muted)}
+
+.contact{margin-top:2.5rem;display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.contact .pill{height:3.25rem;padding:0 2rem}
+.copy{position:relative;padding:2rem 1.25rem 3rem;text-align:center;font-size:.85rem;color:var(--body-muted);font-family:"Onest","Vazirmatn",sans-serif}
+
 /* ---------- chatbot ---------- */
-.chat-fab{position:fixed;z-index:50;bottom:1.25rem;left:1.25rem;display:flex;align-items:center;gap:.6rem;height:3.25rem;padding:0 1.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:.9rem;font-weight:500;transition:background var(--duration-fast)}
+.chat-fab{position:fixed;z-index:50;bottom:1.25rem;left:1.25rem;display:flex;align-items:center;gap:.6rem;height:3.25rem;padding:0 1.25rem;border-radius:9999px;border:1px solid var(--glass-border);background:rgba(20,22,40,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:.9rem;font-weight:500;transition:background var(--duration-fast)}
 .chat-fab:hover{background:rgba(255,255,255,.16)}
-.chat-fab i{width:.6rem;height:.6rem;border-radius:50%;background:#39e6ff;box-shadow:0 0 .8rem #39e6ff}
+.chat-fab i{width:.6rem;height:.6rem;border-radius:50%;background:var(--cyan);box-shadow:0 0 .8rem var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
 @media (min-width:640px){.chat-fab{bottom:2rem;left:2rem}}
-.chat{position:fixed;z-index:60;bottom:1.25rem;left:1.25rem;width:min(22rem,calc(100vw - 2.5rem));height:min(30rem,70vh);display:none;flex-direction:column;border-radius:1.5rem;border:1px solid var(--glass-border);background:rgba(10,12,24,.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.chat{position:fixed;z-index:60;bottom:1.25rem;left:1.25rem;width:min(23rem,calc(100vw - 2.5rem));height:min(34rem,78vh);display:none;flex-direction:column;border-radius:1.5rem;border:1px solid var(--glass-border);background:rgba(10,12,24,.88);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .chat.open{display:flex}
-@media (min-width:640px){.chat{bottom:2rem;left:2rem;width:24rem}}
-@media (max-width:640px){.chat{width:calc(100vw - 2.5rem);font-size:3.6vw}}
+@media (min-width:640px){.chat{bottom:2rem;left:2rem;width:26rem}}
+@media (max-width:640px){.chat{font-size:3.6vw}}
 .chat header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--glass-border);font-weight:700}
+.chat header small{display:block;font-weight:400;font-size:.75em;color:var(--body-muted)}
 .chat header button{font-size:1.4rem;line-height:1;color:var(--body-muted)}
 .msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
-.m{max-width:85%;padding:.65rem .9rem;border-radius:1.1rem;line-height:1.7;font-size:.92em}
+.m{max-width:88%;padding:.65rem .9rem;border-radius:1.1rem;line-height:1.85;font-size:.92em;white-space:pre-wrap}
 .m.bot{align-self:flex-start;background:var(--glass-fill);border:1px solid var(--glass-border)}
 .m.me{align-self:flex-end;background:linear-gradient(135deg,#0aa8d6,#7a3cff);color:#fff}
+.m.typing{display:flex;gap:.25rem;align-items:center;padding:.9rem 1rem}
+.m.typing i{width:.4rem;height:.4rem;border-radius:50%;background:var(--body-muted);animation:bounce 1s infinite}
+.m.typing i:nth-child(2){animation-delay:.15s}.m.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{40%{transform:translateY(-.3rem);opacity:.5}}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .6rem}
+.chips button{font-size:.8em;padding:.35rem .8rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);color:var(--heading);transition:background var(--duration-fast)}
+.chips button:hover{background:rgba(255,255,255,.18)}
 .chat form{display:flex;gap:.5rem;padding:.75rem;border-top:1px solid var(--glass-border)}
 .chat input{flex:1;min-width:0;height:2.7rem;border-radius:9999px;border:1px solid var(--glass-border);background:var(--glass-fill);padding:0 1rem;color:var(--heading);font:inherit;outline:none}
 .chat input::placeholder{color:var(--body-muted)}
@@ -131,6 +208,7 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
 </style>
 </head>
 <body>
+<div id="prog"></div>
 
 <section class="hero" id="page-top">
   <canvas aria-hidden="true"></canvas>
@@ -146,6 +224,7 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
     </a>
     <nav class="linkpill">
       <a href="#services">خدمات</a>
+      <a href="#skills">مهارت‌ها</a>
       <a href="#portfolio">نمونه‌کارها</a>
       <a href="#about">درباره من</a>
       <a href="#contact">تماس</a>
@@ -154,7 +233,7 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
   </header>
 
   <div class="col">
-    <p class="badge rv up" data-delay="320">برنامه‌نویس و متخصص هوش مصنوعی</p>
+    <p class="badge rv up" data-delay="320"><i></i>برنامه‌نویس · هوش مصنوعی · امنیت شبکه</p>
     <h1 class="title" data-words="خلق ایده، اجرا کردن وب" data-delay="480" data-stagger="85" data-dur="720" data-y="26"></h1>
     <p class="wordmark rv up" data-delay="900">ROHAM PROG</p>
     <p class="sub" data-words="پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند" data-delay="1150" data-stagger="22" data-dur="600" data-y="14"></p>
@@ -162,55 +241,195 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
       <a class="pill" href="#portfolio">نمونه‌کارها</a>
       <a class="pill glass" href="#contact">تماس سریع</a>
     </div>
+    <div class="stats rv up" data-delay="1600">
+      <span>رتبه <b>۶</b> برنامه‌نویسی · ترکیه ۲۰۲۲</span>
+      <span><b>۶</b> حوزه تخصصی</span>
+      <span>وب · AI · اپ · امنیت · ادیت</span>
+    </div>
   </div>
 
-  <footer class="foot rv up" data-delay="1650">Copyright © Roham Prog 2026</footer>
+  <footer class="foot rv up" data-delay="1750">Copyright © Roham Prog 2026</footer>
 </section>
 
 <main>
+  <!-- SERVICES -->
   <section class="sec" id="services">
+    <span class="eyebrow sr">SERVICES</span>
     <h2 class="sr">خدمات من</h2>
-    <p class="lead sr">از طراحی وب تا چت‌بات‌های هوشمند، هر چیزی که برای یک حضور دیجیتال مدرن لازم دارید.</p>
+    <p class="lead sr">از ایده تا اجرا؛ هر چیزی که برای یک حضور دیجیتال مدرن، امن و هوشمند لازم دارید.</p>
     <div class="grid">
       <article class="card sr">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h4>طراحی وب</h4><p>ساخت وب‌سایت‌های واکنش‌گرا و حرفه‌ای.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h4>طراحی وب</h4>
+        <p>ساخت وب‌سایت‌های واکنش‌گرا، سریع و حرفه‌ای؛ از صفحه معرفی ساده تا پلتفرم‌های کامل.</p>
+        <div class="tags"><span>HTML/CSS/JS</span><span>واکنش‌گرا</span><span>سئو</span></div>
       </article>
       <article class="card sr">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/></svg></div>
-        <h4>هوش مصنوعی</h4><p>طراحی چت‌بات‌ها و سیستم‌های هوشمند.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/></svg></div>
+        <h4>هوش مصنوعی</h4>
+        <p>طراحی چت‌بات‌ها و سیستم‌های هوشمند، تحلیل داده و اتوماسیون فرایندها با AI.</p>
+        <div class="tags"><span>چت‌بات</span><span>اتوماسیون</span><span>تحلیل داده</span></div>
       </article>
       <article class="card sr">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-        <h4>پروژه‌های سفارشی</h4><p>تحلیل داده و اتوماسیون با AI.</p>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <h4>اپلیکیشن</h4>
+        <p>توسعه اپلیکیشن‌های کاربردی با رابط کاربری روان و تجربه کاربری دقیق.</p>
+        <div class="tags"><span>موبایل</span><span>وب‌اپ</span><span>UI/UX</span></div>
+      </article>
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>امنیت شبکه</h4>
+        <p>بررسی و تقویت امنیت شبکه و سیستم‌ها، شناسایی نقاط ضعف و پیشنهاد راه‌حل.</p>
+        <div class="tags"><span>شبکه</span><span>ارزیابی امنیتی</span><span>سخت‌سازی</span></div>
+      </article>
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></div>
+        <h4>ادیت ویدیو</h4>
+        <p>تدوین، رنگ‌بندی، زیرنویس و صداگذاری برای ویدیوهای تبلیغاتی، آموزشی و شخصی.</p>
+        <div class="tags"><span>تدوین</span><span>رنگ‌بندی</span><span>زیرنویس</span></div>
+      </article>
+      <article class="card sr">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 9"/></svg></div>
+        <h4>ادیت عکس</h4>
+        <p>روتوش، اصلاح رنگ، حذف و ترکیب عناصر و آماده‌سازی تصاویر برای وب و چاپ.</p>
+        <div class="tags"><span>روتوش</span><span>ترکیب تصویر</span><span>گرافیک</span></div>
       </article>
     </div>
   </section>
 
+  <!-- SKILLS -->
+  <section class="sec" id="skills">
+    <span class="eyebrow sr">SKILLS</span>
+    <h2 class="sr">مهارت‌ها</h2>
+    <p class="lead sr">شش حوزه‌ای که هر روز در آن‌ها کار و یادگیری می‌کنم.</p>
+    <div class="skills">
+      <div class="sk sr"><h4>برنامه‌نویسی</h4><div class="tags"><span>الگوریتم و ساختار داده</span><span>حل مسئله</span><span>معماری نرم‌افزار</span><span>اتوماسیون</span></div></div>
+      <div class="sk sr"><h4>وب</h4><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>طراحی واکنش‌گرا</span><span>انیمیشن و WebGL</span></div></div>
+      <div class="sk sr"><h4>هوش مصنوعی</h4><div class="tags"><span>چت‌بات</span><span>پردازش زبان</span><span>مهندسی پرامپت</span><span>تحلیل داده</span></div></div>
+      <div class="sk sr"><h4>اپلیکیشن</h4><div class="tags"><span>اپ موبایل</span><span>وب‌اپ</span><span>طراحی رابط</span></div></div>
+      <div class="sk sr"><h4>امنیت شبکه</h4><div class="tags"><span>مفاهیم شبکه</span><span>ارزیابی آسیب‌پذیری</span><span>امن‌سازی سیستم</span></div></div>
+      <div class="sk sr"><h4>ادیت ویدیو و عکس</h4><div class="tags"><span>تدوین</span><span>رنگ‌بندی</span><span>روتوش</span><span>موشن ساده</span></div></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
   <section class="sec" id="portfolio">
+    <span class="eyebrow sr">PORTFOLIO</span>
     <h2 class="sr">نمونه‌کارها</h2>
-    <div class="pf">
-      <figure class="sr">
-        <div class="ph"></div>
-        <img src="https://rohmro.github.io/assets/img/portfolio/1.jpg" alt="پروژه" loading="lazy" onerror="this.style.display='none'">
-        <figcaption>چت‌بات فروش</figcaption>
-      </figure>
+    <p class="lead sr">نمونه‌ای از کارهایم در هر حوزه؛ با دسته‌بندی فیلتر کن.</p>
+    <div class="filters sr" id="filters">
+      <button class="on" data-f="all">همه</button>
+      <button data-f="web">وب</button>
+      <button data-f="ai">هوش مصنوعی</button>
+      <button data-f="app">اپلیکیشن</button>
+      <button data-f="sec">امنیت</button>
+      <button data-f="edit">ادیت</button>
+    </div>
+    <div class="pf" id="pf">
+      <article class="pi sr" data-c="ai" style="--a:rgba(57,230,255,.45);--b:rgba(138,77,255,.5)">
+        <div class="pv"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/></svg>
+          <img src="https://rohmro.github.io/assets/img/portfolio/1.jpg" alt="چت‌بات فروش" loading="lazy" onerror="this.remove()"></div>
+        <div class="pb"><h5>چت‌بات فروش</h5><p>دستیار هوشمند برای پاسخ به مشتریان و هدایت آن‌ها به خرید.</p><div class="tags"><span>AI</span><span>چت‌بات</span></div></div>
+      </article>
+      <article class="pi sr" data-c="web" style="--a:rgba(57,230,255,.4);--b:rgba(60,120,255,.5)">
+        <div class="pv"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="pb"><h5>وب‌سایت واکنش‌گرا</h5><p>سایت مدرن و سریع با طراحی ریسپانسیو و انیمیشن‌های نرم.</p><div class="tags"><span>وب</span><span>UI</span></div></div>
+      </article>
+      <article class="pi sr" data-c="ai" style="--a:rgba(255,79,216,.4);--b:rgba(138,77,255,.5)">
+        <div class="pv"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <div class="pb"><h5>تحلیل داده و اتوماسیون</h5><p>خودکارسازی کارهای تکراری و استخراج بینش از داده با کمک AI.</p><div class="tags"><span>AI</span><span>اتوماسیون</span></div></div>
+      </article>
+      <article class="pi sr" data-c="app" style="--a:rgba(138,77,255,.5);--b:rgba(57,230,255,.4)">
+        <div class="pv"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <div class="pb"><h5>اپلیکیشن کاربردی</h5><p>اپلیکیشنی ساده و روان با تمرکز بر تجربه کاربری.</p><div class="tags"><span>اپ</span><span>UX</span></div></div>
+      </article>
+      <article class="pi sr" data-c="sec" style="--a:rgba(60,220,160,.4);--b:rgba(57,230,255,.45)">
+        <div class="pv"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="pb"><h5>ارزیابی امنیت شبکه</h5><p>بررسی ساختار شبکه، شناسایی ضعف‌ها و گزارش راهکارهای اصلاحی.</p><div class="tags"><span>امنیت</span><span>شبکه</span></div></div>
+      </article>
+      <article class="pi sr" data-c="edit" style="--a:rgba(255,120,80,.4);--b:rgba(255,79,216,.45)">
+        <div class="pv"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></div>
+        <div class="pb"><h5>ادیت ویدیو</h5><p>تدوین حرفه‌ای با رنگ‌بندی، زیرنویس فارسی و صداگذاری.</p><div class="tags"><span>ویدیو</span><span>تدوین</span></div></div>
+      </article>
+      <article class="pi sr" data-c="edit" style="--a:rgba(255,200,80,.35);--b:rgba(138,77,255,.45)">
+        <div class="pv"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 9"/></svg></div>
+        <div class="pb"><h5>ادیت و روتوش عکس</h5><p>اصلاح رنگ، روتوش و آماده‌سازی تصویر برای وب و چاپ.</p><div class="tags"><span>عکس</span><span>روتوش</span></div></div>
+      </article>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section class="sec" id="about">
+    <span class="eyebrow sr">ABOUT</span>
     <h2 class="sr">درباره من</h2>
-    <div class="about sr">
-      <p><strong>رهام</strong> هستم؛ برنامه‌نویس و متخصص هوش مصنوعی. وب‌سایت‌های مدرن و چت‌بات‌های هوشمند می‌سازم و ایده‌ها را به پروژه‌های واقعی تبدیل می‌کنم.</p>
+    <p class="lead sr">رهام هستم؛ برنامه‌نویسی که ایده‌ها را به محصولات واقعی، امن و هوشمند تبدیل می‌کند.</p>
+    <div class="about-wrap">
+      <div class="story sr">
+        <h3>من کی‌ام؟</h3>
+        <p><strong>رهام</strong> هستم؛ برنامه‌نویس و متخصص هوش مصنوعی. کارم ساختن چیزهایی است که هم دیده شوند و هم درست کار کنند: وب‌سایت، اپلیکیشن، چت‌بات و سیستم‌های هوشمند. برای من برنامه‌نویسی فقط نوشتن کد نیست؛ فهمیدن مسئله، انتخاب راه‌حل درست و تحویل چیزی است که واقعاً به کار صاحبش بیاید.</p>
+
+        <h3>شروع مسیر؛ ترکیه، ۲۰۲۲</h3>
+        <p>در سال <strong>۲۰۲۲</strong> در کشور <strong>ترکیه</strong> به <strong>رتبه ۶ در برنامه‌نویسی</strong> رسیدم. این نتیجه برای من نقطه عطف بود؛ چون نشان داد پشتکار، تمرین مداوم و حل‌کردن مسئله‌های سخت می‌تواند آدم را به جایی برساند که از اول فکرش را نمی‌کرد. از همان‌جا مسیرم را جدی‌تر کردم و تصمیم گرفتم فقط به یک شاخه محدود نمانم.</p>
+        <blockquote>باور من این است که یک برنامه‌نویس خوب فقط کد نمی‌نویسد؛ سیستم می‌سازد، از آن محافظت می‌کند و شکلش را هم زیبا می‌کند.</blockquote>
+
+        <h3>شش حوزه‌ای که در آن کار می‌کنم</h3>
+        <p><strong>برنامه‌نویسی:</strong> پایه همه کارهایم است؛ تفکر الگوریتمی، ساختار تمیز کد و تمرکز روی کارایی و خوانایی.</p>
+        <p><strong>طراحی سایت:</strong> وب‌سایت‌هایی می‌سازم که روی هر دستگاه خوب دیده شوند، سریع باز شوند و حس مدرن داشته باشند. از ساختار و محتوا تا انیمیشن و جزئیات بصری.</p>
+        <p><strong>هوش مصنوعی:</strong> علاقه اصلی من. چت‌بات‌هایی طراحی می‌کنم که فقط جواب آماده ندهند، بلکه موضوع را بفهمند و مکالمه را جلو ببرند. همچنین تحلیل داده و اتوماسیون کارهای تکراری با AI را انجام می‌دهم.</p>
+        <p><strong>اپلیکیشن:</strong> اپلیکیشن‌هایی با رابط ساده و تجربه روان؛ چون یک اپ خوب باید بدون راهنما قابل استفاده باشد.</p>
+        <p><strong>امنیت شبکه:</strong> هر سیستمی که می‌سازم را با نگاه امنیتی بررسی می‌کنم. می‌دانم ضعف‌ها از کجا شروع می‌شوند و چطور باید جلوی آن‌ها را گرفت. امنیت برای من یک مرحله آخر نیست، از ابتدای پروژه جزئی از طراحی است.</p>
+        <p><strong>ادیت ویدیو و عکس:</strong> علاوه بر کدنویسی، تدوین ویدیو و روتوش عکس هم بلدم. این مهارت کمک می‌کند هر پروژه از نظر بصری هم کامل باشد؛ از ویدیوی معرفی تا تصاویر سایت.</p>
+
+        <h3>شیوه کار</h3>
+        <p>اول گوش می‌دهم و هدف را دقیق می‌فهمم، بعد ساده‌ترین مسیر درست را انتخاب می‌کنم، سریع نسخه اولیه می‌سازم و با بازخورد شما آن را بهتر می‌کنم. شفاف حرف می‌زنم، به زمان احترام می‌گذارم و کاری را تحویل می‌دهم که خودم هم پایش بایستم.</p>
+
+        <h3>هدف من</h3>
+        <p>می‌خواهم پروژه‌هایی بسازم که مفید باشند: هوشمند، امن و زیبا. اگر ایده‌ای دارید، حتی نیمه‌کاره، خوشحال می‌شوم کمکتان کنم آن را کامل کنید.</p>
+      </div>
+
+      <aside class="side">
+        <div class="fact sr">
+          <div><b>۲۰۲۲</b><span>ترکیه</span></div>
+          <div><b>رتبه ۶</b><span>برنامه‌نویسی</span></div>
+          <div><b>۶</b><span>حوزه تخصصی</span></div>
+          <div><b>AI</b><span>علاقه اصلی</span></div>
+        </div>
+        <div class="tl sr">
+          <h4>مسیر من</h4>
+          <ol>
+            <li><b>۲۰۲۲</b><span>رتبه ۶ برنامه‌نویسی در ترکیه</span></li>
+            <li><b>بعد از آن</b><span>گسترش به طراحی وب و ساخت اپلیکیشن</span></li>
+            <li><b>تمرکز بر AI</b><span>چت‌بات‌ها، تحلیل داده و اتوماسیون</span></li>
+            <li><b>امنیت شبکه</b><span>نگاه امنیتی در همه پروژه‌ها</span></li>
+            <li><b>ادیت</b><span>تدوین ویدیو و روتوش عکس برای تکمیل بصری کارها</span></li>
+            <li><b>۲۰۲۶</b><span>Roham Prog؛ پلتفرم من برای ساخت پروژه‌های مدرن و هوشمند</span></li>
+          </ol>
+        </div>
+      </aside>
     </div>
   </section>
 
+  <!-- PROCESS -->
+  <section class="sec" id="process">
+    <span class="eyebrow sr">PROCESS</span>
+    <h2 class="sr">پروژه چطور پیش می‌رود؟</h2>
+    <div class="steps">
+      <div class="st sr"><b>01</b><h4>گفتگو</h4><p>هدف، بودجه و زمان را با هم روشن می‌کنیم.</p></div>
+      <div class="st sr"><b>02</b><h4>طراحی</h4><p>ساختار و ظاهر پروژه را مشخص می‌کنم.</p></div>
+      <div class="st sr"><b>03</b><h4>ساخت</h4><p>نسخه اولیه را سریع می‌سازم و بازخورد می‌گیرم.</p></div>
+      <div class="st sr"><b>04</b><h4>تحویل</h4><p>تست، امن‌سازی و تحویل نهایی با پشتیبانی.</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section class="sec" id="contact" style="padding-bottom:4rem">
+    <span class="eyebrow sr">CONTACT</span>
     <h2 class="sr">تماس</h2>
-    <p class="lead sr">پروژه‌ای در ذهن دارید؟ بیایید با هم بسازیمش.</p>
+    <p class="lead sr">پروژه‌ای در ذهن دارید؟ با دستیار هوشمند حرف بزنید تا برآورد اولیه بگیرید، یا مستقیم با رهام در ارتباط باشید.</p>
     <div class="contact sr">
-      <a class="pill" href="#page-top">بازگشت به بالا</a>
-      <button class="pill glass" type="button" id="open-chat">گفتگو با دستیار</button>
+      <button class="pill" type="button" id="open-chat">گفتگو با دستیار هوشمند</button>
+      <button class="pill glass" type="button" id="quote-chat">برآورد پروژه</button>
+      <a class="pill glass" href="#page-top">بازگشت به بالا</a>
     </div>
   </section>
 </main>
@@ -219,8 +438,9 @@ h1.title{margin-top:1.25rem;max-width:20rem;font-size:2rem;font-weight:700;line-
 
 <button class="chat-fab" id="chat-fab" type="button"><i></i>چت‌بات هوشمند Roham</button>
 <aside class="chat" id="chat" aria-label="چت‌بات هوشمند Roham">
-  <header><span>چت‌بات هوشمند Roham</span><button type="button" id="chat-close" aria-label="بستن">×</button></header>
-  <div class="msgs" id="msgs"><div class="m bot">سلام! من دستیار هوشمند رهام هستم. چطور می‌تونم کمکت کنم؟</div></div>
+  <header><div>چت‌بات هوشمند Roham<small>دستیار رهام · آنلاین</small></div><button type="button" id="chat-close" aria-label="بستن">×</button></header>
+  <div class="msgs" id="msgs"></div>
+  <div class="chips" id="chips"></div>
   <form id="chat-form"><input id="chat-in" placeholder="پیامت رو بنویس..." autocomplete="off"><button type="submit">ارسال</button></form>
 </aside>
 
@@ -229,18 +449,22 @@ import Lenis from "lenis";
 const lenis = new Lenis({ smoothWheel: true });
 function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
+window.__goto = id => { const el = id==='#page-top'?0:document.querySelector(id); if(el!==null) lenis.scrollTo(el,{duration:1.2}); };
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href');
-    const el=id==='#page-top'?0:document.querySelector(id);
-    if(el===null) return;
-    e.preventDefault();
-    lenis.scrollTo(el,{offset:0,duration:1.2});
-  });
+  a.addEventListener('click',e=>{ e.preventDefault(); window.__goto(a.getAttribute('href')); });
+});
+
+/* scroll progress + active link */
+const prog=document.getElementById('prog');
+const navLinks=[...document.querySelectorAll('.linkpill a')];
+const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+lenis.on('scroll',({scroll,limit})=>{
+  prog.style.transform=`scaleX(${limit?scroll/limit:0})`;
+  let cur=-1; secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top<innerHeight*.4) cur=i; });
+  navLinks.forEach((a,i)=>a.classList.toggle('on',i===cur));
 });
 
 /* ---------- reveals ---------- */
-const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 document.querySelectorAll('[data-words]').forEach(el=>{
   const words = el.dataset.words.split(' ');
   const base = +el.dataset.delay, st = +el.dataset.stagger, dur = +el.dataset.dur, y = +el.dataset.y;
@@ -264,33 +488,188 @@ requestAnimationFrame(()=>requestAnimationFrame(()=>{
 }));
 const io = new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-}),{threshold:.15});
-document.querySelectorAll('.sr').forEach((el,i)=>{
-  el.style.transitionDelay=((i%3)*90)+'ms';
-  io.observe(el);
+}),{threshold:.12});
+document.querySelectorAll('.sr').forEach((el,i)=>{ el.style.transitionDelay=((i%3)*90)+'ms'; io.observe(el); });
+
+/* portfolio filter */
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  const f=b.dataset.f;
+  document.querySelectorAll('#pf .pi').forEach(p=>p.classList.toggle('hide',f!=='all'&&p.dataset.c!==f));
 });
 
-/* ---------- chatbot ---------- */
+/* =====================================================
+   SMART ASSISTANT
+   Local NLU engine: Persian normalisation, weighted keyword
+   + fuzzy matching, context memory, multi-step quote flow,
+   section navigation, optional real-LLM endpoint.
+   ===================================================== */
+const AI_ENDPOINT = ""; // اختیاری: آدرس یک پروکسی امن به مدل زبانی (کلید API هرگز داخل سایت نگذار)
 const chat=document.getElementById('chat'), fab=document.getElementById('chat-fab');
-const msgs=document.getElementById('msgs'), inp=document.getElementById('chat-in');
-function openChat(){ chat.classList.add('open'); fab.style.display='none'; inp.focus(); }
-function closeChat(){ chat.classList.remove('open'); fab.style.display='flex'; }
-fab.onclick=openChat; document.getElementById('chat-close').onclick=closeChat;
-document.getElementById('open-chat').onclick=openChat;
-function add(t,c){ const d=document.createElement('div'); d.className='m '+c; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; }
-function reply(q){
-  if(/سلام|درود/.test(q)) return 'سلام! خوشحالم که اینجایی. درباره خدمات یا نمونه‌کارها بپرس.';
-  if(/وب|سایت/.test(q)) return 'رهام وب‌سایت‌های واکنش‌گرا و حرفه‌ای طراحی می‌کند.';
-  if(/چت|بات|هوش|ai/i.test(q)) return 'طراحی چت‌بات‌ها و سیستم‌های هوشمند یکی از تخصص‌های اصلی رهام است.';
-  if(/تحلیل|داده|اتومات/.test(q)) return 'تحلیل داده و اتوماسیون با AI هم جزو پروژه‌های سفارشی است.';
-  if(/تماس|قیمت|هزینه|سفارش/.test(q)) return 'برای سفارش یا قیمت، از بخش «تماس» با رهام در ارتباط باش.';
-  return 'ممنون از پیامت! برای جزئیات بیشتر از بخش «تماس» با رهام در ارتباط باش.';
+const msgs=document.getElementById('msgs'), inp=document.getElementById('chat-in'), chipsEl=document.getElementById('chips');
+
+const norm = s => (s||'').toLowerCase()
+  .replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[ۀة]/g,'ه')
+  .replace(/[\u064B-\u065F\u0640]/g,'').replace(/\u200c/g,' ')
+  .replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+  .replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+  .replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();
+
+function lev(a,b){ if(Math.abs(a.length-b.length)>2) return 9; const m=[...Array(b.length+1).keys()];
+  for(let i=1;i<=a.length;i++){ let p=m[0]; m[0]=i; for(let j=1;j<=b.length;j++){ const t=m[j]; m[j]=Math.min(m[j]+1,m[j-1]+1,p+(a[i-1]===b[j-1]?0:1)); p=t; } } return m[b.length]; }
+
+const KB = [
+ {id:'greet',k:['سلام','درود','hi','hello','وقت بخیر','صبح بخیر','عصر بخیر','خوبی','چطوری'],
+  a:['سلام! خوشحالم که اینجایی 👋 درباره خدمات، نمونه‌کارها یا برآورد پروژه بپرس.','درود! من دستیار هوشمند رهام‌ام. چه کمکی از دستم برمیاد؟'],
+  chips:['خدمات رهام','نمونه‌کارها','برآورد پروژه']},
+ {id:'who',k:['رهام کیه','کیه','کی هستی','درباره رهام','معرفی','رزومه','بیوگرافی','کی هست','تو کی','who is roham'],
+  a:['رهام برنامه‌نویس و متخصص هوش مصنوعیه. در برنامه‌نویسی، طراحی سایت، اپلیکیشن، امنیت شبکه و ادیت ویدیو و عکس کار می‌کنه. توی سال ۲۰۲۲ هم در ترکیه به رتبه ۶ برنامه‌نویسی رسید.'],
+  chips:['رتبه ۶ ترکیه','مهارت‌ها','بخش درباره من'],go:'#about'},
+ {id:'rank',k:['ترکیه','رتبه','۶','2022','۲۰۲۲','مقام','مسابقه','موفقیت','افتخار','turkey'],
+  a:['در سال ۲۰۲۲ رهام در ترکیه به رتبه ۶ در برنامه‌نویسی رسید. همین نتیجه شروع جدی‌تر مسیرش شد و بعدش به وب، هوش مصنوعی، اپلیکیشن، امنیت شبکه و ادیت هم وارد شد.'],
+  chips:['مهارت‌ها','خدمات رهام'],go:'#about'},
+ {id:'skills',k:['مهارت','بلدی','تخصص','توانایی','چه کارایی','چیکار بلدی','skills','تکنولوژی','زبان برنامه نویسی','استک'],
+  a:['شش حوزه تخصصی:\n• برنامه‌نویسی\n• طراحی وب\n• هوش مصنوعی\n• اپلیکیشن\n• امنیت شبکه\n• ادیت ویدیو و عکس'],
+  chips:['طراحی وب','هوش مصنوعی','امنیت شبکه'],go:'#skills'},
+ {id:'services',k:['خدمات','سرویس','چه خدماتی','کارهات','چی میسازی','services','انجام میدی'],
+  a:['رهام این خدمات رو انجام می‌ده: طراحی وب، هوش مصنوعی و چت‌بات، اپلیکیشن، امنیت شبکه، ادیت ویدیو و ادیت عکس. هر کدوم رو بخوای توضیح می‌دم.'],
+  chips:['طراحی وب','چت‌بات','اپلیکیشن','ادیت'],go:'#services'},
+ {id:'web',k:['وب','سایت','وبسایت','وب سایت','طراحی سایت','لندینگ','landing','website','فروشگاه','ریسپانسیو','واکنش گرا','فرانت'],
+  a:['رهام وب‌سایت‌های واکنش‌گرا، سریع و مدرن می‌سازه؛ از صفحه معرفی و رزومه تا سایت شرکتی و پروژه‌های تعاملی با انیمیشن و حتی WebGL (مثل همین سایت). روی سرعت، سئو و ظاهر تمیز تمرکز داره.'],
+  chips:['برآورد پروژه','نمونه‌کارها'],go:'#services'},
+ {id:'ai',k:['هوش مصنوعی','ai','هوشمند','چت بات','چتبات','بات','chatbot','gpt','مدل زبانی','اتوماسیون','تحلیل داده','یادگیری ماشین','دستیار'],
+  a:['در حوزه هوش مصنوعی رهام چت‌بات و دستیار هوشمند طراحی می‌کنه، فرایندهای تکراری رو خودکار می‌کنه و روی داده‌ها تحلیل انجام می‌ده. مثلاً «چت‌بات فروش» تو نمونه‌کارها. اگه کسب‌وکارت تکرار زیاد داره، AI می‌تونه کلی وقتت رو آزاد کنه.'],
+  chips:['برآورد پروژه','نمونه‌کارها'],go:'#portfolio'},
+ {id:'app',k:['اپلیکیشن','اپ','برنامه موبایل','اپ موبایل','app','اندروید','ios','موبایل','وب اپ'],
+  a:['رهام اپلیکیشن‌های کاربردی با رابط ساده و تجربه کاربری روان توسعه می‌ده؛ چه اپ موبایل، چه وب‌اپ. اگه ایده‌ت رو بگی، بهترین مسیر ساختش رو پیشنهاد می‌کنه.'],
+  chips:['برآورد پروژه','تماس'],go:'#services'},
+ {id:'security',k:['امنیت','شبکه','هک','نفوذ','آسیب پذیری','فایروال','security','پنتست','محافظت','ایمن','vpn','سخت سازی'],
+  a:['رهام در امنیت شبکه ضعف‌های سیستم و شبکه رو شناسایی می‌کنه، گزارش می‌ده و راه‌حل اصلاحی پیشنهاد می‌ده. فقط برای بررسی و تقویت سیستم‌های مجاز کار می‌کنه و کار غیرقانونی یا نفوذ به سیستم دیگران انجام نمی‌ده.'],
+  chips:['برآورد پروژه','تماس'],go:'#services'},
+ {id:'video',k:['ویدیو','فیلم','تدوین','ادیت ویدیو','کلیپ','زیرنویس','رنگ بندی','صداگذاری','موشن','ریلز','video','premiere'],
+  a:['ادیت ویدیو شامل تدوین، رنگ‌بندی، زیرنویس فارسی و صداگذاریه؛ برای ویدیوی تبلیغاتی، آموزشی، مستند کوتاه یا محتوای شبکه‌های اجتماعی.'],
+  chips:['ادیت عکس','برآورد پروژه'],go:'#portfolio'},
+ {id:'photo',k:['عکس','تصویر','روتوش','ادیت عکس','فتوشاپ','گرافیک','photoshop','لوگو','پوستر'],
+  a:['ادیت عکس شامل روتوش، اصلاح رنگ، حذف و ترکیب عناصر و آماده‌سازی برای وب و چاپه. اگه عکس خامت رو داری، بگو چه نتیجه‌ای می‌خوای.'],
+  chips:['ادیت ویدیو','برآورد پروژه'],go:'#portfolio'},
+ {id:'portfolio',k:['نمونه کار','نمونه','پروژه ها','سابقه','کارهای قبلی','portfolio','نشون بده','ببینم'],
+  a:['نمونه‌کارها رو آوردم؛ توی بخش نمونه‌کارها می‌تونی بر اساس وب، هوش مصنوعی، اپلیکیشن، امنیت و ادیت فیلتر کنی.'],
+  chips:['خدمات رهام','برآورد پروژه'],go:'#portfolio'},
+ {id:'price',k:['قیمت','هزینه','چنده','تعرفه','بودجه','چقدر','price','cost','نرخ','پول'],
+  a:['قیمت به نوع و پیچیدگی پروژه بستگی داره. اگه بخوای یه برآورد اولیه بگیری، بگو «برآورد پروژه» تا چند سؤال کوتاه ازت بپرسم و خلاصه‌ش رو آماده کنم.'],
+  chips:['برآورد پروژه']},
+ {id:'time',k:['زمان','چقدر طول','مدت','کی تحویل','تحویل','سریع','deadline','ددلاین'],
+  a:['زمان تحویل به حجم کار داره: یه صفحه ساده چند روز، سایت کامل یا چت‌بات معمولاً یکی دو هفته، پروژه‌های بزرگ‌تر بیشتر. بعد از گفتگو زمان دقیق رو مشخص می‌کنم.'],
+  chips:['برآورد پروژه','تماس']},
+ {id:'process',k:['مراحل','فرایند','روند','چطور کار','شیوه کار','process','کار میکنی'],
+  a:['روند کار چهار مرحله‌ست: ۱) گفتگو و روشن‌کردن هدف ۲) طراحی ساختار و ظاهر ۳) ساخت نسخه اولیه و گرفتن بازخورد ۴) تست، امن‌سازی و تحویل.'],
+  chips:['برآورد پروژه'],go:'#process'},
+ {id:'contact',k:['تماس','ارتباط','شماره','ایمیل','تلگرام','واتساپ','پیام','استخدام','همکاری','contact','hire','سفارش'],
+  a:['برای سفارش یا همکاری می‌تونی همین‌جا پروژه‌ت رو توضیح بدی تا برآورد اولیه بسازم. برای ارتباط مستقیم هم از بخش «تماس» سایت استفاده کن.'],
+  chips:['برآورد پروژه'],go:'#contact'},
+ {id:'bot',k:['تو کی هستی','تو چی هستی','ربات','هوش مصنوعی هستی','اسمت','چطور کار میکنی','کی ساختت','who are you'],
+  a:['من دستیار هوشمند سایت رهام‌ام. سؤال‌هات درباره رهام، خدمات و نمونه‌کارها رو جواب می‌دم، توی سایت راهنماییت می‌کنم و برآورد اولیه پروژه می‌سازم.'],
+  chips:['خدمات رهام','برآورد پروژه']},
+ {id:'thanks',k:['ممنون','مرسی','دمت گرم','تشکر','thanks','thx','عالی بود','ایول'],
+  a:['خواهش می‌کنم 🙌 اگه سؤال دیگه‌ای داشتی، من اینجام.','قابلی نداشت! هر وقت خواستی برآورد پروژه هم می‌گیریم.'],chips:['برآورد پروژه']},
+ {id:'bye',k:['خداحافظ','بای','فعلا','bye','تا بعد'],a:['موفق باشی! هر وقت خواستی برگرد 👋'],chips:[]},
+];
+const SUGGEST_ROUTES={ 'رتبه ۶ ترکیه':'rank','مهارت‌ها':'skills','بخش درباره من':'who','خدمات رهام':'services','نمونه‌کارها':'portfolio','طراحی وب':'web','چت‌بات':'ai','هوش مصنوعی':'ai','اپلیکیشن':'app','امنیت شبکه':'security','ادیت':'video','ادیت عکس':'photo','ادیت ویدیو':'video','تماس':'contact'};
+
+const state={name:null,last:null,flow:null,quote:{},hist:[]};
+const QSTEPS=[
+ {key:'type',q:'چه نوع پروژه‌ای مدنظرته؟',opts:['وب‌سایت','چت‌بات / AI','اپلیکیشن','امنیت شبکه','ادیت ویدیو/عکس','چند مورد']},
+ {key:'size',q:'حجم کار تقریباً چقدره؟',opts:['کوچک و ساده','متوسط','بزرگ و کامل']},
+ {key:'time',q:'زمان تحویل چقدر فوریه؟',opts:['فوری (کمتر از ۱ هفته)','۱ تا ۲ هفته','انعطاف دارم']},
+ {key:'desc',q:'در یک یا دو جمله ایده‌ت رو بنویس:',opts:[]},
+];
+
+function addMsg(t,c){ const d=document.createElement('div'); d.className='m '+c; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
+function setChips(list){ chipsEl.innerHTML=''; (list||[]).forEach(t=>{ const b=document.createElement('button'); b.type='button'; b.textContent=t; b.onclick=()=>send(t); chipsEl.appendChild(b); }); }
+function typing(){ const d=document.createElement('div'); d.className='m bot typing'; d.innerHTML='<i></i><i></i><i></i>'; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function save(){ try{ localStorage.setItem('roham-chat',JSON.stringify({name:state.name,hist:state.hist.slice(-40)})); }catch(e){} }
+
+function score(q){
+  const toks=q.split(' ').filter(Boolean); let best=null,bs=0;
+  for(const it of KB){
+    let s=0;
+    for(const kw of it.k){
+      const k=norm(kw); if(!k) continue;
+      if(q.includes(k)) s+= k.length>=4?3+k.length*.12:1.6;
+      else if(k.indexOf(' ')<0 && k.length>=4) for(const t of toks) if(t.length>=4 && lev(t,k)<=1){ s+=1.8; break; }
+    }
+    if(state.last===it.id) s+=.3;
+    if(s>bs){bs=s;best=it;}
+  }
+  return bs>=1.5?best:null;
 }
-document.getElementById('chat-form').addEventListener('submit',e=>{
-  e.preventDefault(); const q=inp.value.trim(); if(!q) return;
-  add(q,'me'); inp.value='';
-  setTimeout(()=>add(reply(q),'bot'),500);
-});
+
+function startQuote(){
+  state.flow={i:0}; state.quote={};
+  askStep();
+}
+function askStep(){ const s=QSTEPS[state.flow.i]; addMsg(s.q,'bot'); setChips(s.opts); }
+function finishQuote(){
+  const q=state.quote;
+  const base={'کوچک و ساده':'کوچک','متوسط':'متوسط','بزرگ و کامل':'بزرگ'}[q.size]||'متوسط';
+  const est={'کوچک':'چند روز تا یک هفته','متوسط':'یک تا سه هفته','بزرگ':'سه هفته به بالا'}[base];
+  const txt=`خلاصه برآورد اولیه${state.name?' برای '+state.name:''}:\n• نوع پروژه: ${q.type}\n• حجم: ${q.size}\n• زمان مدنظر: ${q.time}\n• توضیح: ${q.desc}\n\nبرآورد زمان ساخت: ${est}. قیمت نهایی بعد از گفتگو مشخص می‌شه. می‌تونی این خلاصه رو کپی کنی و برای رهام بفرستی.`;
+  state.flow=null; addMsg(txt,'bot'); setChips(['کپی خلاصه','خدمات رهام','تماس']); state.lastQuote=txt; window.__go('#contact');
+}
+window.__go=id=>window.__goto(id);
+
+async function llm(text){
+  const r=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:state.hist.slice(-12),system:'You are the assistant of Roham, a programmer & AI/network-security specialist (rank 6 in programming in Turkey, 2022). Reply in Persian, concise.'})});
+  const j=await r.json(); return j.reply;
+}
+
+async function respond(text){
+  const q=norm(text);
+  if(/کپی خلاصه/.test(text) && state.lastQuote){ try{ await navigator.clipboard.writeText(state.lastQuote); return {t:'کپی شد ✅',chips:['تماس']}; }catch(e){ return {t:'کپی خودکار انجام نشد؛ متن بالا رو دستی کپی کن.'}; } }
+  const nm=text.match(/(?:اسمم|اسم من|من)\s+([^\s،.!؟]{2,15})\s*(?:هست|هستم|ام|م)?$/);
+  if(/اسمم|اسم من/.test(q) && nm){ state.name=nm[1]; save(); return {t:`خوشبختم ${state.name}! 😊 چطور می‌تونم کمکت کنم؟`,chips:['خدمات رهام','برآورد پروژه']}; }
+  if(state.flow){
+    if(/لغو|بیخیال|ولش|cancel/.test(q)){ state.flow=null; return {t:'باشه، برآورد لغو شد. هر وقت خواستی دوباره شروع می‌کنیم.',chips:['برآورد پروژه','خدمات رهام']}; }
+    const s=QSTEPS[state.flow.i]; state.quote[s.key]=text; state.flow.i++;
+    if(state.flow.i>=QSTEPS.length){ return {done:true}; }
+    return {next:true};
+  }
+  if(/برآورد|استعلام|سفارش میدم|میخوام (یه|یک)?\s*(سایت|اپ|بات|پروژه)|quote/.test(q)) return {startQuote:true};
+  if(/بیشتر|ادامه|توضیح بده|دقیقتر/.test(q) && state.last){ const it=KB.find(x=>x.id===state.last); return {t:it.a[0]+'\n\nبرای جزئیات و قیمت، «برآورد پروژه» رو بزن یا به نمونه‌کارها سر بزن.',chips:['برآورد پروژه','نمونه‌کارها']}; }
+  if(AI_ENDPOINT){ try{ const r=await llm(text); if(r) return {t:r}; }catch(e){} }
+  const route=SUGGEST_ROUTES[text.trim()]; const it=route?KB.find(x=>x.id===route):score(q);
+  if(it){ state.last=it.id; if(it.go) setTimeout(()=>window.__go(it.go),400); const pre=(state.name&&it.id==='greet')?`سلام ${state.name}! `:''; return {t:pre+pick(it.a),chips:it.chips}; }
+  return {t:'دقیقاً متوجه نشدم 🤔 ولی می‌تونم درباره رهام، خدمات، نمونه‌کارها، امنیت شبکه، ادیت یا برآورد پروژه کمکت کنم. یکی از گزینه‌ها رو بزن یا سؤالت رو یه‌جور دیگه بنویس.',chips:['خدمات رهام','نمونه‌کارها','برآورد پروژه','تماس']};
+}
+
+async function send(text){
+  text=text.trim(); if(!text) return;
+  addMsg(text,'me'); state.hist.push({role:'user',content:text}); setChips([]);
+  const ty=typing();
+  const r=await respond(text);
+  await new Promise(res=>setTimeout(res,350+Math.min(900,(r.t||'').length*6)));
+  ty.remove();
+  if(r.startQuote){ addMsg('عالیه! چند سؤال کوتاه می‌پرسم تا یه برآورد اولیه بسازم. (هر وقت خواستی بنویس «لغو»)','bot'); startQuote(); }
+  else if(r.done) finishQuote();
+  else if(r.next) askStep();
+  else { addMsg(r.t,'bot'); state.hist.push({role:'assistant',content:r.t}); setChips(r.chips); }
+  save();
+}
+
+function openChat(){ chat.classList.add('open'); fab.style.display='none'; inp.focus(); if(!msgs.children.length) hello(); }
+function closeChat(){ chat.classList.remove('open'); fab.style.display='flex'; }
+function hello(){
+  try{ const s=JSON.parse(localStorage.getItem('roham-chat')||'null'); if(s&&s.name) state.name=s.name; }catch(e){}
+  addMsg(state.name?`سلام دوباره ${state.name}! چطور می‌تونم کمکت کنم؟`:'سلام! من دستیار هوشمند رهام هستم. چطور می‌تونم کمکت کنم؟','bot');
+  setChips(['خدمات رهام','نمونه‌کارها','رتبه ۶ ترکیه','برآورد پروژه']);
+}
+fab.onclick=openChat;
+document.getElementById('chat-close').onclick=closeChat;
+document.getElementById('open-chat').onclick=openChat;
+document.getElementById('quote-chat').onclick=()=>{ openChat(); send('برآورد پروژه'); };
+document.getElementById('chat-form').addEventListener('submit',e=>{ e.preventDefault(); const v=inp.value; inp.value=''; send(v); });
 
 /* ---------- fluid ---------- */
 function fluidSimulation(canvas) {
