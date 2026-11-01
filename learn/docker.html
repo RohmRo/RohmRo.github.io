@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نصب Docker و اجرای اولین کانتینر | آموزش Roham Prog</title>
+<meta name="description" content="کانتینر چیست، Docker را نصب کن و یک برنامه را در محیط ایزوله اجرا کن.">
+<meta name="keywords" content="docker، container، image، dockerfile، کانتینر، داکر">
+<link rel="canonical" href="https://rohmro.github.io/learn/docker.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="نصب Docker و اجرای اولین کانتینر"><meta property="og:description" content="کانتینر چیست، Docker را نصب کن و یک برنامه را در محیط ایزوله اجرا کن."><meta property="og:url" content="https://rohmro.github.io/learn/docker.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"نصب Docker و اجرای اولین کانتینر","description":"کانتینر چیست، Docker را نصب کن و یک برنامه را در محیط ایزوله اجرا کن.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/docker.html","dateModified":"2026-11-01","keywords":"docker، container، image، dockerfile، کانتینر، داکر","articleSection":"نصب و آماده‌سازی","timeRequired":"PT8M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"نصب Docker و اجرای اولین کانتینر","item":"https://rohmro.github.io/learn/docker.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › نصب و آماده‌سازی</p>
+<h1>نصب Docker و اجرای اولین کانتینر</h1>
+<p class="meta"><span>نصب و آماده‌سازی</span><span>متوسط</span><span>۸ دقیقه</span></p>
+<p class="lead">کانتینر چیست، Docker را نصب کن و یک برنامه را در محیط ایزوله اجرا کن.</p>
+<p>Docker برنامه را همراه با همه وابستگی‌هایش در یک «کانتینر» بسته‌بندی می‌کند. نتیجه این است که برنامه روی لپ‌تاپ تو، سرور و کامپیوتر همکارت دقیقاً یکسان اجرا می‌شود.</p><h3 id="h0">نصب</h3><ul><li><strong>ویندوز و مک:</strong> Docker Desktop را از سایت رسمی docker.com دانلود و نصب کن. در ویندوز از WSL 2 استفاده می‌کند.</li><li><strong>لینوکس:</strong> طبق راهنمای رسمی Docker Engine برای توزیع خودت نصب کن.</li><li>برای استفاده شخصی و آموزشی Docker Desktop معمولاً رایگان است؛ قوانین مجوز برای شرکت‌های بزرگ متفاوت است.</li></ul><h3 id="h1">تست نصب</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>docker --version
+docker run hello-world</code></pre></div><h3 id="h2">دستورهای پایه</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>docker ps                 # running containers
+docker ps -a              # all containers
+docker images             # downloaded images
+docker stop &lt;id&gt;          # stop a container
+docker rm &lt;id&gt;            # remove a container
+docker run -d -p 8080:80 nginx   # run nginx in background on port 8080</code></pre></div><p>بعد از اجرای دستور آخر، آدرس <code>http://localhost:8080</code> را باز کن؛ صفحه خوش‌آمد nginx را می‌بینی.</p><h3 id="h3">یک Dockerfile ساده برای Node</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD [&quot;node&quot;, &quot;server.js&quot;]</code></pre></div><div class="cb"><button type="button" class="cp">کپی</button><pre><code>docker build -t my-app .
+docker run -p 3000:3000 my-app</code></pre></div><aside class="call tip"><b>نکته</b>فایل <code>.dockerignore</code> بساز و <code>node_modules</code> و <code>.env</code> را داخلش بنویس تا داخل image نروند.</aside>
+<p class="cta"><a href="../index.html#learn-docker">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="terminal.html">ترمینال برای مبتدی‌ها: دستورهای پایه</a></li><li><a href="safeinstall.html">نصب امن برنامه‌ها: از کجا دانلود کنیم؟</a></li><li><a href="vscode.html">نصب VS Code و افزونه‌های ضروری</a></li><li><a href="python.html">نصب Python، pip و محیط مجازی</a></li><li><a href="node.html">نصب Node.js و npm</a></li><li><a href="git.html">نصب Git و اولین مخزن روی GitHub</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

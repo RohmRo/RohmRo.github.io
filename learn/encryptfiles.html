@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip | آموزش Roham Prog</title>
+<meta name="description" content="اگر لپ‌تاپ یا فلش گم شد، اطلاعاتت در دست دیگران نیفتد.">
+<meta name="keywords" content="encryption، bitlocker، veracrypt، 7zip، filevault، disk، رمزگذاری، فایل، دیسک">
+<link rel="canonical" href="https://rohmro.github.io/learn/encryptfiles.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip"><meta property="og:description" content="اگر لپ‌تاپ یا فلش گم شد، اطلاعاتت در دست دیگران نیفتد."><meta property="og:url" content="https://rohmro.github.io/learn/encryptfiles.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip","description":"اگر لپ‌تاپ یا فلش گم شد، اطلاعاتت در دست دیگران نیفتد.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/encryptfiles.html","dateModified":"2026-11-01","keywords":"encryption، bitlocker، veracrypt، 7zip، filevault، disk، رمزگذاری، فایل، دیسک","articleSection":"امنیت","timeRequired":"PT7M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip","item":"https://rohmro.github.io/learn/encryptfiles.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › امنیت</p>
+<h1>رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip</h1>
+<p class="meta"><span>امنیت</span><span>متوسط</span><span>۷ دقیقه</span></p>
+<p class="lead">اگر لپ‌تاپ یا فلش گم شد، اطلاعاتت در دست دیگران نیفتد.</p>
+<p>رمزگذاری یعنی داده بدون کلید قابل‌خواندن نیست. اگر دستگاهت گم یا دزدیده شود، یک دیسک رمز‌شده برای دزد فقط تکه‌های بی‌معنی است.</p><h3 id="h0">کل دیسک</h3><ul><li><strong>ویندوز:</strong> BitLocker (در نسخه‌های Pro و بالاتر) یا Device Encryption در برخی دستگاه‌های Home.</li><li><strong>مک:</strong> FileVault از تنظیمات سیستم.</li><li><strong>لینوکس:</strong> LUKS هنگام نصب.</li><li>کلید بازیابی (Recovery Key) را در جایی امن و جدا از دستگاه نگه دار.</li></ul><h3 id="h1">پوشه یا کانتینر رمزگذاری‌شده</h3><p>VeraCrypt (متن‌باز و چندسکویی) یک فایل رمزگذاری‌شده می‌سازد که مثل یک دیسک جدید باز می‌شود. برای فلش و پوشه‌های حساس مناسب است.</p><h3 id="h2">فایل فشرده با رمز</h3><ol><li>در 7-Zip روی فایل راست‌کلیک کن و Add to archive را بزن.</li><li>فرمت <code>7z</code> یا <code>zip</code> را انتخاب کن.</li><li>در بخش Encryption رمز بگذار و روش AES-256 را انتخاب کن.</li><li>«Encrypt file names» را هم تیک بزن (فقط در فرمت 7z) تا نام فایل‌ها هم پنهان شود.</li></ol><aside class="call warn"><b>احتیاط</b>اگر رمز یا کلید بازیابی را از دست بدهی، هیچ راهی برای بازگرداندن اطلاعات نیست. رمز را در مدیر رمز عبور نگه دار.</aside>
+<p class="cta"><a href="../index.html#learn-encryptfiles">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="accounts.html">امنیت حساب‌ها: رمز، مدیر رمز و تأیید دومرحله‌ای</a></li><li><a href="phishing.html">تشخیص فیشینگ و پیام‌های کلاهبرداری</a></li><li><a href="homenet.html">امن‌سازی شبکه خانگی و مودم</a></li><li><a href="devsec.html">امنیت پایه برای برنامه‌نویس‌ها</a></li><li><a href="backup.html">پشتیبان‌گیری درست: قانون ۳-۲-۱</a></li><li><a href="firewall.html">فایروال: روشن کن و درست تنظیم کن</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

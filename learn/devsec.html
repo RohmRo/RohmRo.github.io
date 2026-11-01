@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>امنیت پایه برای برنامه‌نویس‌ها | آموزش Roham Prog</title>
+<meta name="description" content="مدیریت کلیدهای API، فایل env، ورودی کاربر و وابستگی‌ها.">
+<meta name="keywords" content="security، developer، api، key، env، gitignore، xss، sql، injection، https، امنیت، کد، کلید">
+<link rel="canonical" href="https://rohmro.github.io/learn/devsec.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="امنیت پایه برای برنامه‌نویس‌ها"><meta property="og:description" content="مدیریت کلیدهای API، فایل env، ورودی کاربر و وابستگی‌ها."><meta property="og:url" content="https://rohmro.github.io/learn/devsec.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"امنیت پایه برای برنامه‌نویس‌ها","description":"مدیریت کلیدهای API، فایل env، ورودی کاربر و وابستگی‌ها.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/devsec.html","dateModified":"2026-11-01","keywords":"security، developer، api، key، env، gitignore، xss، sql، injection، https، امنیت، کد، کلید","articleSection":"امنیت","timeRequired":"PT9M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"امنیت پایه برای برنامه‌نویس‌ها","item":"https://rohmro.github.io/learn/devsec.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › امنیت</p>
+<h1>امنیت پایه برای برنامه‌نویس‌ها</h1>
+<p class="meta"><span>امنیت</span><span>متوسط</span><span>۹ دقیقه</span></p>
+<p class="lead">مدیریت کلیدهای API، فایل env، ورودی کاربر و وابستگی‌ها.</p>
+<p>چند اشتباه ساده، بیشتر حادثه‌های امنیتی پروژه‌های کوچک را می‌سازد. این فهرست را همیشه کنار دستت داشته باش.</p><h3 id="h0">۱. اسرار را در کد نگذار</h3><p>کلیدهای API، رمز پایگاه داده و توکن‌ها را در فایل <code>.env</code> نگه دار و آن فایل را از Git حذف کن:</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code># .gitignore
+.env
+node_modules/
+.venv/
+*.pem</code></pre></div><div class="cb"><button type="button" class="cp">کپی</button><pre><code># .env
+API_KEY=your-secret-key-here</code></pre></div><h3 id="h1">۲. اگر کلیدی لو رفت</h3><p>حذف آن از کامیت بعدی کافی نیست، چون در تاریخچه Git می‌ماند. فوراً کلید را در سرویس مربوط <strong>باطل (Revoke)</strong> کن و یک کلید جدید بساز.</p><h3 id="h2">۳. کد سمت کاربر عمومی است</h3><aside class="call warn"><b>احتیاط</b>هر چیزی که در HTML یا جاوااسکریپت سایت بگذاری را همه می‌توانند ببینند. هرگز کلید API خصوصی (مثل کلید یک مدل زبانی) را در کد صفحه نگذار. برای اتصال امن، یک بک‌اند کوچک (مثلاً Cloudflare Workers یا یک سرور Node) بساز که کلید را نزد خودش نگه دارد و درخواست‌های سایتت را به آن سرویس برساند.</aside><h3 id="h3">۴. ورودی کاربر را باور نکن</h3><ul><li><strong>XSS:</strong> متن کاربر را مستقیم با <code>innerHTML</code> وارد صفحه نکن؛ از <code>textContent</code> استفاده کن.</li><li><strong>SQL Injection:</strong> کوئری‌ها را هرگز با به‌هم‌چسباندن رشته نساز؛ از کوئری‌های پارامتری استفاده کن.</li><li>اعتبارسنجی را همیشه در سمت سرور هم انجام بده، نه فقط در مرورگر.</li></ul><div class="cb"><button type="button" class="cp">کپی</button><pre><code>// Bad
+el.innerHTML = userInput;
+
+// Good
+el.textContent = userInput;</code></pre></div><h3 id="h4">۵. وابستگی‌ها و HTTPS</h3><ul><li>به‌طور منظم وابستگی‌ها را بررسی کن: <code>npm audit</code> برای Node و <code>pip-audit</code> برای Python.</li><li>سایت را همیشه با HTTPS ارائه بده؛ GitHub Pages این را رایگان فعال می‌کند.</li><li>از هر کتابخانه‌ای فقط وقتی لازم است استفاده کن؛ هر وابستگی یک سطح ریسک اضافه است.</li></ul><h3 id="h5">۶. کمترین دسترسی</h3><p>به هر کلید و حساب فقط دسترسی لازم را بده. اگر فقط خواندن کافی است، دسترسی نوشتن نده.</p>
+<p class="cta"><a href="../index.html#learn-devsec">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="accounts.html">امنیت حساب‌ها: رمز، مدیر رمز و تأیید دومرحله‌ای</a></li><li><a href="phishing.html">تشخیص فیشینگ و پیام‌های کلاهبرداری</a></li><li><a href="homenet.html">امن‌سازی شبکه خانگی و مودم</a></li><li><a href="backup.html">پشتیبان‌گیری درست: قانون ۳-۲-۱</a></li><li><a href="encryptfiles.html">رمزگذاری فایل‌ها و دیسک: BitLocker، VeraCrypt و 7-Zip</a></li><li><a href="firewall.html">فایروال: روشن کن و درست تنظیم کن</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

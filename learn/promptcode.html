@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پرامپت‌نویسی برای کدنویسی با هوش مصنوعی | آموزش Roham Prog</title>
+<meta name="description" content="چه اطلاعاتی را همراه درخواست کد بدهیم تا کد درست و قابل‌استفاده بگیریم.">
+<meta name="keywords" content="prompt، coding، code، ai، programming، copilot، claude، کدنویسی، پرامپت، برنامه، نویسی">
+<link rel="canonical" href="https://rohmro.github.io/learn/promptcode.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="پرامپت‌نویسی برای کدنویسی با هوش مصنوعی"><meta property="og:description" content="چه اطلاعاتی را همراه درخواست کد بدهیم تا کد درست و قابل‌استفاده بگیریم."><meta property="og:url" content="https://rohmro.github.io/learn/promptcode.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"پرامپت‌نویسی برای کدنویسی با هوش مصنوعی","description":"چه اطلاعاتی را همراه درخواست کد بدهیم تا کد درست و قابل‌استفاده بگیریم.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/promptcode.html","dateModified":"2026-11-01","keywords":"prompt، coding، code، ai، programming، copilot، claude، کدنویسی، پرامپت، برنامه، نویسی","articleSection":"هوش مصنوعی و پرامپت","timeRequired":"PT9M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"پرامپت‌نویسی برای کدنویسی با هوش مصنوعی","item":"https://rohmro.github.io/learn/promptcode.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › هوش مصنوعی و پرامپت</p>
+<h1>پرامپت‌نویسی برای کدنویسی با هوش مصنوعی</h1>
+<p class="meta"><span>هوش مصنوعی و پرامپت</span><span>متوسط</span><span>۹ دقیقه</span></p>
+<p class="lead">چه اطلاعاتی را همراه درخواست کد بدهیم تا کد درست و قابل‌استفاده بگیریم.</p>
+<p>در کدنویسی با AI، مشکل اصلی معمولاً «کم‌بودن اطلاعات» است. مدل نمی‌داند پروژه تو با چه نسخه‌ای، چه ساختاری و چه سبکی نوشته شده.</p><h3 id="h0">هشت چیزی که باید بگویی</h3><ol><li><strong>زبان و نسخه:</strong> مثلاً Python 3.12 یا React 18.</li><li><strong>فریم‌ورک و کتابخانه‌ها:</strong> چه چیزهایی نصب است و چه چیزی نباید اضافه شود.</li><li><strong>هدف روشن:</strong> یک جمله درباره چیزی که باید اتفاق بیفتد.</li><li><strong>کد فعلی:</strong> فقط بخش مرتبط، نه کل پروژه.</li><li><strong>رفتار فعلی و رفتار دلخواه:</strong> الان چه می‌شود و چه باید بشود.</li><li><strong>خطا:</strong> متن کامل پیام خطا.</li><li><strong>محدودیت‌ها:</strong> سبک کد، عدم تغییر فایل‌های دیگر، سازگاری با موبایل و...</li><li><strong>فرمت جواب:</strong> فقط کد؟ کد و توضیح؟ فقط تغییرات؟</li></ol><h3 id="h1">قالب آماده</h3><div class="pbx"><div class="pl">پرامپت نمونه<button type="button" class="cp">کپی</button></div><div class="pt" dir="auto">زبان و محیط: JavaScript خالص، بدون فریم‌ورک، اجرا در مرورگر
+هدف: وقتی کاربر روی دکمه «ارسال» می‌زند، فرم را اعتبارسنجی کن و پیام خطا را زیر هر فیلد نشان بده.
+کد فعلی: (اینجا کد را بچسبان)
+محدودیت‌ها: کتابخانه جدید اضافه نکن. نام کلاس‌های CSS موجود را تغییر نده.
+خروجی: فقط بخش‌هایی از کد که باید عوض شوند، با توضیح کوتاه برای هر تغییر.</div></div><h3 id="h2">عادت‌های درست</h3><ul><li><strong>کوچک بخواه:</strong> یک تابع، یک باگ یا یک بخش در هر درخواست.</li><li><strong>اول برنامه بخواه:</strong> «قبل از نوشتن کد، فایل‌هایی که باید عوض شوند و روش کار را لیست کن.»</li><li><strong>درخواست توضیح:</strong> «هر قسمت را ساده توضیح بده تا یاد بگیرم.»</li><li><strong>درخواست تست:</strong> «چند مثال یا تست برای بررسی درستی کدت بنویس.»</li><li><strong>هر تغییر را اجرا کن:</strong> کد را کورکورانه کپی نکن؛ هر بار اجرا و آزمایش کن.</li></ul><aside class="call tip"><b>نکته</b>اگر گفت‌وگو خیلی طولانی شد و جواب‌ها بی‌کیفیت شدند، یک گفت‌وگوی جدید باز کن و خلاصه وضعیت و کد فعلی را از اول بده.</aside>
+<p class="cta"><a href="../index.html#learn-promptcode">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="promptformula.html">فرمول پرامپت خوب برای هر هوش مصنوعی</a></li><li><a href="debugai.html">دیباگ با هوش مصنوعی: چطور خطا را حل کنیم</a></li><li><a href="buildsite.html">ساخت یک سایت کامل با AI، قدم‌به‌قدم</a></li><li><a href="promptlib.html">کتابخانه پرامپت‌های آماده</a></li><li><a href="claudeflow.html">کار حرفه‌ای با Claude Code: برنامه، اجرا، کنترل</a></li><li><a href="aisafety.html">کار امن و دقیق با هوش مصنوعی</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

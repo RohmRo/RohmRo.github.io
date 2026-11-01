@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نصب Git و اولین مخزن روی GitHub | آموزش Roham Prog</title>
+<meta name="description" content="نسخه‌بندی کد با Git، ساخت مخزن و ارسال آن به GitHub.">
+<meta name="keywords" content="git، github، commit، push، repository، گیت، گیت، هاب، مخزن">
+<link rel="canonical" href="https://rohmro.github.io/learn/git.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="نصب Git و اولین مخزن روی GitHub"><meta property="og:description" content="نسخه‌بندی کد با Git، ساخت مخزن و ارسال آن به GitHub."><meta property="og:url" content="https://rohmro.github.io/learn/git.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"نصب Git و اولین مخزن روی GitHub","description":"نسخه‌بندی کد با Git، ساخت مخزن و ارسال آن به GitHub.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/git.html","dateModified":"2026-11-01","keywords":"git، github، commit، push، repository، گیت، گیت، هاب، مخزن","articleSection":"نصب و آماده‌سازی","timeRequired":"PT8M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"نصب Git و اولین مخزن روی GitHub","item":"https://rohmro.github.io/learn/git.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › نصب و آماده‌سازی</p>
+<h1>نصب Git و اولین مخزن روی GitHub</h1>
+<p class="meta"><span>نصب و آماده‌سازی</span><span>مبتدی</span><span>۸ دقیقه</span></p>
+<p class="lead">نسخه‌بندی کد با Git، ساخت مخزن و ارسال آن به GitHub.</p>
+<p>Git تاریخچه تغییرات کدت را نگه می‌دارد تا هر وقت خراب شد به نسخه سالم برگردی. GitHub هم جایی است که مخزن‌هایت را آنلاین نگه می‌دارد و سایت شخصی هم می‌تواند روی آن میزبانی شود.</p><h3 id="h0">نصب و تنظیم اولیه</h3><p>از <code>git-scm.com</code> نصب کن (یا <code>winget install Git.Git</code>). سپس یک‌بار نام و ایمیلت را تنظیم کن:</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>git --version
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;
+git config --global init.defaultBranch main</code></pre></div><h3 id="h1">اولین مخزن محلی</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>mkdir my-site
+cd my-site
+git init
+# فایل index.html را بساز
+git add .
+git commit -m &quot;first commit&quot;</code></pre></div><h3 id="h2">فرستادن به GitHub</h3><ol><li>در github.com وارد حسابت شو و یک Repository خالی بساز.</li><li>آدرسی که GitHub نشان می‌دهد را به پروژه وصل کن و بفرست.</li></ol><div class="cb"><button type="button" class="cp">کپی</button><pre><code>git remote add origin https://github.com/USERNAME/my-site.git
+git branch -M main
+git push -u origin main</code></pre></div><p>GitHub رمز عبور ساده را برای push قبول نمی‌کند. با نصب Git برای ویندوز ابزار Git Credential Manager هم نصب می‌شود که پنجره ورود از مرورگر را باز می‌کند؛ یا می‌توانی از Personal Access Token استفاده کنی.</p><h3 id="h3">چرخه کار روزمره</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>git status
+git add .
+git commit -m &quot;describe the change&quot;
+git push</code></pre></div><aside class="call tip"><b>نکته</b>پیام کامیت را کوتاه و روشن بنویس، مثلاً «اضافه کردن بخش آموزش». اگر چند ماه بعد دنبال یک تغییر بگردی، قدر همین پیام‌ها را می‌دانی.</aside>
+<p class="cta"><a href="../index.html#learn-git">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="terminal.html">ترمینال برای مبتدی‌ها: دستورهای پایه</a></li><li><a href="safeinstall.html">نصب امن برنامه‌ها: از کجا دانلود کنیم؟</a></li><li><a href="vscode.html">نصب VS Code و افزونه‌های ضروری</a></li><li><a href="python.html">نصب Python، pip و محیط مجازی</a></li><li><a href="node.html">نصب Node.js و npm</a></li><li><a href="claudecode.html">نصب و شروع کار با Claude Code</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

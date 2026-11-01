@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>فارسی و راست‌به‌چپ در وب | آموزش Roham Prog</title>
+<meta name="description" content="جهت متن، فونت، اعداد و خطاهای رایج صفحه‌های فارسی.">
+<meta name="keywords" content="rtl، persian، farsi، font، vazirmatn، direction، فارسی، راست، چین، فونت">
+<link rel="canonical" href="https://rohmro.github.io/learn/rtl.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="فارسی و راست‌به‌چپ در وب"><meta property="og:description" content="جهت متن، فونت، اعداد و خطاهای رایج صفحه‌های فارسی."><meta property="og:url" content="https://rohmro.github.io/learn/rtl.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"فارسی و راست‌به‌چپ در وب","description":"جهت متن، فونت، اعداد و خطاهای رایج صفحه‌های فارسی.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/rtl.html","dateModified":"2026-11-01","keywords":"rtl، persian، farsi، font، vazirmatn، direction، فارسی، راست، چین، فونت","articleSection":"وب و برنامه‌نویسی","timeRequired":"PT7M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"فارسی و راست‌به‌چپ در وب","item":"https://rohmro.github.io/learn/rtl.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › وب و برنامه‌نویسی</p>
+<h1>فارسی و راست‌به‌چپ در وب</h1>
+<p class="meta"><span>وب و برنامه‌نویسی</span><span>متوسط</span><span>۷ دقیقه</span></p>
+<p class="lead">جهت متن، فونت، اعداد و خطاهای رایج صفحه‌های فارسی.</p>
+<p>یک سایت فارسی خوب فقط ترجمه متن نیست؛ جهت چیدمان، فونت و جزئیات ریز هم مهم است.</p><h3 id="h0">۱. جهت و زبان صفحه</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>&lt;html lang=&quot;fa&quot; dir=&quot;rtl&quot;&gt;</code></pre></div><p>با همین یک خط، متن‌ها راست‌چین می‌شوند، ستون‌ها از راست شروع می‌شوند و صفحه‌خوان‌ها زبان را درست تشخیص می‌دهند.</p><h3 id="h1">۲. فونت فارسی</h3><p>فونت‌هایی مثل Vazirmatn، Estedad و Sahel از Google Fonts یا مخازن متن‌باز قابل استفاده‌اند.</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;style&gt;
+  body { font-family: &quot;Vazirmatn&quot;, system-ui, sans-serif; }
+&lt;/style&gt;</code></pre></div><h3 id="h2">۳. ویژگی‌های منطقی CSS</h3><p>به‌جای left و right از ویژگی‌های «منطقی» استفاده کن تا هم در RTL و هم در LTR درست کار کنند:</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>margin-inline-start: 1rem;   /* به‌جای margin-right در RTL */
+padding-inline: 1.5rem;
+text-align: start;
+inset-inline: 0;</code></pre></div><h3 id="h3">۴. متن‌های مخلوط</h3><p>وقتی کلمه انگلیسی، شماره یا آدرس وسط جمله فارسی می‌آید، ممکن است علامت‌ها جابه‌جا دیده شوند. برای آن بخش‌ها از <code>dir=&quot;ltr&quot;</code> یا تگ <code>bdi</code> استفاده کن.</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>&lt;p&gt;آدرس: &lt;bdi dir=&quot;ltr&quot;&gt;info@example.com&lt;/bdi&gt;&lt;/p&gt;</code></pre></div><h3 id="h4">۵. اعداد</h3><p>اگر اعداد فارسی (۱۲۳) می‌خواهی، هم می‌توانی خودت بنویسی و هم با <code>toLocaleString(&quot;fa-IR&quot;)</code> در جاوااسکریپت تبدیل کنی.</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>(12345).toLocaleString(&quot;fa-IR&quot;)  // ۱۲٬۳۴۵</code></pre></div><aside class="call tip"><b>نکته</b>کد و دستورها همیشه باید LTR بمانند. برای بلوک‌های کد <code>direction:ltr; text-align:left</code> بگذار.</aside>
+<p class="cta"><a href="../index.html#learn-rtl">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="firstpage.html">اولین صفحه وب با HTML، CSS و JavaScript</a></li><li><a href="devtools.html">ابزار توسعه‌دهنده مرورگر (F12)</a></li><li><a href="ghpages.html">انتشار سایت روی GitHub Pages</a></li><li><a href="responsive.html">ریسپانسیو کردن سایت</a></li><li><a href="seo.html">سئوی پایه برای سایت شخصی</a></li><li><a href="htmlsemantic.html">HTML معنادار: تگ‌های درست برای ساختار صفحه</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

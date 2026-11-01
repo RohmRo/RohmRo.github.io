@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مبانی JavaScript: متغیر، تابع، آرایه و شیء | آموزش Roham Prog</title>
+<meta name="description" content="هسته زبان جاوااسکریپت با مثال‌های کوتاه و قابل اجرا در Console.">
+<meta name="keywords" content="javascript، js، variables، functions، arrays، objects، loops، جاوااسکریپت، متغیر، تابع">
+<link rel="canonical" href="https://rohmro.github.io/learn/jsbasics.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="مبانی JavaScript: متغیر، تابع، آرایه و شیء"><meta property="og:description" content="هسته زبان جاوااسکریپت با مثال‌های کوتاه و قابل اجرا در Console."><meta property="og:url" content="https://rohmro.github.io/learn/jsbasics.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"مبانی JavaScript: متغیر، تابع، آرایه و شیء","description":"هسته زبان جاوااسکریپت با مثال‌های کوتاه و قابل اجرا در Console.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/jsbasics.html","dateModified":"2026-11-01","keywords":"javascript، js، variables، functions، arrays، objects، loops، جاوااسکریپت، متغیر، تابع","articleSection":"وب و برنامه‌نویسی","timeRequired":"PT10M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"مبانی JavaScript: متغیر، تابع، آرایه و شیء","item":"https://rohmro.github.io/learn/jsbasics.html"}]}]}</script>
+</head>
+<body>
+<header class="top"><a href="../index.html" class="brand">ROHAM PROG</a><nav><a href="../tutorials.html">همه آموزش‌ها</a><a href="../index.html#contact">تماس</a></nav></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › وب و برنامه‌نویسی</p>
+<h1>مبانی JavaScript: متغیر، تابع، آرایه و شیء</h1>
+<p class="meta"><span>وب و برنامه‌نویسی</span><span>مبتدی</span><span>۱۰ دقیقه</span></p>
+<p class="lead">هسته زبان جاوااسکریپت با مثال‌های کوتاه و قابل اجرا در Console.</p>
+<p>کدهای زیر را در Console مرورگر (F12) اجرا کن و تغییرشان بده؛ بهترین راه یادگیری همین است.</p><h3 id="h0">متغیر و نوع داده</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>const name = &quot;Roham&quot;;   // cannot be reassigned
+let age = 20;           // can change
+age = age + 1;
+
+const isOnline = true;
+const nothing = null;
+console.log(typeof name, typeof age);</code></pre></div><h3 id="h1">شرط و حلقه</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>if (age &gt;= 18) {
+  console.log(&quot;adult&quot;);
+} else {
+  console.log(&quot;minor&quot;);
+}
+
+for (let i = 1; i &lt;= 3; i++) {
+  console.log(&quot;step&quot;, i);
+}</code></pre></div><h3 id="h2">تابع</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>function add(a, b) {
+  return a + b;
+}
+const double = (n) =&gt; n * 2;   // arrow function
+
+console.log(add(2, 3), double(4));</code></pre></div><h3 id="h3">آرایه و شیء</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>const skills = [&quot;web&quot;, &quot;ai&quot;, &quot;security&quot;];
+skills.push(&quot;video&quot;);
+
+const person = { name: &quot;Roham&quot;, rank: 6, skills };
+console.log(person.name, person[&quot;rank&quot;]);
+
+// useful array methods
+const lengths = skills.map(s =&gt; s.length);
+const long = skills.filter(s =&gt; s.length &gt; 3);
+const found = skills.find(s =&gt; s === &quot;ai&quot;);</code></pre></div><h3 id="h4">قاعده‌های مهم</h3><ul><li>به‌جای <code>var</code> از <code>const</code> و <code>let</code> استفاده کن.</li><li>برای مقایسه از <code>===</code> استفاده کن نه <code>==</code>.</li><li>با <code>console.log</code> مقدارها را ببین؛ دیباگ بدون آن تقریباً غیرممکن است.</li></ul><aside class="call tip"><b>نکته</b>برای تمرین: تابعی بنویس که آرایه‌ای از اعداد بگیرد و میانگین آن‌ها را برگرداند.</aside>
+<p class="cta"><a href="../index.html#learn-jsbasics">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="firstpage.html">اولین صفحه وب با HTML، CSS و JavaScript</a></li><li><a href="devtools.html">ابزار توسعه‌دهنده مرورگر (F12)</a></li><li><a href="ghpages.html">انتشار سایت روی GitHub Pages</a></li><li><a href="rtl.html">فارسی و راست‌به‌چپ در وب</a></li><li><a href="responsive.html">ریسپانسیو کردن سایت</a></li><li><a href="seo.html">سئوی پایه برای سایت شخصی</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>
