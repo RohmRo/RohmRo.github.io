@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ابزار توسعه‌دهنده مرورگر (F12) | آموزش Roham Prog</title>
+<meta name="description" content="بدون نصب هیچ‌چیز، هر سایتی را بررسی و کد خودت را دیباگ کن.">
+<meta name="keywords" content="devtools، f12، inspect، console، network، lighthouse، دیباگ، مرورگر">
+<link rel="canonical" href="https://rohmro.github.io/learn/devtools.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="ابزار توسعه‌دهنده مرورگر (F12)"><meta property="og:description" content="بدون نصب هیچ‌چیز، هر سایتی را بررسی و کد خودت را دیباگ کن."><meta property="og:url" content="https://rohmro.github.io/learn/devtools.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css"><link rel="stylesheet" href="../assets/theme.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"ابزار توسعه‌دهنده مرورگر (F12)","description":"بدون نصب هیچ‌چیز، هر سایتی را بررسی و کد خودت را دیباگ کن.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/devtools.html","dateModified":"2026-11-03","keywords":"devtools، f12، inspect، console، network، lighthouse، دیباگ، مرورگر","articleSection":"وب و برنامه‌نویسی","timeRequired":"PT5M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"ابزار توسعه‌دهنده مرورگر (F12)","item":"https://rohmro.github.io/learn/devtools.html"}]}]}</script>
+</head>
+<body>
+<canvas class="bg-fluid" aria-hidden="true"></canvas><div class="bg-dim"></div><header class="nav"><a class="brand" href="../index.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg>Roham prog</a><nav class="linkpill"><a href="../index.html#services">خدمات</a><a href="../tutorials.html">آموزش‌ها</a><a href="../index.html#about">درباره من</a><a href="../index.html#faq">پرسش و پاسخ</a><a href="../index.html#contact">تماس</a></nav><a class="pill" href="../index.html#contact">تماس سریع</a></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › وب و برنامه‌نویسی</p>
+<h1>ابزار توسعه‌دهنده مرورگر (F12)</h1>
+<p class="meta"><span>وب و برنامه‌نویسی</span><span>مبتدی</span><span>۵ دقیقه</span></p>
+<p class="lead">بدون نصب هیچ‌چیز، هر سایتی را بررسی و کد خودت را دیباگ کن.</p>
+<p>کلید <strong>F12</strong> (یا Ctrl+Shift+I) ابزارهای توسعه‌دهنده مرورگر را باز می‌کند. مهم‌ترین تب‌ها:</p><ul><li><strong>Elements:</strong> ساختار HTML و CSS صفحه را می‌بینی و زنده تغییر می‌دهی. روی هر عنصر راست‌کلیک و Inspect را بزن.</li><li><strong>Console:</strong> خطاهای جاوااسکریپت و خروجی <code>console.log</code> اینجا است. اولین جایی که باید بعد از هر مشکل نگاه کنی.</li><li><strong>Network:</strong> همه درخواست‌ها و حجم فایل‌ها را نشان می‌دهد. برای پیدا کردن عکس سنگین یا لینک خراب عالی است.</li><li><strong>Sources:</strong> کدها را می‌بینی و breakpoint می‌گذاری.</li><li><strong>Lighthouse:</strong> سرعت، دسترس‌پذیری و سئوی صفحه را نمره می‌دهد.</li></ul><h3 id="h0">حالت موبایل</h3><p>کلیدهای Ctrl+Shift+M نمایش دستگاه‌های مختلف را شبیه‌سازی می‌کنند تا ببینی سایت روی گوشی چطور دیده می‌شود.</p><h3 id="h1">یک دیباگ ساده</h3><ol><li>صفحه را رفرش کن و تب Console را نگاه کن.</li><li>اگر خطای قرمز بود، اسم فایل و شماره خط را بخوان.</li><li>همان فایل را باز کن و خط را بررسی کن. اگر پیام را نفهمیدی، متنش را عیناً به یک AI بده (آموزش «دیباگ با هوش مصنوعی» را ببین).</li></ol><aside class="call tip"><b>نکته</b>عکس‌هایی که از ۳۰۰ کیلوبایت بزرگ‌ترند را در تب Network پیدا کن؛ فشرده‌کردنشان بیشترین تأثیر را روی سرعت سایت دارد.</aside>
+<p class="cta"><a href="../index.html#learn-devtools">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="firstpage.html">اولین صفحه وب با HTML، CSS و JavaScript</a></li><li><a href="ghpages.html">انتشار سایت روی GitHub Pages</a></li><li><a href="rtl.html">فارسی و راست‌به‌چپ در وب</a></li><li><a href="responsive.html">ریسپانسیو کردن سایت</a></li><li><a href="seo.html">سئوی پایه برای سایت شخصی</a></li><li><a href="htmlsemantic.html">HTML معنادار: تگ‌های درست برای ساختار صفحه</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script type="module" src="../assets/fluid.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پرامپت‌نویسی برای تولید تصویر | آموزش Roham Prog</title>
+<meta name="description" content="اجزای یک توصیف تصویری خوب: سوژه، سبک، نور، ترکیب‌بندی و نسبت تصویر.">
+<meta name="keywords" content="image، prompt، midjourney، dalle، stable، diffusion، art، generation، پرامپت، تصویر">
+<link rel="canonical" href="https://rohmro.github.io/learn/imageprompt.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="پرامپت‌نویسی برای تولید تصویر"><meta property="og:description" content="اجزای یک توصیف تصویری خوب: سوژه، سبک، نور، ترکیب‌بندی و نسبت تصویر."><meta property="og:url" content="https://rohmro.github.io/learn/imageprompt.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css"><link rel="stylesheet" href="../assets/theme.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"پرامپت‌نویسی برای تولید تصویر","description":"اجزای یک توصیف تصویری خوب: سوژه، سبک، نور، ترکیب‌بندی و نسبت تصویر.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/imageprompt.html","dateModified":"2026-11-03","keywords":"image، prompt، midjourney، dalle، stable، diffusion، art، generation، پرامپت، تصویر","articleSection":"هوش مصنوعی و پرامپت","timeRequired":"PT6M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"پرامپت‌نویسی برای تولید تصویر","item":"https://rohmro.github.io/learn/imageprompt.html"}]}]}</script>
+</head>
+<body>
+<canvas class="bg-fluid" aria-hidden="true"></canvas><div class="bg-dim"></div><header class="nav"><a class="brand" href="../index.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg>Roham prog</a><nav class="linkpill"><a href="../index.html#services">خدمات</a><a href="../tutorials.html">آموزش‌ها</a><a href="../index.html#about">درباره من</a><a href="../index.html#faq">پرسش و پاسخ</a><a href="../index.html#contact">تماس</a></nav><a class="pill" href="../index.html#contact">تماس سریع</a></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › هوش مصنوعی و پرامپت</p>
+<h1>پرامپت‌نویسی برای تولید تصویر</h1>
+<p class="meta"><span>هوش مصنوعی و پرامپت</span><span>مبتدی</span><span>۶ دقیقه</span></p>
+<p class="lead">اجزای یک توصیف تصویری خوب: سوژه، سبک، نور، ترکیب‌بندی و نسبت تصویر.</p>
+<p>مدل‌های تصویر هم مثل مدل‌های متن، با توصیف دقیق بهتر کار می‌کنند. یک توصیف خوب معمولاً این اجزا را دارد:</p><ol><li><strong>سوژه:</strong> چه کسی یا چه چیزی؟ در چه حالتی؟</li><li><strong>محیط:</strong> کجا و چه زمانی؟</li><li><strong>سبک:</strong> عکس واقعی، نقاشی دیجیتال، آبرنگ، سه‌بعدی، مینیمال...</li><li><strong>نور و رنگ:</strong> نور طلایی غروب، نور نرم استودیو، پالت سرد.</li><li><strong>دوربین و ترکیب‌بندی:</strong> نمای نزدیک، زاویه از پایین، لنز واید، عمق میدان.</li><li><strong>نسبت تصویر:</strong> مربع، عمودی ۹:۱۶، افقی ۱۶:۹.</li><li><strong>چیزهایی که نمی‌خواهی</strong> (اگر ابزار پشتیبانی کند).</li></ol><h3 id="h0">نمونه</h3><div class="pbx"><div class="pl">پرامپت نمونه<button type="button" class="cp">کپی</button></div><div class="pt" dir="auto">A photorealistic close-up of a traditional Persian carpet loom with a weaver's hands, warm window light from the left, shallow depth of field, rich red and indigo wool threads, calm documentary style, 4:5 vertical.</div></div><h3 id="h1">نکته‌ها</h3><ul><li>بیشتر ابزارها با انگلیسی بهتر کار می‌کنند؛ از AI گفت‌وگو بخواه توصیف فارسی تو را به پرامپت تصویری انگلیسی تبدیل کند.</li><li>نتیجه اول را مرحله‌ای بهتر کن؛ هر بار فقط یک چیز را تغییر بده.</li><li>نوشتن متن داخل تصویر (مثل لوگو) هنوز در بسیاری از مدل‌ها ضعیف است؛ متن را در یک ابزار گرافیکی اضافه کن.</li><li>برای کار تجاری، قوانین مجوز و حق نشر ابزار را بخوان.</li></ul><aside class="call warn"><b>احتیاط</b>از ساختن تصویر جعلی از افراد واقعی یا تصاویری که کسی را فریب می‌دهد پرهیز کن.</aside>
+<p class="cta"><a href="../index.html#learn-imageprompt">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="promptformula.html">فرمول پرامپت خوب برای هر هوش مصنوعی</a></li><li><a href="promptcode.html">پرامپت‌نویسی برای کدنویسی با هوش مصنوعی</a></li><li><a href="debugai.html">دیباگ با هوش مصنوعی: چطور خطا را حل کنیم</a></li><li><a href="buildsite.html">ساخت یک سایت کامل با AI، قدم‌به‌قدم</a></li><li><a href="promptlib.html">کتابخانه پرامپت‌های آماده</a></li><li><a href="claudeflow.html">کار حرفه‌ای با Claude Code: برنامه، اجرا، کنترل</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script type="module" src="../assets/fluid.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

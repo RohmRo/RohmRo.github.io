@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اولین صفحه وب با HTML، CSS و JavaScript | آموزش Roham Prog</title>
+<meta name="description" content="یک صفحه کامل و تعاملی را از صفر بساز و سه نقش این سه زبان را بفهم.">
+<meta name="keywords" content="html، css، javascript، web، page، first، صفحه، وب، شروع">
+<link rel="canonical" href="https://rohmro.github.io/learn/firstpage.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="اولین صفحه وب با HTML، CSS و JavaScript"><meta property="og:description" content="یک صفحه کامل و تعاملی را از صفر بساز و سه نقش این سه زبان را بفهم."><meta property="og:url" content="https://rohmro.github.io/learn/firstpage.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css"><link rel="stylesheet" href="../assets/theme.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"اولین صفحه وب با HTML، CSS و JavaScript","description":"یک صفحه کامل و تعاملی را از صفر بساز و سه نقش این سه زبان را بفهم.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/firstpage.html","dateModified":"2026-11-03","keywords":"html، css، javascript، web، page، first، صفحه، وب، شروع","articleSection":"وب و برنامه‌نویسی","timeRequired":"PT10M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"اولین صفحه وب با HTML، CSS و JavaScript","item":"https://rohmro.github.io/learn/firstpage.html"}]}]}</script>
+</head>
+<body>
+<canvas class="bg-fluid" aria-hidden="true"></canvas><div class="bg-dim"></div><header class="nav"><a class="brand" href="../index.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg>Roham prog</a><nav class="linkpill"><a href="../index.html#services">خدمات</a><a href="../tutorials.html">آموزش‌ها</a><a href="../index.html#about">درباره من</a><a href="../index.html#faq">پرسش و پاسخ</a><a href="../index.html#contact">تماس</a></nav><a class="pill" href="../index.html#contact">تماس سریع</a></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › وب و برنامه‌نویسی</p>
+<h1>اولین صفحه وب با HTML، CSS و JavaScript</h1>
+<p class="meta"><span>وب و برنامه‌نویسی</span><span>مبتدی</span><span>۱۰ دقیقه</span></p>
+<p class="lead">یک صفحه کامل و تعاملی را از صفر بساز و سه نقش این سه زبان را بفهم.</p>
+<p>هر صفحه وب از سه لایه ساخته می‌شود: <strong>HTML</strong> ساختار و محتوا، <strong>CSS</strong> ظاهر و <strong>JavaScript</strong> رفتار. یک فایل <code>index.html</code> بساز و کد زیر را داخلش بگذار.</p><div class="cb"><button type="button" class="cp">کپی</button><pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;fa&quot; dir=&quot;rtl&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+  &lt;title&gt;اولین صفحه من&lt;/title&gt;
+  &lt;style&gt;
+    body{font-family:system-ui,sans-serif;background:#0b0d17;color:#eee;
+         display:grid;place-items:center;min-height:100vh;margin:0}
+    .card{background:#1a1d2e;padding:2rem;border-radius:1rem;text-align:center}
+    button{padding:.7rem 1.4rem;border:0;border-radius:999px;cursor:pointer}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h1&gt;سلام دنیا&lt;/h1&gt;
+    &lt;p id=&quot;count&quot;&gt;تعداد کلیک: 0&lt;/p&gt;
+    &lt;button id=&quot;btn&quot;&gt;کلیک کن&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    let n = 0;
+    const el = document.getElementById(&quot;count&quot;);
+    document.getElementById(&quot;btn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+      n++;
+      el.textContent = &quot;تعداد کلیک: &quot; + n;
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><h3 id="h0">اجرا</h3><p>فایل را با دوبار کلیک در مرورگر باز کن یا در VS Code با افزونه Live Server روی گزینه Go Live بزن.</p><h3 id="h1">چه اتفاقی افتاد؟</h3><ul><li>تگ‌های HTML مثل <code>h1</code>، <code>p</code> و <code>button</code> عناصر صفحه را می‌سازند.</li><li>بخش <code>style</code> با انتخابگرها (مثل <code>.card</code>) ظاهر را تعیین می‌کند.</li><li>بخش <code>script</code> عنصر را با <code>getElementById</code> پیدا می‌کند و به کلیک گوش می‌دهد.</li></ul><h3 id="h2">تمرین</h3><ol><li>رنگ پس‌زمینه و دکمه را عوض کن.</li><li>یک دکمه «صفر کردن» اضافه کن.</li><li>تعداد کلیک را با <code>localStorage</code> ذخیره کن تا بعد از رفرش بماند.</li></ol>
+<p class="cta"><a href="../index.html#learn-firstpage">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="devtools.html">ابزار توسعه‌دهنده مرورگر (F12)</a></li><li><a href="ghpages.html">انتشار سایت روی GitHub Pages</a></li><li><a href="rtl.html">فارسی و راست‌به‌چپ در وب</a></li><li><a href="responsive.html">ریسپانسیو کردن سایت</a></li><li><a href="seo.html">سئوی پایه برای سایت شخصی</a></li><li><a href="htmlsemantic.html">HTML معنادار: تگ‌های درست برای ساختار صفحه</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script type="module" src="../assets/fluid.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کم‌کردن حجم ویدیو برای ارسال در پیام‌رسان‌ها | آموزش Roham Prog</title>
+<meta name="description" content="تنظیم رزولوشن و کیفیت برای رسیدن به حجم مناسب بدون خراب شدن تصویر.">
+<meta name="keywords" content="compress، video، telegram، whatsapp، handbrake، ffmpeg، size، کم، کردن، حجم، ویدیو">
+<link rel="canonical" href="https://rohmro.github.io/learn/sharevideo.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="کم‌کردن حجم ویدیو برای ارسال در پیام‌رسان‌ها"><meta property="og:description" content="تنظیم رزولوشن و کیفیت برای رسیدن به حجم مناسب بدون خراب شدن تصویر."><meta property="og:url" content="https://rohmro.github.io/learn/sharevideo.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css"><link rel="stylesheet" href="../assets/theme.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"کم‌کردن حجم ویدیو برای ارسال در پیام‌رسان‌ها","description":"تنظیم رزولوشن و کیفیت برای رسیدن به حجم مناسب بدون خراب شدن تصویر.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/sharevideo.html","dateModified":"2026-11-03","keywords":"compress، video، telegram، whatsapp، handbrake، ffmpeg، size، کم، کردن، حجم، ویدیو","articleSection":"ادیت ویدیو و عکس","timeRequired":"PT5M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"کم‌کردن حجم ویدیو برای ارسال در پیام‌رسان‌ها","item":"https://rohmro.github.io/learn/sharevideo.html"}]}]}</script>
+</head>
+<body>
+<canvas class="bg-fluid" aria-hidden="true"></canvas><div class="bg-dim"></div><header class="nav"><a class="brand" href="../index.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg>Roham prog</a><nav class="linkpill"><a href="../index.html#services">خدمات</a><a href="../tutorials.html">آموزش‌ها</a><a href="../index.html#about">درباره من</a><a href="../index.html#faq">پرسش و پاسخ</a><a href="../index.html#contact">تماس</a></nav><a class="pill" href="../index.html#contact">تماس سریع</a></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › ادیت ویدیو و عکس</p>
+<h1>کم‌کردن حجم ویدیو برای ارسال در پیام‌رسان‌ها</h1>
+<p class="meta"><span>ادیت ویدیو و عکس</span><span>مبتدی</span><span>۵ دقیقه</span></p>
+<p class="lead">تنظیم رزولوشن و کیفیت برای رسیدن به حجم مناسب بدون خراب شدن تصویر.</p>
+<p>پیام‌رسان‌ها محدودیت حجم دارند (مثلاً واتس‌اپ برای ارسال معمولی ویدیو حدود ۱۶ مگابایت) و ویدیو را خودشان فشرده می‌کنند و کیفیت را خراب می‌کنند. بهتر است خودت قبل از ارسال، فشرده‌سازی کنی.</p><h3 id="h0">با HandBrake (رابط گرافیکی)</h3><ol><li>HandBrake را از handbrake.fr نصب کن.</li><li>ویدیو را باز کن و از Presets گزینه Fast 720p30 یا Fast 1080p30 را انتخاب کن.</li><li>در تب Video مقدار Constant Quality را حدود ۲۴ تا ۲۸ بگذار؛ عدد بزرگ‌تر یعنی حجم کمتر.</li><li>Start Encode را بزن.</li></ol><h3 id="h1">با FFmpeg</h3><div class="cb"><button type="button" class="cp">کپی</button><pre><code>ffmpeg -i input.mp4 -vf scale=-2:720 -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 96k small.mp4</code></pre></div><h3 id="h2">راهنمای تقریبی</h3><ul><li>رزولوشن ۷۲۰p برای گوشی کاملاً کافی است.</li><li>فریم‌ریت ۳۰ به‌جای ۶۰ تقریباً حجم را نصف می‌کند.</li><li>صدا ۹۶ تا ۱۲۸ کیلوبیت کافی است.</li><li>برای حجم‌های بزرگ‌تر، فایل را به‌صورت «سند» یا از طریق لینک ابری بفرست تا فشرده نشود.</li></ul><aside class="call tip"><b>نکته</b>اگر حجم هنوز زیاد است، ویدیو را به دو بخش تقسیم کن یا طول و رزولوشن را کمتر کن؛ همیشه نسخه اصلی را نگه دار.</aside>
+<p class="cta"><a href="../index.html#learn-sharevideo">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="videobasic.html">ادیت ویدیو برای مبتدی‌ها: از فایل خام تا خروجی</a></li><li><a href="colorbasic.html">رنگ‌بندی ساده ویدیو</a></li><li><a href="audio.html">صدای تمیز در ویدیو و صداگذاری</a></li><li><a href="subtitle.html">زیرنویس فارسی: ساخت، قالب و مشکلات رایج</a></li><li><a href="photobasic.html">ادیت و روتوش عکس برای مبتدی‌ها</a></li><li><a href="exportformats.html">خروجی و فرمت‌ها: عکس، ویدیو و فشرده‌سازی</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script type="module" src="../assets/fluid.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>

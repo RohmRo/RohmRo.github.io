@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کار امن و دقیق با هوش مصنوعی | آموزش Roham Prog</title>
+<meta name="description" content="خطاهای رایج AI، چیزهایی که نباید به آن بدهی و چطور خروجی‌اش را بررسی کنی.">
+<meta name="keywords" content="ai، safety، hallucination، privacy، api، key، security، امنیت، هوش، مصنوعی، خطا">
+<link rel="canonical" href="https://rohmro.github.io/learn/aisafety.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#04050c">
+<meta property="og:type" content="article"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="Roham Prog">
+<meta property="og:title" content="کار امن و دقیق با هوش مصنوعی"><meta property="og:description" content="خطاهای رایج AI، چیزهایی که نباید به آن بدهی و چطور خروجی‌اش را بررسی کنی."><meta property="og:url" content="https://rohmro.github.io/learn/aisafety.html"><meta property="og:image" content="https://rohmro.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../assets/page.css"><link rel="stylesheet" href="../assets/theme.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"کار امن و دقیق با هوش مصنوعی","description":"خطاهای رایج AI، چیزهایی که نباید به آن بدهی و چطور خروجی‌اش را بررسی کنی.","inLanguage":"fa","author":{"@type":"Person","name":"رهام (Roham)","url":"https://rohmro.github.io/"},"publisher":{"@type":"Person","name":"Roham Prog","url":"https://rohmro.github.io/"},"mainEntityOfPage":"https://rohmro.github.io/learn/aisafety.html","dateModified":"2026-11-03","keywords":"ai، safety، hallucination، privacy، api، key، security، امنیت، هوش، مصنوعی، خطا","articleSection":"هوش مصنوعی و پرامپت","timeRequired":"PT6M"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roham Prog","item":"https://rohmro.github.io/"},{"@type":"ListItem","position":2,"name":"آموزش‌ها","item":"https://rohmro.github.io/tutorials.html"},{"@type":"ListItem","position":3,"name":"کار امن و دقیق با هوش مصنوعی","item":"https://rohmro.github.io/learn/aisafety.html"}]}]}</script>
+</head>
+<body>
+<canvas class="bg-fluid" aria-hidden="true"></canvas><div class="bg-dim"></div><header class="nav"><a class="brand" href="../index.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9c2.5 0 2.5 4.2 5 4.2S10 9 12 9s2.5 4.2 5 4.2S19.5 9 21.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 15c2.5 0 2.5 4.2 5 4.2S10 15 12 15s2.5 4.2 5 4.2S19.5 15 21.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg>Roham prog</a><nav class="linkpill"><a href="../index.html#services">خدمات</a><a href="../tutorials.html">آموزش‌ها</a><a href="../index.html#about">درباره من</a><a href="../index.html#faq">پرسش و پاسخ</a><a href="../index.html#contact">تماس</a></nav><a class="pill" href="../index.html#contact">تماس سریع</a></header>
+<main class="art">
+<p class="crumb"><a href="../index.html">خانه</a> › <a href="../tutorials.html">آموزش‌ها</a> › هوش مصنوعی و پرامپت</p>
+<h1>کار امن و دقیق با هوش مصنوعی</h1>
+<p class="meta"><span>هوش مصنوعی و پرامپت</span><span>مبتدی</span><span>۶ دقیقه</span></p>
+<p class="lead">خطاهای رایج AI، چیزهایی که نباید به آن بدهی و چطور خروجی‌اش را بررسی کنی.</p>
+<p>AI ابزاری عالی است ولی بی‌نقص نیست. چند عادت ساده تو را از بیشتر مشکلات دور نگه می‌دارد.</p><h3 id="h0">۱. خروجی را باور نکن، بررسی کن</h3><ul><li>AI گاهی با اطمینان کامل چیز غلط می‌گوید (توهم یا hallucination).</li><li>کد را اجرا کن و آزمایش کن؛ هیچ‌وقت چیزی را بدون اجرا وارد پروژه اصلی نکن.</li><li>برای اطلاعات حساس به زمان (نسخه‌ها، قیمت‌ها، قوانین) منبع رسمی را چک کن.</li></ul><h3 id="h1">۲. بسته‌های ساختگی</h3><p>گاهی AI اسم کتابخانه‌ای را پیشنهاد می‌دهد که وجود ندارد یا قدیمی شده است. قبل از <code>pip install</code> یا <code>npm install</code>، اسم دقیق را در سایت رسمی بسته (PyPI یا npm) ببین، تعداد دانلود و تاریخ آخرین به‌روزرسانی را چک کن. مهاجمان گاهی بسته‌هایی با همان اسم‌های پیشنهادی ساختگی می‌سازند تا قربانی بگیرند.</p><h3 id="h2">۳. چه چیزهایی را نباید بدهی</h3><ul><li>رمز عبور، کلید API، توکن و فایل <code>.env</code>.</li><li>اطلاعات شخصی یا محرمانه مشتری‌ها.</li><li>کد یا داده‌ای که قرارداد، اجازه اشتراک‌گذاری را ممنوع کرده است.</li></ul><p>اگر اشتباهی کلیدی را در گفت‌وگو چسباندی، فوراً آن را در سرویس مربوط باطل و یک کلید جدید بساز.</p><h3 id="h3">۴. امنیت کد تولیدشده</h3><p>کدی که AI می‌نویسد ممکن است ورودی کاربر را بدون بررسی به پایگاه داده یا صفحه بدهد (آسیب‌پذیری‌هایی مثل SQL Injection یا XSS). صریحاً بخواه: «این کد را از نظر امنیتی بررسی کن» و از پرس‌وجوهای پارامتری استفاده کن.</p><h3 id="h4">۵. فهمیدن را فراموش نکن</h3><p>اگر کدی را نمی‌فهمی، از AI بخواه توضیحش دهد. هدف این است که با کمک AI سریع‌تر یاد بگیری، نه اینکه مهارت خودت را از دست بدهی.</p><aside class="call tip"><b>نکته</b>قبل از هر تغییر بزرگ با AI، پروژه را با Git کامیت کن تا اگر خراب شد، یک دستور تو را به حالت سالم برگرداند.</aside>
+<p class="cta"><a href="../index.html#learn-aisafety">باز کردن در خواننده سایت</a> · <a href="../index.html#contact">سؤال دارید؟ با رهام در تماس باشید</a></p>
+<section class="rel"><h2>آموزش‌های مرتبط</h2><ul><li><a href="promptformula.html">فرمول پرامپت خوب برای هر هوش مصنوعی</a></li><li><a href="promptcode.html">پرامپت‌نویسی برای کدنویسی با هوش مصنوعی</a></li><li><a href="debugai.html">دیباگ با هوش مصنوعی: چطور خطا را حل کنیم</a></li><li><a href="buildsite.html">ساخت یک سایت کامل با AI، قدم‌به‌قدم</a></li><li><a href="promptlib.html">کتابخانه پرامپت‌های آماده</a></li><li><a href="claudeflow.html">کار حرفه‌ای با Claude Code: برنامه، اجرا، کنترل</a></li></ul></section>
+</main>
+<footer class="foot">Copyright © Roham Prog 2026 · <a href="mailto:rohamoliyaie@gmail.com">rohamoliyaie@gmail.com</a> · <a href="https://t.me/Roham_Ro">@Roham_Ro</a></footer>
+<script type="module" src="../assets/fluid.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var box=b.closest(".cb")||b.closest(".pbx");var el=box.querySelector("pre code")||box.querySelector(".pt");navigator.clipboard&&navigator.clipboard.writeText(el.textContent).then(function(){var o=b.textContent;b.textContent="کپی شد ✓";setTimeout(function(){b.textContent=o},1400)})});</script>
+</body>
+</html>
