@@ -1,0 +1,17 @@
+
+/* ---------- faq + contact ---------- */
+.faq{max-width:52rem;margin:3rem auto 0;display:flex;flex-direction:column;gap:.75rem}
+.faq details{border:1px solid var(--glass-border);background:var(--glass-fill);border-radius:1.2rem;padding:0 1.4rem;transition:background .2s}
+.faq details[open]{background:rgba(255,255,255,.12)}
+.faq summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-weight:700;font-size:1.02rem;line-height:1.8;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--cyan);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 1.2rem;color:var(--body-muted);line-height:2;font-size:.95rem}
+.ccards{margin:3rem auto 0;display:grid;gap:1rem;max-width:60rem;grid-template-columns:1fr}
+@media (min-width:760px){.ccards{grid-template-columns:repeat(3,1fr)}}
+.ccard{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.6rem 1rem;border-radius:1.4rem;border:1px solid var(--glass-border);background:var(--glass-fill);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .25s,background .25s}
+.ccard:hover{transform:translateY(-.3rem);background:rgba(255,255,255,.14)}
+.ccard b{font-size:.8rem;letter-spacing:.08em;color:var(--cyan)}
+.ccard span{font-family:"Onest",sans-serif;font-size:1.02rem;direction:ltr;word-break:break-all;text-align:center}
+.copy a{margin:0 .5rem;text-decoration:underline;text-underline-offset:.25em}
